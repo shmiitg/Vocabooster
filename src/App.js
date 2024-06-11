@@ -9,7 +9,7 @@ const App = () => {
 
   const getTodo = async () => {
     try {
-      const res = await fetch(`http://localhost:8000/words`);
+      const res = await fetch(`/api/json-server/words`);
       const data = await res.json();
       setWords(data);
     } catch (err) {
