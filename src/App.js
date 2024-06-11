@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import MainScreen from "./components/MainScreen";
+import RevisionPage from "./components/RevisionPage";
+import WordFrame from "./components/WordFrame";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+    const [words, setWords] = useState([]);
+
+    useEffect(() => {
+        fetch("/data.json")
+            .then((response) => response.json())
+            .then((data) => setWords(data));
+    }, []);
+
+    return (
+        <Router>
+            <div className="App">
+                <header className="App-header">
+                    <h1 className="logo">
+                        <Link to="/">Vocabrain</Link>
+                    </h1>
+                    <div className="links">
+                        <Link to="/revision">
+                            <button>Revision</button>
+                        </Link>
+                    </div>
+                </header>
+                <Routes>
+                    <Route path="/" element={<MainScreen words={words} />} />
+                    <Route path="/revision" element={<RevisionPage words={words} />} />
+                </Routes>
+            </div>
+        </Router>
+    );
+};
 
 export default App;

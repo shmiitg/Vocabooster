@@ -1,0 +1,39 @@
+/* MainScreen.css */
+.MainScreen {
+    margin: 0 auto;
+}
+
+.MainScreen-heading {
+    font-size: 24px;
+}
+
+.MainScreen-list {
+    margin-top: 20px;
+    padding: 0;
+}
+
+.MainScreen-item {
+    margin: 0 20px 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+
+.MainScreen-word {
+    font-size: 20px;
+    margin-top: 0;
+    color: #333;
+}
+
+.MainScreen-meaning {
+    margin-top: 10px;
+}
+
+.MainScreen-meaning p {
+    margin: 5px 0;
+}
+
+.MainScreen-meaning strong {
+    font-weight: bold;
+}

@@ -1,0 +1,47 @@
+[
+    {
+        "word": "Ensue",
+        "meanings": [
+            {
+                "definition": "happen or occur afterwards or as a result",
+                "synonyms": ["result", "follow"]
+            }
+        ]
+    },
+    {
+        "word": "Exigency",
+        "meanings": [
+            {
+                "synonyms": ["emergency", "crisis"]
+            }
+        ]
+    },
+    {
+        "word": "Expropriate",
+        "meanings": [
+            {
+                "definition": "(of the state or an authority) take (property) from its owner for public use or benefit",
+                "synonyms": ["seize", "appropriate"]
+            }
+        ]
+    },
+    {
+        "word": "Expiation",
+        "meanings": [
+            {
+                "definition": "making amends or reparation for guilt",
+                "synonyms": ["atonement", "redress", "reparation"],
+                "example": "An act of public expiation"
+            }
+        ]
+    },
+    {
+        "word": "En route",
+        "meanings": [
+            {
+                "definition": "during the course of a journey; on the way",
+                "example": "I stopped in Delhi en route to Guwahati"
+            }
+        ]
+    }
+]
