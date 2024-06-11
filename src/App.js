@@ -7,21 +7,18 @@ import "./App.css";
 const App = () => {
   const [words, setWords] = useState([]);
 
-  const getTodo = async () => {
+  const getWords = async () => {
     try {
-      const res = await fetch(`/api/json-server/words`);
+      const res = await fetch(`/data.json`);
       const data = await res.json();
-      setWords(data);
+      setWords(data["words"]);
     } catch (err) {
       console.log(err);
     }
   };
 
   useEffect(() => {
-    getTodo();
-    // fetch("/data.json")
-    //   .then((response) => response.json())
-    //   .then((data) => setWords(data["words"]));
+    getWords();
   }, []);
 
   return (
