@@ -33,6 +33,23 @@ body {
 }
 
 /* Alphabet navigation styles */
+.search-bar {
+    margin: 12px 0 6px;
+}
+
+.search-bar input {
+    padding: 8px 12px;
+    margin: 0;
+    font-size: 16px;
+    width: 100%;
+    outline: none;
+    max-width: 300px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 20px;
+}
+
 .alphabet-nav {
     display: flex;
     justify-content: center;
@@ -53,9 +70,13 @@ body {
     width: max(28px, calc(22px + 1vw));
     aspect-ratio: 1;
     font-size: 13px;
-    background-color: #afedff;
+    background-color: #94e8ff;
     border: none;
     cursor: pointer;
+}
+
+.alphabet-nav button.selected {
+    background-color: #21a1f1;
 }
 
 .alphabet-nav button:hover {
@@ -71,7 +92,7 @@ body {
 .links button {
     margin: 5px;
     padding: 10px;
-    background-color: #61dafb;
+    background-color: #94e8ff;
     border: none;
     cursor: pointer;
 }

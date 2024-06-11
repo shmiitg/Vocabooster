@@ -16,7 +16,19 @@ const RevisionPage = ({ words }) => {
         };
         const selectedWords = getRandomWords(words, 10);
 
-        setRevisionWords([...selectedWords].sort(() => 0.5 - Math.random()));
+        // Sort the random words alphabetically
+        selectedWords.sort((a, b) => {
+            const wordA = a.word.toLowerCase();
+            const wordB = b.word.toLowerCase();
+            if (wordA < wordB) {
+                return -1;
+            }
+            if (wordA > wordB) {
+                return 1;
+            }
+            return 0;
+        });
+        setRevisionWords([...selectedWords]);
     }, [words]);
 
     return (

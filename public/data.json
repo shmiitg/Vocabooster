@@ -61,5 +61,25 @@
                 "example": "I stopped in Delhi en route to Guwahati"
             }
         ]
+    },
+    {
+        "word": "Expedite",
+        "meanings": [
+            {
+                "definition": "to make something happen more quickly",
+                "synonyms": ["hasten", "speed up"],
+                "example": "Expedite the process"
+            }
+        ]
+    },
+    {
+        "word": "Exotic",
+        "meanings": [
+            {
+                "definition": "unusual and exciting because it is foreign, unfamiliar, or different",
+                "synonyms": ["foreign, unfamiliar, alien"],
+                "example": "Exotic plants, exotic dishes"
+            }
+        ]
     }
 ]
