@@ -18,11 +18,56 @@
         ]
     },
     {
+        "word": "En route",
+        "meanings": [
+            {
+                "definition": "during the course of a journey; on the way",
+                "example": "I stopped in Delhi en route to Guwahati"
+            }
+        ]
+    },
+    {
         "word": "Ensue",
         "meanings": [
             {
                 "definition": "happen or occur afterwards or as a result",
                 "synonyms": ["result", "follow"]
+            }
+        ]
+    },
+    {
+        "word": "Eviction",
+        "meanings": [
+            {
+                "definition": "the action of expelling someone from a property; expulsion",
+                "meaning": "Eviction notice"
+            }
+        ]
+    },
+    {
+        "word": "Exacerbate",
+        "meanings": [
+            {
+                "definition": "make (a problem, bad situation, or negative feeling) worse",
+                "meaning": "The solution proposed by the teacher exacerbated the doubt of students",
+                "synonyms": ["aggravate"]
+            }
+        ]
+    },
+    {
+        "word": "Exasperate",
+        "meanings": [
+            {
+                "definition": "irritate and frustrate someone",
+                "synonyms": [
+                    "infuriate",
+                    "incense",
+                    "anger",
+                    "annoy",
+                    "irritate",
+                    "enrage",
+                    "inflame"
+                ]
             }
         ]
     },
@@ -35,30 +80,12 @@
         ]
     },
     {
-        "word": "Expropriate",
+        "word": "Exotic",
         "meanings": [
             {
-                "definition": "(of the state or an authority) take (property) from its owner for public use or benefit",
-                "synonyms": ["seize", "appropriate"]
-            }
-        ]
-    },
-    {
-        "word": "Expiation",
-        "meanings": [
-            {
-                "definition": "making amends or reparation for guilt",
-                "synonyms": ["atonement", "redress", "reparation"],
-                "example": "An act of public expiation"
-            }
-        ]
-    },
-    {
-        "word": "En route",
-        "meanings": [
-            {
-                "definition": "during the course of a journey; on the way",
-                "example": "I stopped in Delhi en route to Guwahati"
+                "definition": "unusual and exciting because it is foreign, unfamiliar, or different",
+                "synonyms": ["foreign, unfamiliar, alien"],
+                "example": "Exotic plants, exotic dishes"
             }
         ]
     },
@@ -73,12 +100,31 @@
         ]
     },
     {
-        "word": "Exotic",
+        "word": "Expiation",
         "meanings": [
             {
-                "definition": "unusual and exciting because it is foreign, unfamiliar, or different",
-                "synonyms": ["foreign, unfamiliar, alien"],
-                "example": "Exotic plants, exotic dishes"
+                "definition": "making amends or reparation for guilt",
+                "synonyms": ["atonement", "redress", "reparation"],
+                "example": "An act of public expiation"
+            }
+        ]
+    },
+    {
+        "word": "Explicate",
+        "meanings": [
+            {
+                "definition": "to explain something in detail, especially a piece of writing  or an idea",
+                "synonyms": ["explain", "clarify"],
+                "example": "This book clearly explicates the writer's ideas"
+            }
+        ]
+    },
+    {
+        "word": "Expropriate",
+        "meanings": [
+            {
+                "definition": "(of the state or an authority) take (property) from its owner for public use or benefit",
+                "synonyms": ["seize", "appropriate"]
             }
         ]
     }
