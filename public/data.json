@@ -18,6 +18,42 @@
         ]
     },
     {
+        "word": "Earnest",
+        "meanings": [
+            {
+                "definition": "serious and determined",
+                "example": "An earnest student"
+            }
+        ]
+    },
+    {
+        "word": "Ecclesial",
+        "meanings": [
+            {
+                "definition": "relating to church; churchly"
+            }
+        ]
+    },
+    {
+        "word": "Eclectic",
+        "meanings": [
+            {
+                "definition": "during the course of a journey; on the way",
+                "synonyms": ["wide", "diverse", "extensive", "follow"],
+                "example": "Universities offering an eclectic mix of courses"
+            }
+        ]
+    },
+    {
+        "word": "Effluent",
+        "meanings": [
+            {
+                "definition": "liquid waste or sewage discharged into a river or the sea",
+                "example": "Industrial effluent"
+            }
+        ]
+    },
+    {
         "word": "En route",
         "meanings": [
             {
