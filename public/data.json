@@ -1,5 +1,23 @@
 [
     {
+        "word": "Aboard",
+        "meanings": [
+            {
+                "definition": "on or onto a ship, aircraft or bus",
+                "synonyms": ["embark"]
+            }
+        ]
+    },
+    {
+        "word": "Abridge",
+        "meanings": [
+            {
+                "definition": "shorten without loosing sense",
+                "synonyms": ["shorten", "truncate"]
+            }
+        ]
+    },
+    {
         "word": "Ensue",
         "meanings": [
             {
