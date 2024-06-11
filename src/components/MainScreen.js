@@ -60,9 +60,7 @@ const MainScreen = ({ words }) => {
                     {filteredWords.map((word) => (
                         <li key={word.word} className="MainScreen-item">
                             <h3 className="MainScreen-word">{capitalizeFirstLetter(word.word)}</h3>
-                            {word.meanings.map((meaning, index) => (
-                                <WordFrame meaning={meaning} index={index} />
-                            ))}
+                            <WordFrame word={word} />
                         </li>
                     ))}
                 </ul>

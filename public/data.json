@@ -164,6 +164,80 @@
                     "synonyms": ["seize", "appropriate"]
                 }
             ]
+        },
+        {
+            "word": "Emasculate",
+            "meanings": [
+                {
+                    "synonyms": ["weaken", "debiliate", "enfeeble"]
+                }
+            ]
+        },
+        {
+            "word": "Embroil",
+            "meanings": [
+                {
+                    "definition": "to involve someone or something in a complicated situation",
+                    "synonyms": ["involve", "ensnare", "entangle"],
+                    "example": "His reckless actions embroiled the company in a legal dispute"
+                }
+            ]
+        },
+        {
+            "word": "Emcee",
+            "meanings": [
+                {
+                    "synonyms": ["host", "compere"]
+                }
+            ]
+        },
+        {
+            "word": "Eminent",
+            "meanings": [
+                {
+                    "definition": "(of a person) famous and respected within a particular sphere",
+                    "synonyms": ["distinguished", "renowed", "esteemed"],
+                    "example": "An eminent mathematician"
+                },
+                {
+                    "definition": "(of a positive quality) present to a notable degree",
+                    "synonyms": ["obvious", "clear", "conspicuous"],
+                    "example": "Eminent good sense of humour"
+                }
+            ]
+        },
+        {
+            "word": "Emphatic",
+            "meanings": [
+                {
+                    "definition": "strong and determined in speech or action",
+                    "example": "She was emphatic about going to the school trip",
+                    "synonyms": ["vehement", "firm"]
+                }
+            ]
+        },
+        {
+            "word": "Endeavour",
+            "meanings": [
+                {
+                    "definition": "an attempt to achieve something",
+                    "example": "He endeavoured to locate the bug in the code",
+                    "synonyms": ["attempt"]
+                }
+            ]
+        },
+        {
+            "word": "Endemic",
+            "meanings": [
+                {
+                    "definition": "(of a disease) occurring within an area or community",
+                    "example": "Malaria is endemic in the hotter regions of the world"
+                },
+                {
+                    "definition": "(of a plant or animal) native and restricted to a certain place",
+                    "example": "Kiwi is endemic to New Zealand"
+                }
+            ]
         }
     ]
 }
