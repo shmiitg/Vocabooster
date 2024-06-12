@@ -29,14 +29,14 @@ export default function WordFrame({ word }) {
     return (
         <>
             <div className="word-frame-container">
-                <h3 className="MainScreen-word">
-                    {capitalizeFirstLetter(word.word)}
+                <div className="word-frame-top">
+                    <h3 className="MainScreen-word">{capitalizeFirstLetter(word.word)}</h3>
                     {isEditable() && (
                         <button className="edit-icon" onClick={handleEditClick}>
                             Edit
                         </button>
                     )}
-                </h3>
+                </div>
                 {word.meanings.map((meaning, index) => (
                     <div key={index} className="word-frame">
                         {meaning.definition && <p className="word-meaning">{meaning.definition}</p>}
