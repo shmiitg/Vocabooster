@@ -34,12 +34,12 @@ const App = () => {
         <Router>
             <div className="App">
                 <header className="App-header">
-                    <div className="left-nav">
+                    <div className="left-header">
                         <h1 className="logo">
                             <Link to="/">Vocabrain</Link>
                         </h1>
                     </div>
-                    <div className="right-nav">
+                    <div className="right-header">
                         <div className="links">
                             <Link to="/revision">
                                 <button>Revision</button>

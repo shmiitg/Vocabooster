@@ -6,8 +6,8 @@ const NewWord = () => {
         meanings: [
             {
                 definition: "",
-                synonyms: [],
-                antonyms: [],
+                synonyms: "",
+                antonyms: "",
                 example: "",
             },
         ],
@@ -19,16 +19,6 @@ const NewWord = () => {
             setNewWord({
                 ...newWord,
                 [name]: value,
-            });
-        } else if (name === "synonyms" || name === "antonyms") {
-            setNewWord({
-                ...newWord,
-                meanings: [
-                    {
-                        ...newWord.meanings[0],
-                        [name]: value.split(",").map((item) => item.trim()), // Split and trim values
-                    },
-                ],
             });
         } else {
             setNewWord({
@@ -46,12 +36,26 @@ const NewWord = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const { word, meanings } = newWord;
+
+        // Convert synonyms and antonyms strings to arrays
+        const updatedMeanings = {
+            ...meanings[0],
+            synonyms:
+                meanings[0].synonyms.length > 0
+                    ? meanings[0].synonyms.split(",").map((item) => item.trim())
+                    : [],
+            antonyms:
+                meanings[0].antonyms.length > 0
+                    ? meanings[0].antonyms.split(",").map((item) => item.trim())
+                    : [],
+        };
+
         const res = await fetch(`${process.env.REACT_APP_SERVER_URL}/words/save`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ word, meanings }),
+            body: JSON.stringify({ word, meanings: [updatedMeanings] }),
         });
         const data = await res.json();
         if (res.status === 200) {
@@ -61,8 +65,8 @@ const NewWord = () => {
                 meanings: [
                     {
                         definition: "",
-                        synonyms: [],
-                        antonyms: [],
+                        synonyms: "",
+                        antonyms: "",
                         example: "",
                     },
                 ],
@@ -73,8 +77,8 @@ const NewWord = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
+        <form className="new-word-form" onSubmit={handleSubmit}>
+            <div className="form-group">
                 <label>
                     Word:
                     <input
@@ -86,7 +90,7 @@ const NewWord = () => {
                     />
                 </label>
             </div>
-            <div>
+            <div className="form-group">
                 <label>
                     Definition:
                     <input
@@ -97,29 +101,29 @@ const NewWord = () => {
                     />
                 </label>
             </div>
-            <div>
+            <div className="form-group">
                 <label>
                     Synonyms (comma-separated):
                     <input
                         type="text"
                         name="synonyms"
-                        value={newWord.meanings[0].synonyms.join(", ")}
+                        value={newWord.meanings[0].synonyms}
                         onChange={handleChange}
                     />
                 </label>
             </div>
-            <div>
+            <div className="form-group">
                 <label>
                     Antonyms (comma-separated):
                     <input
                         type="text"
                         name="antonyms"
-                        value={newWord.meanings[0].antonyms.join(", ")}
+                        value={newWord.meanings[0].antonyms}
                         onChange={handleChange}
                     />
                 </label>
             </div>
-            <div>
+            <div className="form-group">
                 <label>
                     Example:
                     <input
@@ -130,7 +134,9 @@ const NewWord = () => {
                     />
                 </label>
             </div>
-            <button type="submit">Add Word</button>
+            <button type="submit" className="submit-button">
+                Add Word
+            </button>
         </form>
     );
 };
