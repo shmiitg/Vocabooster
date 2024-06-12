@@ -173,6 +173,10 @@ li {
 .word-meaning {
 }
 
+.word-example {
+    color: #2f2f2f;
+}
+
 .word-frame p {
     margin: 4px 0;
 }
