@@ -5,11 +5,6 @@ const MainScreen = ({ words }) => {
     const [selectedAlphabet, setSelectedAlphabet] = useState("A");
     const [searchQuery, setSearchQuery] = useState("");
 
-    // Function to capitalize the first letter of a word
-    const capitalizeFirstLetter = (word) => {
-        return word.charAt(0).toUpperCase() + word.slice(1);
-    };
-
     // Filter words based on selected alphabet
     const filteredWords = words.filter(
         (word) =>
@@ -58,7 +53,6 @@ const MainScreen = ({ words }) => {
                 <ul className="MainScreen-list">
                     {filteredWords.map((word) => (
                         <li key={word.word} className="MainScreen-item">
-                            <h3 className="MainScreen-word">{capitalizeFirstLetter(word.word)}</h3>
                             <WordFrame word={word} />
                         </li>
                     ))}

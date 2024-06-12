@@ -4,11 +4,6 @@ import WordFrame from "./WordFrame";
 const RevisionPage = ({ words }) => {
     const [revisionWords, setRevisionWords] = useState([]);
 
-    // Function to capitalize the first letter of a word
-    const capitalizeFirstLetter = (word) => {
-        return word.charAt(0).toUpperCase() + word.slice(1);
-    };
-
     useEffect(() => {
         const getRandomWords = (list, count) => {
             const shuffled = list.sort(() => 0.5 - Math.random());
@@ -37,10 +32,7 @@ const RevisionPage = ({ words }) => {
             <ul className="MainScreen-list">
                 {revisionWords.map((word) => (
                     <li key={word.word} className="MainScreen-item">
-                        <h3 className="MainScreen-word">{capitalizeFirstLetter(word.word)}</h3>
-                        {word.meanings.map((meaning, index) => (
-                            <WordFrame meaning={meaning} index={index} />
-                        ))}
+                        <WordFrame word={word} />
                     </li>
                 ))}
             </ul>
