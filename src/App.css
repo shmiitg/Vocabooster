@@ -204,6 +204,12 @@ li {
     margin-bottom: 15px;
 }
 
+.form-sub-group {
+    display: flex;
+    gap: 2px;
+    flex-direction: column;
+}
+
 .form-group label {
     display: block;
     font-weight: bold;
@@ -212,7 +218,6 @@ li {
 }
 
 .form-group input {
-    width: 100%;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;

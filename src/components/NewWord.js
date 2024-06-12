@@ -79,8 +79,8 @@ const NewWord = () => {
     return (
         <form className="new-word-form" onSubmit={handleSubmit}>
             <div className="form-group">
-                <label>
-                    Word:
+                <div className="form-sub-group">
+                    <div className="form-group-name">Word:</div>
                     <input
                         type="text"
                         name="word"
@@ -88,43 +88,43 @@ const NewWord = () => {
                         onChange={handleChange}
                         required
                     />
-                </label>
+                </div>
             </div>
             <div className="form-group">
-                <label>
-                    Definition:
+                <div className="form-sub-group">
+                    <div className="form-group-name">Definition:</div>
                     <input
                         type="text"
                         name="definition"
                         value={newWord.meanings[0].definition}
                         onChange={handleChange}
                     />
-                </label>
+                </div>
             </div>
             <div className="form-group">
-                <label>
-                    Synonyms (comma-separated):
+                <div className="form-sub-group">
+                    <div className="form-group-name">Synonyms (comma-separated):</div>
                     <input
                         type="text"
                         name="synonyms"
                         value={newWord.meanings[0].synonyms}
                         onChange={handleChange}
                     />
-                </label>
+                </div>
             </div>
             <div className="form-group">
-                <label>
-                    Antonyms (comma-separated):
+                <div className="form-sub-group">
+                    <div className="form-group-name"> Antonyms (comma-separated):</div>
                     <input
                         type="text"
                         name="antonyms"
                         value={newWord.meanings[0].antonyms}
                         onChange={handleChange}
                     />
-                </label>
+                </div>
             </div>
             <div className="form-group">
-                <label>
+                <div className="form-sub-group">
                     Example:
                     <input
                         type="text"
@@ -132,7 +132,7 @@ const NewWord = () => {
                         value={newWord.meanings[0].example}
                         onChange={handleChange}
                     />
-                </label>
+                </div>
             </div>
             <button type="submit" className="submit-button">
                 Add Word
