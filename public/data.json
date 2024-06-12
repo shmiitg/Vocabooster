@@ -39,7 +39,7 @@
             "word": "Eclectic",
             "meanings": [
                 {
-                    "synonyms": ["wide", "diverse", "extensive", "follow"],
+                    "synonyms": ["wide", "diverse", "extensive"],
                     "example": "Universities offering an eclectic mix of courses"
                 }
             ]
@@ -281,6 +281,75 @@
                 {
                     "definition": "assign the responsibilty for doing something to (someone)",
                     "example": "I've been entrusted with the task of helping him in his homework"
+                }
+            ]
+        },
+        {
+            "word": "Wanton",
+            "meanings": [
+                {
+                    "definition": "something that's inhuman, unrestrained",
+                    "example": "They were accused of wanton cruelty towards animals",
+                    "synonyms": ["wilful, malicious, malevolent, spiteful"]
+                }
+            ]
+        },
+        {
+            "word": "Whim",
+            "meanings": [
+                {
+                    "definition": "a sudden desire or change of mind",
+                    "synonyms": ["impulse"],
+                    "example": "She bought it on a whim"
+                }
+            ]
+        },
+        {
+            "word": "Whine",
+            "meanings": [
+                {
+                    "definition": "a long, high-pitched complaining cry",
+                    "example": "The dog gave a small whine",
+                    "synonyms": ["whimper, wail, cry, mewl, groan, moan, howl, yowl"]
+                }
+            ]
+        },
+        {
+            "word": "Whoop",
+            "meanings": [
+                {
+                    "definition": "to give a loud, excited shout",
+                    "example": "The audience was whooping and clapping"
+                }
+            ]
+        },
+        {
+            "word": "Woo",
+            "meanings": [
+                {
+                    "definition": "seek the favour, support, or custom of",
+                    "example": "A candidate must woo voters by making them feel important",
+                    "synonyms": ["pursue"]
+                }
+            ]
+        },
+        {
+            "word": "Wrest",
+            "meanings": [
+                {
+                    "definition": "to violently pull something away from someone",
+                    "example": "She tried to wrest her arm from his hold"
+                }
+            ]
+        },
+        {
+            "word": "Wretched",
+            "meanings": [
+                {
+                    "definition": "(of a person) in a very unhappy or unfortunate state",
+                    "example": "I felt so wretched because I thought I might never see you again",
+                    "synonyms": ["miserable, unhappy, sad"],
+                    "antonyms": ["cheerful"]
                 }
             ]
         }
