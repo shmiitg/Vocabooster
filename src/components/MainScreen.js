@@ -42,7 +42,7 @@ const MainScreen = ({ words }) => {
                         <button
                             key={letter}
                             onClick={() => setSelectedAlphabet(letter)}
-                            className={selectedAlphabet === letter && "selected"}
+                            className={selectedAlphabet === letter ? "selected" : ""}
                         >
                             {letter}
                         </button>

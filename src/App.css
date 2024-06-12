@@ -21,6 +21,10 @@ body {
     color: white;
 }
 
+.right-nav {
+    display: flex;
+}
+
 /* Logo styles */
 .logo {
     cursor: pointer;

@@ -2,45 +2,64 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import MainScreen from "./components/MainScreen";
 import RevisionPage from "./components/RevisionPage";
+import NewWord from "./components/NewWord";
 import "./App.css";
 
 const App = () => {
-  const [words, setWords] = useState([]);
+    const [words, setWords] = useState([]);
+    const [error, setError] = useState(false);
 
-  const getWords = async () => {
-    try {
-      const res = await fetch(`/data.json`);
-      const data = await res.json();
-      setWords(data["words"]);
-    } catch (err) {
-      console.log(err);
+    const getWords = async () => {
+        try {
+            const url = `${process.env.REACT_APP_SERVER_URL}/words`;
+            const res = await fetch(url);
+            const data = await res.json();
+            if (res.status === 200) {
+                setWords(data.words);
+            } else {
+                setError(true);
+            }
+        } catch (err) {}
+    };
+
+    useEffect(() => {
+        getWords();
+    }, []);
+
+    if (error) {
+        return <h1>Error</h1>;
     }
-  };
 
-  useEffect(() => {
-    getWords();
-  }, []);
-
-  return (
-    <Router>
-      <div className="App">
-        <header className="App-header">
-          <h1 className="logo">
-            <Link to="/">Vocabrain</Link>
-          </h1>
-          <div className="links">
-            <Link to="/revision">
-              <button>Revision</button>
-            </Link>
-          </div>
-        </header>
-        <Routes>
-          <Route path="/" element={<MainScreen words={words} />} />
-          <Route path="/revision" element={<RevisionPage words={words} />} />
-        </Routes>
-      </div>
-    </Router>
-  );
+    return (
+        <Router>
+            <div className="App">
+                <header className="App-header">
+                    <div className="left-nav">
+                        <h1 className="logo">
+                            <Link to="/">Vocabrain</Link>
+                        </h1>
+                    </div>
+                    <div className="right-nav">
+                        <div className="links">
+                            <Link to="/revision">
+                                <button>Revision</button>
+                            </Link>
+                        </div>
+                        <div className="links">
+                            <Link to="/new">
+                                <button>Add Word</button>
+                            </Link>
+                        </div>
+                    </div>
+                </header>
+                <Routes>
+                    <Route path="/" element={<MainScreen words={words} />} />
+                    <Route path="/revision" element={<RevisionPage words={words} />} />
+                    <Route path="/new" element={<NewWord />} />
+                </Routes>
+            </div>
+        </Router>
+    );
 };
 
 export default App;
