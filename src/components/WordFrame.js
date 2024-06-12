@@ -4,12 +4,8 @@ export default function WordFrame({ word }) {
     return (
         <>
             {word.meanings.map((meaning, index) => (
-                <div key={index} className="MainScreen-meaning">
-                    {meaning.definition && (
-                        <p>
-                            <strong>Definition:</strong> {meaning.definition}
-                        </p>
-                    )}
+                <div key={index} className="word-frame">
+                    {meaning.definition && <p className="word-meaning">{meaning.definition}</p>}
                     {meaning.synonyms && (
                         <p>
                             <strong>Synonyms:</strong> {meaning.synonyms.join(", ")}
@@ -22,7 +18,7 @@ export default function WordFrame({ word }) {
                     )}
                     {meaning.example && (
                         <p>
-                            <strong>Example:</strong> {meaning.example}
+                            <strong>Ex:</strong> {meaning.example}
                         </p>
                     )}
                 </div>

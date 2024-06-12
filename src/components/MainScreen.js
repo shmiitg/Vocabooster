@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "../css/MainScreen.css";
 import WordFrame from "./WordFrame";
 
 const MainScreen = ({ words }) => {

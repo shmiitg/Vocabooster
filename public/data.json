@@ -202,7 +202,7 @@
                 {
                     "definition": "(of a positive quality) present to a notable degree",
                     "synonyms": ["obvious", "clear", "conspicuous"],
-                    "example": "Eminent good sense of humour"
+                    "example": "Eminent sense of humour"
                 }
             ]
         },
@@ -236,6 +236,52 @@
                 {
                     "definition": "(of a plant or animal) native and restricted to a certain place",
                     "example": "Kiwi is endemic to New Zealand"
+                }
+            ]
+        },
+        {
+            "word": "Endorse",
+            "meanings": [
+                {
+                    "definition": "to make a public statement of your approval or support for something or someone",
+                    "example": "I fully endorse everything the Chairperson has said"
+                }
+            ]
+        },
+        {
+            "word": "Engender",
+            "meanings": [
+                {
+                    "definition": "to cause or give rise to a feeling, situation, or condition",
+                    "example": "Her latest book has engendered a lot of controversy"
+                }
+            ]
+        },
+        {
+            "word": "Ennui",
+            "meanings": [
+                {
+                    "definition": "a feeling of boredom or weariness",
+                    "example": "He experienced a sense of ennui after spending too much time indoors",
+                    "synonyms": ["boredom", "tedium", "lethargy"]
+                }
+            ]
+        },
+        {
+            "word": "Entrench",
+            "meanings": [
+                {
+                    "definition": "to establish firmly and securely",
+                    "example": "Racism is entrenched in our society"
+                }
+            ]
+        },
+        {
+            "word": "Entrust",
+            "meanings": [
+                {
+                    "definition": "assign the responsibilty for doing something to (someone)",
+                    "example": "I've been entrusted with the task of helping him in his homework"
                 }
             ]
         }

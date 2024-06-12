@@ -136,3 +136,47 @@ li {
         padding: 6px 10px;
     }
 }
+
+/* MainScreen.css */
+.MainScreen {
+    margin: 0 auto;
+}
+
+.MainScreen-heading {
+    font-size: 24px;
+}
+
+.MainScreen-list {
+    margin-top: 20px;
+    padding: 0;
+}
+
+.MainScreen-item {
+    margin: 0 20px 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px 11px;
+    background-color: #f9f9f9;
+    letter-spacing: 0.3px;
+}
+
+.MainScreen-word {
+    font-size: 20px;
+    margin: 0;
+    color: #333;
+}
+
+.word-frame {
+    margin-top: 18px;
+}
+
+.word-meaning {
+}
+
+.word-frame p {
+    margin: 4px 0;
+}
+
+.word-frame strong {
+    font-weight: bold;
+}
