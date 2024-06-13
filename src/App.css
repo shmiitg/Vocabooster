@@ -207,6 +207,7 @@ li {
 
 .form-group {
     margin-bottom: 15px;
+    min-width: 300px;
 }
 
 .form-sub-group {
@@ -250,4 +251,9 @@ li {
 
 .submit-button:hover {
     background-color: #0056b3;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 10px;
 }

@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { UpdateContext } from "../context/UpdateContext";
 
 export default function EditWordDialog({ onClose, word }) {
+    const { setWordUpdate } = useContext(UpdateContext);
     const wordId = word._id;
     const [updatedWord, setUpdatedWord] = useState({ ...word });
 
@@ -44,6 +46,7 @@ export default function EditWordDialog({ onClose, word }) {
         const data = await res.json();
         if (res.status === 200) {
             onClose();
+            setWordUpdate((prev) => !prev);
         } else {
             window.alert(data.error);
         }
@@ -52,64 +55,68 @@ export default function EditWordDialog({ onClose, word }) {
     return (
         <div className="modal-content">
             <h3>Edit Word</h3>
-            <div>
-                <label>
-                    Word:
+            <div className="form-group">
+                <div className="form-sub-group">
+                    <div className="form-group-name">Word:</div>
                     <input
                         type="text"
                         name="word"
                         value={updatedWord.word}
                         onChange={handleChange}
                     />
-                </label>
+                </div>
             </div>
-            <div>
-                <label>
-                    Definition:
+            <div className="form-group">
+                <div className="form-sub-group">
+                    <div className="form-group-name">Definition:</div>
                     <input
                         type="text"
                         name="definition"
                         value={updatedWord.meanings[0].definition}
                         onChange={handleChange}
                     />
-                </label>
+                </div>
             </div>
-            <div>
-                <label>
-                    Synonyms (comma-separated):
+            <div className="form-group">
+                <div className="form-sub-group">
+                    <div className="form-group-name">Synonyms (comma-separated):</div>
                     <input
                         type="text"
                         name="synonyms"
                         value={updatedWord.meanings[0].synonyms}
                         onChange={handleChange}
                     />
-                </label>
+                </div>
             </div>
-            <div>
-                <label>
-                    Antonyms (comma-separated):
+            <div className="form-group">
+                <div className="form-sub-group">
+                    <div className="form-group-name">Antonyms (comma-separated):</div>
                     <input
                         type="text"
                         name="antonyms"
                         value={updatedWord.meanings[0].antonyms}
                         onChange={handleChange}
                     />
-                </label>
+                </div>
             </div>
-            <div>
-                <label>
-                    Example:
+            <div className="form-group">
+                <div className="form-sub-group">
+                    <div className="form-group-name">Example:</div>
                     <input
                         type="text"
                         name="example"
                         value={updatedWord.meanings[0].example}
                         onChange={handleChange}
                     />
-                </label>
+                </div>
             </div>
-            <div className="modal-actions">
-                <button onClick={onClose}>Cancel</button>
-                <button onClick={handleSubmit}>Save</button>
+            <div className="modal-buttons">
+                <button className="submit-button" onClick={onClose}>
+                    Cancel
+                </button>
+                <button className="submit-button" onClick={handleSubmit}>
+                    Save
+                </button>
             </div>
         </div>
     );

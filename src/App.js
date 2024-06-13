@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import { UpdateContext } from "./context/UpdateContext";
 import MainScreen from "./components/MainScreen";
 import RevisionPage from "./components/RevisionPage";
 import NewWord from "./components/NewWord";
 import "./App.css";
 
 const App = () => {
+    const { wordUpdate } = useContext(UpdateContext);
     const [words, setWords] = useState([]);
     const [error, setError] = useState(false);
 
@@ -24,7 +26,7 @@ const App = () => {
 
     useEffect(() => {
         getWords();
-    }, []);
+    }, [wordUpdate]);
 
     if (error) {
         return <h1>Error</h1>;

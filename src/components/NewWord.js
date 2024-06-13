@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { UpdateContext } from "../context/UpdateContext";
 
 const NewWord = () => {
+    const { setWordUpdate } = useContext(UpdateContext);
     const [newWord, setNewWord] = useState({
         word: "",
         meanings: [
@@ -71,6 +73,7 @@ const NewWord = () => {
                     },
                 ],
             });
+            setWordUpdate((prev) => !prev);
         } else {
             window.alert(data.error);
         }
