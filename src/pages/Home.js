@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import WordFrame from "./WordFrame";
+import WordContainer from "../components/WordContainer";
+import Loader from "../components/Loader";
 
-const MainScreen = ({ words }) => {
+const Home = ({ words, loading }) => {
     const [selectedAlphabet, setSelectedAlphabet] = useState("A");
     const [searchQuery, setSearchQuery] = useState("");
 
@@ -24,6 +25,10 @@ const MainScreen = ({ words }) => {
         }
         return 0;
     });
+
+    if (loading) {
+        return <Loader />;
+    }
 
     return (
         <>
@@ -49,12 +54,10 @@ const MainScreen = ({ words }) => {
                     ))}
                 </div>
             </div>
-            <div className="MainScreen">
-                <ul className="MainScreen-list">
+            <div className="main-container">
+                <ul className="main-container-list">
                     {filteredWords.map((word) => (
-                        <li key={word.word} className="MainScreen-item">
-                            <WordFrame word={word} />
-                        </li>
+                        <WordContainer key={word._id} word={word} />
                     ))}
                 </ul>
             </div>
@@ -62,4 +65,4 @@ const MainScreen = ({ words }) => {
     );
 };
 
-export default MainScreen;
+export default Home;

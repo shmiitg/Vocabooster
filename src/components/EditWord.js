@@ -54,7 +54,9 @@ export default function EditWordDialog({ onClose, word }) {
 
     return (
         <div className="modal-content">
-            <h3>Edit Word</h3>
+            <h3>
+                <strong>Edit Word</strong>
+            </h3>
             <div className="form-group">
                 <div className="form-sub-group">
                     <div className="form-group-name">Word:</div>
@@ -110,7 +112,7 @@ export default function EditWordDialog({ onClose, word }) {
                     />
                 </div>
             </div>
-            <div className="modal-buttons">
+            <div className="modal-actions">
                 <button className="submit-button" onClick={onClose}>
                     Cancel
                 </button>

@@ -2,6 +2,7 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
+    overflow: hidden;
 }
 
 /* Container styles */
@@ -117,11 +118,6 @@ ul {
     margin-top: 20px;
 }
 
-li {
-    margin: 20px 0;
-    text-align: left;
-}
-
 /* Responsive styles */
 @media only screen and (max-width: 768px) {
     /* Adjust padding and font size for smaller screens */
@@ -145,21 +141,22 @@ li {
     }
 }
 
-/* MainScreen.css */
-.MainScreen {
+/* main-container */
+.main-container {
     margin: 0 auto;
 }
 
-.MainScreen-heading {
+.main-container-heading {
     font-size: 24px;
 }
 
-.MainScreen-list {
+.main-container-list {
     margin-top: 20px;
     padding: 0;
+    text-align: left;
 }
 
-.MainScreen-item {
+.word-container-item {
     margin: 0 20px 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -168,38 +165,47 @@ li {
     letter-spacing: 0.3px;
 }
 
-.MainScreen-word {
+.word-container-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.word-container-top h3 {
     font-size: 20px;
     margin: 0;
     color: #333;
 }
 
-.word-frame-top {
-    display: flex;
-    justify-content: space-between;
+.word-container-top .update-icons button {
+    margin-left: 8px;
 }
 
-.word-frame {
+.word-container-bottom {
     margin-top: 18px;
 }
 
-.word-example {
+.word-container-bottom .example {
     color: #2f2f2f;
 }
 
-.word-frame p {
+.word-container-bottom p {
     margin: 4px 0;
 }
 
-.word-frame strong {
+.word-container-bottom strong {
     font-weight: bold;
 }
 
 /* new word form */
-.new-word-form {
+.new-word-form-container {
     max-width: 500px;
-    margin: 30px auto;
+    margin: max(40px, 6vw) auto;
+}
+
+.new-word-form {
     padding: 20px;
+    margin: 0 5px;
     background-color: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -253,7 +259,37 @@ li {
     background-color: #0056b3;
 }
 
-.modal-buttons {
+/* Modal */
+.modal-content h3 {
+    margin-top: 0;
+    font-weight: normal;
+}
+
+.modal-actions {
     display: flex;
-    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.modal-actions button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    margin-left: 10px;
+}
+
+.modal-actions button:hover {
+    background-color: #0056b3;
+}
+
+.modal-actions button:first-child {
+    background-color: #ccc;
+    color: #333;
+}
+
+.modal-actions button:first-child:hover {
+    background-color: #999;
 }

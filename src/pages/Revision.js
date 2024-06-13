@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import WordFrame from "./WordFrame";
+import WordContainer from "../components/WordContainer";
+import Loader from "../components/Loader";
 
-const RevisionPage = ({ words }) => {
+const Revision = ({ words, loading }) => {
     const [revisionWords, setRevisionWords] = useState([]);
 
     useEffect(() => {
@@ -26,18 +27,20 @@ const RevisionPage = ({ words }) => {
         setRevisionWords([...selectedWords]);
     }, [words]);
 
+    if (loading) {
+        return <Loader />;
+    }
+
     return (
-        <div className="MainScreen">
-            <h2 className="MainScreen-heading">Daily Revision</h2>
-            <ul className="MainScreen-list">
+        <div className="main-container">
+            <h2 className="main-container-heading">Daily Revision</h2>
+            <ul className="main-container-list">
                 {revisionWords.map((word) => (
-                    <li key={word.word} className="MainScreen-item">
-                        <WordFrame word={word} />
-                    </li>
+                    <WordContainer key={word._id} word={word} />
                 ))}
             </ul>
         </div>
     );
 };
 
-export default RevisionPage;
+export default Revision;
