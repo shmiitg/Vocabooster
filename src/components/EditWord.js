@@ -33,7 +33,7 @@ export default function EditWordDialog({ onClose, word }) {
             meanings[0].antonyms = meanings[0].antonyms.split(",").map((item) => item.trim());
         }
 
-        const url = `${process.env.REACT_APP_LOCAL_URL}/words/${wordId}`;
+        const url = `${process.env.REACT_APP_SERVER_URL}/words/${wordId}`;
         const res = await fetch(url, {
             method: "PUT",
             headers: {
