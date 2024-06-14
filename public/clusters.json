@@ -28,7 +28,7 @@
             { "word": "Aviophobia", "description": "flying" },
             { "word": "Arachnophobia", "description": "spiders" },
             { "word": "Aquaphobia", "description": "water" },
-            { "word": "Nyctophobia", "description": "the dark" }
+            { "word": "Nyctophobia", "description": "dark" }
         ]
     },
     {
@@ -57,7 +57,6 @@
             { "word": "Deicide", "description": "god" },
             { "word": "Infanticide", "description": "infant" },
             { "word": "Genocide", "description": "large group of people" },
-            { "word": "Suicide", "description": "oneself" },
             { "word": "Tyrannicide", "description": "tyrant" }
         ]
     },
@@ -80,9 +79,8 @@
             { "word": "Plutocracy", "description": "wealthy people" },
             { "word": "Theocracy", "description": "religious leaders" },
             { "word": "Technocracy", "description": "technical experts" },
-            { "word": "Democracy", "description": "the people" },
-            { "word": "Monarchy", "description": "a monarch" },
-            { "word": "Cryptocracy", "description": "secret government" }
+            { "word": "Monarchy", "description": "monarch" },
+            { "word": "Cryptocracy", "description": "secret govt" }
         ]
     },
     {

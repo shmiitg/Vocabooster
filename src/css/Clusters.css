@@ -61,6 +61,11 @@
     display: flex;
     justify-content: space-evenly;
 }
+@media only screen and (max-width: 768px) {
+    .panel__content {
+        flex-direction: column;
+    }
+}
 .panel__word {
     margin-bottom: 10px;
 }
