@@ -14,6 +14,7 @@
 .form-group {
     margin-bottom: 15px;
     min-width: 300px;
+    font-size: 15px;
 }
 
 .form-sub-group {
@@ -33,7 +34,7 @@
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    font-size: 16px;
+    font-size: inherit;
     color: #333;
 }
 
@@ -57,4 +58,56 @@
 
 .submit-button:hover {
     background-color: #0056b3;
+}
+
+.meaning-group {
+    border: 1px solid #eee;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    background-color: #fafafa;
+    position: relative;
+}
+
+.meaning-group:first-of-type {
+    border: none;
+    padding: 0;
+    margin-bottom: 0;
+    background-color: transparent;
+}
+
+.add-meaning-button {
+    display: inline-block;
+    margin: 15px 0;
+    font-size: 14px;
+    background-color: #94e8ff;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.add-meaning-button:hover {
+    background-color: #21a1f1;
+}
+
+.delete-meaning-button {
+    display: inline-block;
+    margin: 6px 0;
+    font-size: 10px;
+    letter-spacing: 1px;
+    background-color: #ff6961;
+    border: none;
+    cursor: pointer;
+    padding: 6px 11px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    position: absolute;
+    top: 0;
+    right: 10px;
+}
+
+.delete-meaning-button:hover {
+    background-color: #e63946;
 }
