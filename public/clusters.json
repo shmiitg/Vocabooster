@@ -1,7 +1,7 @@
 [
     {
-        "name": "Interest",
-        "words": [
+        "label": "Interest",
+        "content": [
             { "word": "Ergophile", "description": "work" },
             { "word": "Orophile", "description": "mountains" },
             { "word": "Technophile", "description": "technology" },
@@ -10,8 +10,8 @@
         ]
     },
     {
-        "name": "Killing",
-        "words": [
+        "label": "Killing",
+        "content": [
             { "word": "Feticide", "description": "fetus" },
             { "word": "Homicide", "description": "person" },
             { "word": "Mariticide", "description": "husband" },

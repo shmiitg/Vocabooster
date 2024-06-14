@@ -10,7 +10,6 @@ const Clusters = () => {
             const res = await fetch("/clusters.json");
             const data = await res.json();
             setClusters(data);
-            console.log(data);
         } catch (err) {
             console.log(err);
         }
@@ -21,11 +20,11 @@ const Clusters = () => {
     }, []);
 
     return (
-        <div className="clusters-page">
-            <h1>Clusters</h1>
-            {clusters.map((cluster, index) => (
-                <Accordion key={index} cluster={cluster}></Accordion>
-            ))}
+        <div className="main-container">
+            <h2 className="main-container-heading">Common Terms</h2>
+            <div className="clusters-container">
+                <Accordion panels={clusters} />
+            </div>
         </div>
     );
 };
