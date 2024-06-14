@@ -42,8 +42,8 @@ export default function WordContainer({ word }) {
             </div>
             {word.meanings.map((meaning, index) => (
                 <div key={index} className="word-container-bottom">
-                    {meaning.definition && <p className="word-meaning">{meaning.definition}</p>}
-                    {meaning.example && <p className="example">"{meaning.example}"</p>}
+                    {meaning.definition && <p>{meaning.definition}</p>}
+                    {meaning.example && <p>"{meaning.example}"</p>}
                     {meaning.synonyms?.length > 0 && (
                         <p>
                             <strong>Synonyms:</strong> {meaning.synonyms.join(", ")}
