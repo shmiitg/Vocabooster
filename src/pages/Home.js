@@ -1,35 +1,51 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { UpdateContext } from "../context/UpdateContext";
 import WordContainer from "../components/WordContainer";
 import Loader from "../components/Loader";
+import { filterWords, sortWords } from "../utils/utils";
 import "../css/Home.css";
 
-const Home = ({ words, loading }) => {
+const Home = () => {
+    const { wordUpdate } = useContext(UpdateContext);
+
+    const [words, setWords] = useState([]);
     const [selectedAlphabet, setSelectedAlphabet] = useState("A");
     const [searchQuery, setSearchQuery] = useState("");
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
 
-    // Filter words based on selected alphabet
+    const getWords = async () => {
+        try {
+            const url = `${process.env.REACT_APP_SERVER_URL}/words`;
+            const res = await fetch(url);
+            const data = await res.json();
+            if (res.status === 200) {
+                const sortedWords = sortWords(data.words);
+                setWords(sortedWords);
+                setLoading(false);
+            } else {
+                setError(true);
+            }
+        } catch (err) {}
+    };
+
+    useEffect(() => {
+        getWords();
+    }, [wordUpdate]);
+
+    if (loading) {
+        return <Loader />;
+    }
+
+    if (error) {
+        return <h1>Error</h1>;
+    }
+
     const filteredWords = words.filter(
         (word) =>
             word.word.toLowerCase().startsWith(selectedAlphabet.toLowerCase()) &&
             word.word.toLowerCase().includes(searchQuery.toLowerCase())
     );
-
-    // Sort the filtered words alphabetically
-    filteredWords.sort((a, b) => {
-        const wordA = a.word.toLowerCase();
-        const wordB = b.word.toLowerCase();
-        if (wordA < wordB) {
-            return -1;
-        }
-        if (wordA > wordB) {
-            return 1;
-        }
-        return 0;
-    });
-
-    if (loading) {
-        return <Loader />;
-    }
 
     return (
         <>
