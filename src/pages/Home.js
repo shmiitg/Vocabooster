@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import WordContainer from "../components/WordContainer";
 import Loader from "../components/Loader";
+import "../css/Home.css";
 
 const Home = ({ words, loading }) => {
     const [selectedAlphabet, setSelectedAlphabet] = useState("A");

@@ -5,18 +5,25 @@ body {
     overflow-x: hidden;
 }
 
+/* Container styles */
 .App {
-    text-align: center;
+    padding-top: 80px;
 }
 
-/* Header */
+/* Header styles */
 .App-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* Ensure the header is above other content */
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #282c34;
     padding: 10px 20px;
     color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .right-header {
@@ -34,23 +41,7 @@ body {
     text-decoration: none;
 }
 
-/* Alphabet Navigation*/
-.search-bar {
-    margin: 12px 0 6px;
-}
-
-.search-bar input {
-    padding: 8px 12px;
-    margin: 0;
-    font-size: 16px;
-    width: 100%;
-    outline: none;
-    max-width: 300px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    border: 1px solid #ccc;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    border-radius: 20px;
-}
+/* Alphabet navigation styles */
 
 .alphabet-nav {
     display: flex;
@@ -111,8 +102,12 @@ ul {
     margin-top: 20px;
 }
 
+/* Responsive styles */
 @media only screen and (max-width: 768px) {
     /* Adjust padding and font size for smaller screens */
+    .App {
+        padding-top: 65px;
+    }
     .logo {
         font-size: 20px;
     }
@@ -133,13 +128,14 @@ ul {
     }
 }
 
-/* Word Container */
+/* Word container */
 .main-container {
     margin: 0 auto;
 }
 
 .main-container-heading {
     font-size: 24px;
+    text-align: center;
 }
 
 .main-container-list {
@@ -176,7 +172,6 @@ ul {
 .word-container-bottom {
     margin-top: 18px;
 }
-
 .word-container-bottom p {
     color: #2f2f2f;
     margin: 4px 0;
