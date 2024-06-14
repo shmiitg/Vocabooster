@@ -3,7 +3,7 @@ import { Modal } from "react-responsive-modal";
 import "react-responsive-modal/styles.css";
 import EditWord from "./EditWord";
 import DeleteWord from "./DeleteWord";
-import { underlineWord } from "../utils/underlineWord";
+import { underlineWord } from "../utils/utils";
 
 export default function WordContainer({ word }) {
     const [open, setOpen] = useState(false);

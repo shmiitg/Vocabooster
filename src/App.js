@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import { UpdateContext } from "./context/UpdateContext";
 import Home from "./pages/Home";
 import Revision from "./pages/Revision";
-import NewWord from "./pages/NewWord";
+import OWS from "./pages/OWS";
+import New from "./pages/New";
 import Clusters from "./pages/Clusters";
 import "./App.css";
 
@@ -51,6 +52,11 @@ const App = () => {
                             </Link>
                         </div>
                         <div className="links">
+                            <Link to="/ows">
+                                <button>OWS</button>
+                            </Link>
+                        </div>
+                        <div className="links">
                             <Link to="/clusters">
                                 <button>Cluster</button>
                             </Link>
@@ -68,7 +74,8 @@ const App = () => {
                         path="/revision"
                         element={<Revision words={words} loading={loading} />}
                     />
-                    <Route path="/new" element={<NewWord />} />
+                    <Route path="/ows" element={<OWS />} />
+                    <Route path="/new" element={<New />} />
                     <Route path="/clusters" element={<Clusters />} />
                 </Routes>
             </div>
