@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { UpdateContext } from "../context/UpdateContext";
 import Loader from "../components/Loader";
 import WordContainer from "../components/WordContainer";
 import { filterWords, sortWords } from "../utils/utils";
 
 const OWS = () => {
+    const { wordUpdate } = useContext(UpdateContext);
+
     const [owsWords, setOwsWords] = useState([]);
     const [searchQuery, setSearchQuery] = useState("");
     const [loading, setLoading] = useState(true);
@@ -21,12 +24,14 @@ const OWS = () => {
             } else {
                 setError(true);
             }
-        } catch (err) {}
+        } catch (err) {
+            setError(true);
+        }
     };
 
     useEffect(() => {
         getOws();
-    }, []);
+    }, [wordUpdate]);
 
     if (loading) {
         return <Loader />;
@@ -53,7 +58,7 @@ const OWS = () => {
                 <h2 className="main-container-heading">One Word Substitution</h2>
                 <ul className="main-container-list">
                     {filteredWords.map((word) => (
-                        <WordContainer key={word._id} word={word} />
+                        <WordContainer key={word._id} wordType="ows" word={word} />
                     ))}
                 </ul>
             </div>

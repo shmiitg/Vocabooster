@@ -1,9 +1,10 @@
 import React, { useState, useContext } from "react";
 import { UpdateContext } from "../context/UpdateContext";
 
-export default function EditWordDialog({ onClose, word }) {
+export default function EditWordDialog({ wordType, word, onClose }) {
     const { setWordUpdate } = useContext(UpdateContext);
     const wordId = word._id;
+    console.log(wordId);
     const [updatedWord, setUpdatedWord] = useState({ ...word });
 
     const handleChange = (e, index) => {
@@ -28,18 +29,31 @@ export default function EditWordDialog({ onClose, word }) {
     };
 
     const handleAddMeaning = () => {
-        setUpdatedWord({
-            ...updatedWord,
-            meanings: [
-                ...updatedWord.meanings,
-                {
-                    definition: "",
-                    synonyms: "",
-                    antonyms: "",
-                    example: "",
-                },
-            ],
-        });
+        if (wordType === "word") {
+            setUpdatedWord({
+                ...updatedWord,
+                meanings: [
+                    ...updatedWord.meanings,
+                    {
+                        definition: "",
+                        synonyms: "",
+                        antonyms: "",
+                        example: "",
+                    },
+                ],
+            });
+        } else {
+            setUpdatedWord({
+                ...updatedWord,
+                meanings: [
+                    ...updatedWord.meanings,
+                    {
+                        definition: "",
+                        example: "",
+                    },
+                ],
+            });
+        }
     };
 
     const handleDeleteMeaning = (index) => {
@@ -53,33 +67,39 @@ export default function EditWordDialog({ onClose, word }) {
         const { word, meanings } = updatedWord;
 
         // Filter out empty meanings
-        const filteredMeanings = meanings.filter(
-            (meaning) =>
-                meaning.definition.trim() !== "" ||
-                (Array.isArray(meaning.synonyms)
-                    ? meaning.synonyms.join("").trim() !== ""
-                    : meaning.synonyms.trim() !== "") ||
-                (Array.isArray(meaning.antonyms)
-                    ? meaning.antonyms.join("").trim() !== ""
-                    : meaning.antonyms.trim() !== "") ||
-                meaning.example.trim() !== ""
-        );
+        let updatedMeanings;
+        if (wordType === "word") {
+            const filteredMeanings = meanings.filter(
+                (meaning) =>
+                    meaning.definition.trim() !== "" ||
+                    (Array.isArray(meaning.synonyms)
+                        ? meaning.synonyms.join("").trim() !== ""
+                        : meaning.synonyms.trim() !== "") ||
+                    (Array.isArray(meaning.antonyms)
+                        ? meaning.antonyms.join("").trim() !== ""
+                        : meaning.antonyms.trim() !== "") ||
+                    meaning.example.trim() !== ""
+            );
+            updatedMeanings = filteredMeanings.map((meaning) => ({
+                ...meaning,
+                synonyms: Array.isArray(meaning.synonyms)
+                    ? meaning.synonyms
+                    : meaning.synonyms.trim()
+                    ? meaning.synonyms.split(",").map((item) => item.trim())
+                    : [],
+                antonyms: Array.isArray(meaning.antonyms)
+                    ? meaning.antonyms
+                    : meaning.antonyms.trim()
+                    ? meaning.antonyms.split(",").map((item) => item.trim())
+                    : [],
+            }));
+        } else {
+            updatedMeanings = meanings.filter(
+                (meaning) => meaning.definition.trim() !== "" || meaning.example.trim() !== ""
+            );
+        }
 
-        const updatedMeanings = filteredMeanings.map((meaning) => ({
-            ...meaning,
-            synonyms: Array.isArray(meaning.synonyms)
-                ? meaning.synonyms
-                : meaning.synonyms.trim()
-                ? meaning.synonyms.split(",").map((item) => item.trim())
-                : [],
-            antonyms: Array.isArray(meaning.antonyms)
-                ? meaning.antonyms
-                : meaning.antonyms.trim()
-                ? meaning.antonyms.split(",").map((item) => item.trim())
-                : [],
-        }));
-
-        const url = `${process.env.REACT_APP_SERVER_URL}/words/${wordId}`;
+        const url = `${process.env.REACT_APP_SERVER_URL}/${wordType}/${wordId}`;
         const res = await fetch(url, {
             method: "PUT",
             headers: {
@@ -128,36 +148,44 @@ export default function EditWordDialog({ onClose, word }) {
                             />
                         </div>
                     </div>
-                    <div className="form-group">
-                        <div className="form-sub-group">
-                            <div className="form-group-name">Synonyms (comma-separated):</div>
-                            <input
-                                type="text"
-                                name="synonyms"
-                                value={
-                                    Array.isArray(meaning.synonyms)
-                                        ? meaning.synonyms.join(", ")
-                                        : meaning.synonyms
-                                }
-                                onChange={(e) => handleChange(e, index)}
-                            />
-                        </div>
-                    </div>
-                    <div className="form-group">
-                        <div className="form-sub-group">
-                            <div className="form-group-name">Antonyms (comma-separated):</div>
-                            <input
-                                type="text"
-                                name="antonyms"
-                                value={
-                                    Array.isArray(meaning.antonyms)
-                                        ? meaning.antonyms.join(", ")
-                                        : meaning.antonyms
-                                }
-                                onChange={(e) => handleChange(e, index)}
-                            />
-                        </div>
-                    </div>
+                    {wordType === "word" && (
+                        <>
+                            <div className="form-group">
+                                <div className="form-sub-group">
+                                    <div className="form-group-name">
+                                        Synonyms (comma-separated):
+                                    </div>
+                                    <input
+                                        type="text"
+                                        name="synonyms"
+                                        value={
+                                            Array.isArray(meaning.synonyms)
+                                                ? meaning.synonyms.join(", ")
+                                                : meaning.synonyms
+                                        }
+                                        onChange={(e) => handleChange(e, index)}
+                                    />
+                                </div>
+                            </div>
+                            <div className="form-group">
+                                <div className="form-sub-group">
+                                    <div className="form-group-name">
+                                        Antonyms (comma-separated):
+                                    </div>
+                                    <input
+                                        type="text"
+                                        name="antonyms"
+                                        value={
+                                            Array.isArray(meaning.antonyms)
+                                                ? meaning.antonyms.join(", ")
+                                                : meaning.antonyms
+                                        }
+                                        onChange={(e) => handleChange(e, index)}
+                                    />
+                                </div>
+                            </div>
+                        </>
+                    )}
                     <div className="form-group">
                         <div className="form-sub-group">
                             <div className="form-group-name">Example:</div>

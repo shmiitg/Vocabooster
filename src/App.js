@@ -16,7 +16,7 @@ const App = () => {
 
     const getWords = async () => {
         try {
-            const url = `${process.env.REACT_APP_SERVER_URL}/words`;
+            const url = `${process.env.REACT_APP_SERVER_URL}/word`;
             const res = await fetch(url);
             const data = await res.json();
             if (res.status === 200) {

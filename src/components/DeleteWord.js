@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import { UpdateContext } from "../context/UpdateContext";
 
-const DeleteWord = ({ onClose, word }) => {
+const DeleteWord = ({ wordType, word, onClose }) => {
     const { setWordUpdate } = useContext(UpdateContext);
     const wordId = word._id;
     const handleSubmit = async () => {
-        const url = `${process.env.REACT_APP_SERVER_URL}/words/${wordId}`;
+        const url = `${process.env.REACT_APP_SERVER_URL}/${wordType}/${wordId}`;
         const res = await fetch(url, {
             method: "DELETE",
             headers: {

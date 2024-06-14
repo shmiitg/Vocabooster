@@ -16,7 +16,7 @@ const Home = () => {
 
     const getWords = async () => {
         try {
-            const url = `${process.env.REACT_APP_SERVER_URL}/words`;
+            const url = `${process.env.REACT_APP_SERVER_URL}/word`;
             const res = await fetch(url);
             const data = await res.json();
             if (res.status === 200) {
@@ -26,7 +26,9 @@ const Home = () => {
             } else {
                 setError(true);
             }
-        } catch (err) {}
+        } catch (err) {
+            setError(true);
+        }
     };
 
     useEffect(() => {
@@ -74,7 +76,7 @@ const Home = () => {
             <div className="main-container">
                 <ul className="main-container-list">
                     {filteredWords.map((word) => (
-                        <WordContainer key={word._id} word={word} />
+                        <WordContainer key={word._id} wordType="word" word={word} />
                     ))}
                 </ul>
             </div>

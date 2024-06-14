@@ -53,7 +53,7 @@ const NewWord = () => {
                     : [],
         };
 
-        const res = await fetch(`${process.env.REACT_APP_SERVER_URL}/words/save`, {
+        const res = await fetch(`${process.env.REACT_APP_SERVER_URL}/word/save`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
