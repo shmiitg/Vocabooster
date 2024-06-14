@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Modal } from "react-responsive-modal"; // Import the modal component
-import "react-responsive-modal/styles.css"; // Import the styles
-import EditWord from "./EditWord"; // Import the edit form component
+import { Modal } from "react-responsive-modal";
+import "react-responsive-modal/styles.css";
+import EditWord from "./EditWord";
 import DeleteWord from "./DeleteWord";
+import { underlineWord } from "../utils/underlineWord";
 
 export default function WordContainer({ word }) {
     const [open, setOpen] = useState(false);
@@ -43,7 +44,7 @@ export default function WordContainer({ word }) {
             {word.meanings.map((meaning, index) => (
                 <div key={index} className="word-container-bottom">
                     {meaning.definition && <p>{meaning.definition}</p>}
-                    {meaning.example && <p>"{meaning.example}"</p>}
+                    {meaning.example && <p>"{underlineWord(meaning.example, word.word)}"</p>}
                     {meaning.synonyms?.length > 0 && (
                         <p>
                             <strong>Synonyms:</strong> {meaning.synonyms.join(", ")}

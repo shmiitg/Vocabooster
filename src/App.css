@@ -181,6 +181,10 @@ ul {
     font-weight: bold;
 }
 
+.underlined {
+    text-decoration: underline;
+}
+
 /* Modal */
 .modal-content h3 {
     margin-top: 0;
