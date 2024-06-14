@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { UpdateContext } from "../context/UpdateContext";
+import "../css/NewWord.css";
 
 const NewWord = () => {
     const { setWordUpdate } = useContext(UpdateContext);

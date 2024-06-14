@@ -5,12 +5,11 @@ body {
     overflow-x: hidden;
 }
 
-/* Container styles */
 .App {
     text-align: center;
 }
 
-/* Header styles */
+/* Header */
 .App-header {
     display: flex;
     justify-content: space-between;
@@ -35,7 +34,7 @@ body {
     text-decoration: none;
 }
 
-/* Alphabet navigation styles */
+/* Alphabet Navigation*/
 .search-bar {
     margin: 12px 0 6px;
 }
@@ -89,12 +88,6 @@ body {
     background-color: #21a1f1;
 }
 
-/* Links styles */
-.links {
-    display: flex;
-    gap: 10px;
-}
-
 .links button {
     display: inline-block;
     margin: 5px;
@@ -118,7 +111,6 @@ ul {
     margin-top: 20px;
 }
 
-/* Responsive styles */
 @media only screen and (max-width: 768px) {
     /* Adjust padding and font size for smaller screens */
     .logo {
@@ -141,7 +133,7 @@ ul {
     }
 }
 
-/* main-container */
+/* Word Container */
 .main-container {
     margin: 0 auto;
 }
@@ -195,68 +187,6 @@ ul {
 
 .word-container-bottom strong {
     font-weight: bold;
-}
-
-/* new word form */
-.new-word-form-container {
-    max-width: 500px;
-    margin: max(40px, 6vw) auto;
-}
-
-.new-word-form {
-    padding: 20px;
-    margin: 0 5px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.form-group {
-    margin-bottom: 15px;
-    min-width: 300px;
-}
-
-.form-sub-group {
-    display: flex;
-    gap: 2px;
-    flex-direction: column;
-}
-
-.form-group label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: #333;
-}
-
-.form-group input {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-    color: #333;
-}
-
-.form-group input:focus {
-    border-color: #007bff;
-    outline: none;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-}
-
-.submit-button {
-    display: inline-block;
-    padding: 10px 20px;
-    font-size: 16px;
-    color: #fff;
-    background-color: #007bff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.submit-button:hover {
-    background-color: #0056b3;
 }
 
 /* Modal */

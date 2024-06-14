@@ -1,357 +1,355 @@
-{
-    "words": [
-        {
-            "word": "Aboard",
-            "meanings": [
-                {
-                    "definition": "on or onto a ship, aircraft or bus",
-                    "synonyms": ["embark"]
-                }
-            ]
-        },
-        {
-            "word": "Abridge",
-            "meanings": [
-                {
-                    "definition": "shorten without loosing sense",
-                    "synonyms": ["shorten", "truncate"]
-                }
-            ]
-        },
-        {
-            "word": "Earnest",
-            "meanings": [
-                {
-                    "definition": "serious and determined",
-                    "example": "An earnest student"
-                }
-            ]
-        },
-        {
-            "word": "Ecclesial",
-            "meanings": [
-                {
-                    "definition": "relating to church; churchly"
-                }
-            ]
-        },
-        {
-            "word": "Eclectic",
-            "meanings": [
-                {
-                    "synonyms": ["wide", "diverse", "extensive"],
-                    "example": "Universities offering an eclectic mix of courses"
-                }
-            ]
-        },
-        {
-            "word": "Effluent",
-            "meanings": [
-                {
-                    "definition": "liquid waste or sewage discharged into a river or the sea",
-                    "example": "Industrial effluent"
-                }
-            ]
-        },
-        {
-            "word": "En route",
-            "meanings": [
-                {
-                    "definition": "during the course of a journey; on the way",
-                    "example": "I stopped in Delhi en route to Guwahati"
-                }
-            ]
-        },
-        {
-            "word": "Ensue",
-            "meanings": [
-                {
-                    "definition": "happen or occur afterwards or as a result",
-                    "synonyms": ["result", "follow"]
-                }
-            ]
-        },
-        {
-            "word": "Eviction",
-            "meanings": [
-                {
-                    "definition": "the action of expelling someone from a property; expulsion",
-                    "meaning": "Eviction notice"
-                }
-            ]
-        },
-        {
-            "word": "Exacerbate",
-            "meanings": [
-                {
-                    "definition": "make (a problem, bad situation, or negative feeling) worse",
-                    "meaning": "The solution proposed by the teacher exacerbated the doubt of students",
-                    "synonyms": ["aggravate"]
-                }
-            ]
-        },
-        {
-            "word": "Exasperate",
-            "meanings": [
-                {
-                    "definition": "irritate and frustrate someone",
-                    "synonyms": [
-                        "infuriate",
-                        "incense",
-                        "anger",
-                        "annoy",
-                        "irritate",
-                        "enrage",
-                        "inflame"
-                    ]
-                }
-            ]
-        },
-        {
-            "word": "Exigency",
-            "meanings": [
-                {
-                    "synonyms": ["emergency", "crisis"]
-                }
-            ]
-        },
-        {
-            "word": "Exotic",
-            "meanings": [
-                {
-                    "definition": "unusual and exciting because it is foreign, unfamiliar, or different",
-                    "synonyms": ["foreign, unfamiliar, alien"],
-                    "example": "Exotic plants, exotic dishes"
-                }
-            ]
-        },
-        {
-            "word": "Expedite",
-            "meanings": [
-                {
-                    "definition": "to make something happen more quickly",
-                    "synonyms": ["hasten", "speed up"],
-                    "example": "Expedite the process"
-                }
-            ]
-        },
-        {
-            "word": "Expiation",
-            "meanings": [
-                {
-                    "definition": "making amends or reparation for guilt",
-                    "synonyms": ["atonement", "redress", "reparation"],
-                    "example": "An act of public expiation"
-                }
-            ]
-        },
-        {
-            "word": "Explicate",
-            "meanings": [
-                {
-                    "definition": "to explain something in detail, especially a piece of writing  or an idea",
-                    "synonyms": ["explain", "clarify"],
-                    "example": "This book clearly explicates the writer's ideas"
-                }
-            ]
-        },
-        {
-            "word": "Expropriate",
-            "meanings": [
-                {
-                    "definition": "(of the state or an authority) take (property) from its owner for public use or benefit",
-                    "synonyms": ["seize", "appropriate"]
-                }
-            ]
-        },
-        {
-            "word": "Emasculate",
-            "meanings": [
-                {
-                    "synonyms": ["weaken", "debiliate", "enfeeble"]
-                }
-            ]
-        },
-        {
-            "word": "Embroil",
-            "meanings": [
-                {
-                    "definition": "to involve someone or something in a complicated situation",
-                    "synonyms": ["involve", "ensnare", "entangle"],
-                    "example": "His reckless actions embroiled the company in a legal dispute"
-                }
-            ]
-        },
-        {
-            "word": "Emcee",
-            "meanings": [
-                {
-                    "synonyms": ["host", "compere"]
-                }
-            ]
-        },
-        {
-            "word": "Eminent",
-            "meanings": [
-                {
-                    "definition": "(of a person) famous and respected within a particular sphere",
-                    "synonyms": ["distinguished", "renowed", "esteemed"],
-                    "example": "An eminent mathematician"
-                },
-                {
-                    "definition": "(of a positive quality) present to a notable degree",
-                    "synonyms": ["obvious", "clear", "conspicuous"],
-                    "example": "Eminent sense of humour"
-                }
-            ]
-        },
-        {
-            "word": "Emphatic",
-            "meanings": [
-                {
-                    "definition": "strong and determined in speech or action",
-                    "example": "She was emphatic about going to the school trip",
-                    "synonyms": ["vehement", "firm"]
-                }
-            ]
-        },
-        {
-            "word": "Endeavour",
-            "meanings": [
-                {
-                    "definition": "an attempt to achieve something",
-                    "example": "He endeavoured to locate the bug in the code",
-                    "synonyms": ["attempt"]
-                }
-            ]
-        },
-        {
-            "word": "Endemic",
-            "meanings": [
-                {
-                    "definition": "(of a disease) occurring within an area or community",
-                    "example": "Malaria is endemic in the hotter regions of the world"
-                },
-                {
-                    "definition": "(of a plant or animal) native and restricted to a certain place",
-                    "example": "Kiwi is endemic to New Zealand"
-                }
-            ]
-        },
-        {
-            "word": "Endorse",
-            "meanings": [
-                {
-                    "definition": "to make a public statement of your approval or support for something or someone",
-                    "example": "I fully endorse everything the Chairperson has said"
-                }
-            ]
-        },
-        {
-            "word": "Engender",
-            "meanings": [
-                {
-                    "definition": "to cause or give rise to a feeling, situation, or condition",
-                    "example": "Her latest book has engendered a lot of controversy"
-                }
-            ]
-        },
-        {
-            "word": "Ennui",
-            "meanings": [
-                {
-                    "definition": "a feeling of boredom or weariness",
-                    "example": "He experienced a sense of ennui after spending too much time indoors",
-                    "synonyms": ["boredom", "tedium", "lethargy"]
-                }
-            ]
-        },
-        {
-            "word": "Entrench",
-            "meanings": [
-                {
-                    "definition": "to establish firmly and securely",
-                    "example": "Racism is entrenched in our society"
-                }
-            ]
-        },
-        {
-            "word": "Entrust",
-            "meanings": [
-                {
-                    "definition": "assign the responsibilty for doing something to (someone)",
-                    "example": "I've been entrusted with the task of helping him in his homework"
-                }
-            ]
-        },
-        {
-            "word": "Wanton",
-            "meanings": [
-                {
-                    "definition": "something that's inhuman, unrestrained",
-                    "example": "They were accused of wanton cruelty towards animals",
-                    "synonyms": ["wilful, malicious, malevolent, spiteful"]
-                }
-            ]
-        },
-        {
-            "word": "Whim",
-            "meanings": [
-                {
-                    "definition": "a sudden desire or change of mind",
-                    "synonyms": ["impulse"],
-                    "example": "She bought it on a whim"
-                }
-            ]
-        },
-        {
-            "word": "Whine",
-            "meanings": [
-                {
-                    "definition": "a long, high-pitched complaining cry",
-                    "example": "The dog gave a small whine",
-                    "synonyms": ["whimper, wail, cry, mewl, groan, moan, howl, yowl"]
-                }
-            ]
-        },
-        {
-            "word": "Whoop",
-            "meanings": [
-                {
-                    "definition": "to give a loud, excited shout",
-                    "example": "The audience was whooping and clapping"
-                }
-            ]
-        },
-        {
-            "word": "Woo",
-            "meanings": [
-                {
-                    "definition": "seek the favour, support, or custom of",
-                    "example": "A candidate must woo voters by making them feel important",
-                    "synonyms": ["pursue"]
-                }
-            ]
-        },
-        {
-            "word": "Wrest",
-            "meanings": [
-                {
-                    "definition": "to violently pull something away from someone",
-                    "example": "She tried to wrest her arm from his hold"
-                }
-            ]
-        },
-        {
-            "word": "Wretched",
-            "meanings": [
-                {
-                    "definition": "(of a person) in a very unhappy or unfortunate state",
-                    "example": "I felt so wretched because I thought I might never see you again",
-                    "synonyms": ["miserable, unhappy, sad"],
-                    "antonyms": ["cheerful"]
-                }
-            ]
-        }
-    ]
-}
+[
+    {
+        "word": "Aboard",
+        "meanings": [
+            {
+                "definition": "on or onto a ship, aircraft or bus",
+                "synonyms": ["embark"]
+            }
+        ]
+    },
+    {
+        "word": "Abridge",
+        "meanings": [
+            {
+                "definition": "shorten without loosing sense",
+                "synonyms": ["shorten", "truncate"]
+            }
+        ]
+    },
+    {
+        "word": "Earnest",
+        "meanings": [
+            {
+                "definition": "serious and determined",
+                "example": "An earnest student"
+            }
+        ]
+    },
+    {
+        "word": "Ecclesial",
+        "meanings": [
+            {
+                "definition": "relating to church; churchly"
+            }
+        ]
+    },
+    {
+        "word": "Eclectic",
+        "meanings": [
+            {
+                "synonyms": ["wide", "diverse", "extensive"],
+                "example": "Universities offering an eclectic mix of courses"
+            }
+        ]
+    },
+    {
+        "word": "Effluent",
+        "meanings": [
+            {
+                "definition": "liquid waste or sewage discharged into a river or the sea",
+                "example": "Industrial effluent"
+            }
+        ]
+    },
+    {
+        "word": "En route",
+        "meanings": [
+            {
+                "definition": "during the course of a journey; on the way",
+                "example": "I stopped in Delhi en route to Guwahati"
+            }
+        ]
+    },
+    {
+        "word": "Ensue",
+        "meanings": [
+            {
+                "definition": "happen or occur afterwards or as a result",
+                "synonyms": ["result", "follow"]
+            }
+        ]
+    },
+    {
+        "word": "Eviction",
+        "meanings": [
+            {
+                "definition": "the action of expelling someone from a property; expulsion",
+                "meaning": "Eviction notice"
+            }
+        ]
+    },
+    {
+        "word": "Exacerbate",
+        "meanings": [
+            {
+                "definition": "make (a problem, bad situation, or negative feeling) worse",
+                "meaning": "The solution proposed by the teacher exacerbated the doubt of students",
+                "synonyms": ["aggravate"]
+            }
+        ]
+    },
+    {
+        "word": "Exasperate",
+        "meanings": [
+            {
+                "definition": "irritate and frustrate someone",
+                "synonyms": [
+                    "infuriate",
+                    "incense",
+                    "anger",
+                    "annoy",
+                    "irritate",
+                    "enrage",
+                    "inflame"
+                ]
+            }
+        ]
+    },
+    {
+        "word": "Exigency",
+        "meanings": [
+            {
+                "synonyms": ["emergency", "crisis"]
+            }
+        ]
+    },
+    {
+        "word": "Exotic",
+        "meanings": [
+            {
+                "definition": "unusual and exciting because it is foreign, unfamiliar, or different",
+                "synonyms": ["foreign, unfamiliar, alien"],
+                "example": "Exotic plants, exotic dishes"
+            }
+        ]
+    },
+    {
+        "word": "Expedite",
+        "meanings": [
+            {
+                "definition": "to make something happen more quickly",
+                "synonyms": ["hasten", "speed up"],
+                "example": "Expedite the process"
+            }
+        ]
+    },
+    {
+        "word": "Expiation",
+        "meanings": [
+            {
+                "definition": "making amends or reparation for guilt",
+                "synonyms": ["atonement", "redress", "reparation"],
+                "example": "An act of public expiation"
+            }
+        ]
+    },
+    {
+        "word": "Explicate",
+        "meanings": [
+            {
+                "definition": "to explain something in detail, especially a piece of writing  or an idea",
+                "synonyms": ["explain", "clarify"],
+                "example": "This book clearly explicates the writer's ideas"
+            }
+        ]
+    },
+    {
+        "word": "Expropriate",
+        "meanings": [
+            {
+                "definition": "(of the state or an authority) take (property) from its owner for public use or benefit",
+                "synonyms": ["seize", "appropriate"]
+            }
+        ]
+    },
+    {
+        "word": "Emasculate",
+        "meanings": [
+            {
+                "synonyms": ["weaken", "debiliate", "enfeeble"]
+            }
+        ]
+    },
+    {
+        "word": "Embroil",
+        "meanings": [
+            {
+                "definition": "to involve someone or something in a complicated situation",
+                "synonyms": ["involve", "ensnare", "entangle"],
+                "example": "His reckless actions embroiled the company in a legal dispute"
+            }
+        ]
+    },
+    {
+        "word": "Emcee",
+        "meanings": [
+            {
+                "synonyms": ["host", "compere"]
+            }
+        ]
+    },
+    {
+        "word": "Eminent",
+        "meanings": [
+            {
+                "definition": "(of a person) famous and respected within a particular sphere",
+                "synonyms": ["distinguished", "renowed", "esteemed"],
+                "example": "An eminent mathematician"
+            },
+            {
+                "definition": "(of a positive quality) present to a notable degree",
+                "synonyms": ["obvious", "clear", "conspicuous"],
+                "example": "Eminent sense of humour"
+            }
+        ]
+    },
+    {
+        "word": "Emphatic",
+        "meanings": [
+            {
+                "definition": "strong and determined in speech or action",
+                "example": "She was emphatic about going to the school trip",
+                "synonyms": ["vehement", "firm"]
+            }
+        ]
+    },
+    {
+        "word": "Endeavour",
+        "meanings": [
+            {
+                "definition": "an attempt to achieve something",
+                "example": "He endeavoured to locate the bug in the code",
+                "synonyms": ["attempt"]
+            }
+        ]
+    },
+    {
+        "word": "Endemic",
+        "meanings": [
+            {
+                "definition": "(of a disease) occurring within an area or community",
+                "example": "Malaria is endemic in the hotter regions of the world"
+            },
+            {
+                "definition": "(of a plant or animal) native and restricted to a certain place",
+                "example": "Kiwi is endemic to New Zealand"
+            }
+        ]
+    },
+    {
+        "word": "Endorse",
+        "meanings": [
+            {
+                "definition": "to make a public statement of your approval or support for something or someone",
+                "example": "I fully endorse everything the Chairperson has said"
+            }
+        ]
+    },
+    {
+        "word": "Engender",
+        "meanings": [
+            {
+                "definition": "to cause or give rise to a feeling, situation, or condition",
+                "example": "Her latest book has engendered a lot of controversy"
+            }
+        ]
+    },
+    {
+        "word": "Ennui",
+        "meanings": [
+            {
+                "definition": "a feeling of boredom or weariness",
+                "example": "He experienced a sense of ennui after spending too much time indoors",
+                "synonyms": ["boredom", "tedium", "lethargy"]
+            }
+        ]
+    },
+    {
+        "word": "Entrench",
+        "meanings": [
+            {
+                "definition": "to establish firmly and securely",
+                "example": "Racism is entrenched in our society"
+            }
+        ]
+    },
+    {
+        "word": "Entrust",
+        "meanings": [
+            {
+                "definition": "assign the responsibilty for doing something to (someone)",
+                "example": "I've been entrusted with the task of helping him in his homework"
+            }
+        ]
+    },
+    {
+        "word": "Wanton",
+        "meanings": [
+            {
+                "definition": "something that's inhuman, unrestrained",
+                "example": "They were accused of wanton cruelty towards animals",
+                "synonyms": ["wilful, malicious, malevolent, spiteful"]
+            }
+        ]
+    },
+    {
+        "word": "Whim",
+        "meanings": [
+            {
+                "definition": "a sudden desire or change of mind",
+                "synonyms": ["impulse"],
+                "example": "She bought it on a whim"
+            }
+        ]
+    },
+    {
+        "word": "Whine",
+        "meanings": [
+            {
+                "definition": "a long, high-pitched complaining cry",
+                "example": "The dog gave a small whine",
+                "synonyms": ["whimper, wail, cry, mewl, groan, moan, howl, yowl"]
+            }
+        ]
+    },
+    {
+        "word": "Whoop",
+        "meanings": [
+            {
+                "definition": "to give a loud, excited shout",
+                "example": "The audience was whooping and clapping"
+            }
+        ]
+    },
+    {
+        "word": "Woo",
+        "meanings": [
+            {
+                "definition": "seek the favour, support, or custom of",
+                "example": "A candidate must woo voters by making them feel important",
+                "synonyms": ["pursue"]
+            }
+        ]
+    },
+    {
+        "word": "Wrest",
+        "meanings": [
+            {
+                "definition": "to violently pull something away from someone",
+                "example": "She tried to wrest her arm from his hold"
+            }
+        ]
+    },
+    {
+        "word": "Wretched",
+        "meanings": [
+            {
+                "definition": "(of a person) in a very unhappy or unfortunate state",
+                "example": "I felt so wretched because I thought I might never see you again",
+                "synonyms": ["miserable, unhappy, sad"],
+                "antonyms": ["cheerful"]
+            }
+        ]
+    }
+]

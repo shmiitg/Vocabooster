@@ -4,6 +4,7 @@ import { UpdateContext } from "./context/UpdateContext";
 import Home from "./pages/Home";
 import Revision from "./pages/Revision";
 import NewWord from "./pages/NewWord";
+import Clusters from "./pages/Clusters";
 import "./App.css";
 
 const App = () => {
@@ -50,8 +51,13 @@ const App = () => {
                             </Link>
                         </div>
                         <div className="links">
+                            <Link to="/clusters">
+                                <button>Cluster</button>
+                            </Link>
+                        </div>
+                        <div className="links">
                             <Link to="/new">
-                                <button>Add Word</button>
+                                <button>Add</button>
                             </Link>
                         </div>
                     </div>
@@ -63,6 +69,7 @@ const App = () => {
                         element={<Revision words={words} loading={loading} />}
                     />
                     <Route path="/new" element={<NewWord />} />
+                    <Route path="/clusters" element={<Clusters />} />
                 </Routes>
             </div>
         </Router>

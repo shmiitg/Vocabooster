@@ -1,0 +1,24 @@
+[
+    {
+        "name": "Interest",
+        "words": [
+            { "word": "Ergophile", "description": "work" },
+            { "word": "Orophile", "description": "mountains" },
+            { "word": "Technophile", "description": "technology" },
+            { "word": "Oenophile", "description": "wine" },
+            { "word": "Fratricide", "description": "brother/sister" }
+        ]
+    },
+    {
+        "name": "Killing",
+        "words": [
+            { "word": "Feticide", "description": "fetus" },
+            { "word": "Homicide", "description": "person" },
+            { "word": "Mariticide", "description": "husband" },
+            { "word": "Matricide", "description": "mother" },
+            { "word": "Patricide", "description": "father" },
+            { "word": "Regicide", "description": "king" },
+            { "word": "Uxoricide", "description": "wife" }
+        ]
+    }
+]
