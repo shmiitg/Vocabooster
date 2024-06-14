@@ -1,9 +1,20 @@
 import React, { useState, useEffect, useRef } from "react";
-// import ReactDOM from "react-dom";
 
 const Panel = ({ label, content, active, togglePanel }) => {
     const [height, setHeight] = useState(0);
     const innerRef = useRef(null);
+
+    content.sort((a, b) => {
+        const wordA = a.word.toLowerCase();
+        const wordB = b.word.toLowerCase();
+        if (wordA < wordB) {
+            return -1;
+        }
+        if (wordA > wordB) {
+            return 1;
+        }
+        return 0;
+    });
 
     useEffect(() => {
         if (innerRef.current) {

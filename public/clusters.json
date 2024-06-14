@@ -1,12 +1,46 @@
 [
     {
+        "label": "Fears",
+        "content": [
+            { "word": "Acrophobia", "description": "height" },
+            { "word": "Algophobia", "description": "pain" },
+            { "word": "Androphobia", "description": "boys" },
+            { "word": "Anthrophobia", "description": "humans" },
+            { "word": "Cacophobia", "description": "ugliness" },
+            { "word": "Catrophobia", "description": "doctors" },
+            { "word": "Chrometophobia", "description": "money" },
+            { "word": "Chronophobia", "description": "time" },
+            { "word": "Cynophobia", "description": "dogs" },
+            { "word": "Demophobia", "description": "public speaking" },
+            { "word": "Dendrophobia", "description": "trees" },
+            { "word": "Ergophobia", "description": "work" },
+            { "word": "Gamophobia", "description": "marriage" },
+            { "word": "Genophobia or Coitophobia", "description": "sex" },
+            { "word": "Geraphobia", "description": "old age" },
+            { "word": "Graphophobia", "description": "writing" },
+            { "word": "Gynophobia", "description": "girls" },
+            { "word": "Pedophobia", "description": "children" },
+            { "word": "Theophobia", "description": "religion" },
+            { "word": "Xenophobia", "description": "foreigners" },
+            { "word": "Xerophobia", "description": "dryness" },
+            { "word": "Zoophobia", "description": "animals" },
+            { "word": "Claustrophobia", "description": "confined spaces" },
+            { "word": "Aviophobia", "description": "flying" },
+            { "word": "Arachnophobia", "description": "spiders" },
+            { "word": "Aquaphobia", "description": "water" },
+            { "word": "Nyctophobia", "description": "the dark" }
+        ]
+    },
+    {
         "label": "Interest",
         "content": [
             { "word": "Ergophile", "description": "work" },
             { "word": "Orophile", "description": "mountains" },
-            { "word": "Technophile", "description": "technology" },
             { "word": "Oenophile", "description": "wine" },
-            { "word": "Fratricide", "description": "brother/sister" }
+            { "word": "Bibliophile", "description": "books" },
+            { "word": "Technophile", "description": "technology" },
+            { "word": "Dendrophile", "description": "trees" },
+            { "word": "Pluviophile", "description": "rain" }
         ]
     },
     {
@@ -18,7 +52,52 @@
             { "word": "Matricide", "description": "mother" },
             { "word": "Patricide", "description": "father" },
             { "word": "Regicide", "description": "king" },
-            { "word": "Uxoricide", "description": "wife" }
+            { "word": "Uxoricide", "description": "wife" },
+            { "word": "Fratricide", "description": "brother/sister" },
+            { "word": "Deicide", "description": "god" },
+            { "word": "Infanticide", "description": "infant" },
+            { "word": "Genocide", "description": "large group of people" },
+            { "word": "Suicide", "description": "oneself" },
+            { "word": "Tyrannicide", "description": "tyrant" }
+        ]
+    },
+    {
+        "label": "Rule",
+        "content": [
+            { "word": "Aristocracy", "description": "nobles" },
+            { "word": "Autocracy", "description": "one person" },
+            { "word": "Bureaucracy", "description": "top officials" },
+            { "word": "Diabolocracy", "description": "devil" },
+            { "word": "Gerontocracy", "description": "old people" },
+            { "word": "Idiocracy", "description": "foolish people" },
+            { "word": "Kakistocracy", "description": "incompetent" },
+            { "word": "Kleptocracy", "description": "thieves" },
+            { "word": "Mediocracy", "description": "mediocre people" },
+            { "word": "Meritocracy", "description": "performance or merit" },
+            { "word": "Neocracy", "description": "inexperienced people" },
+            { "word": "Oligarchy", "description": "small group of people" },
+            { "word": "Panarchy", "description": "freely choose govt" },
+            { "word": "Plutocracy", "description": "wealthy people" },
+            { "word": "Theocracy", "description": "religious leaders" },
+            { "word": "Technocracy", "description": "technical experts" },
+            { "word": "Democracy", "description": "the people" },
+            { "word": "Monarchy", "description": "a monarch" },
+            { "word": "Cryptocracy", "description": "secret government" }
+        ]
+    },
+    {
+        "label": "Specialists",
+        "content": [
+            { "word": "Gynaecologist", "description": "female" },
+            { "word": "Nephrologist", "description": "kidney" },
+            { "word": "Ophthalmologist", "description": "eye" },
+            { "word": "Pathologist", "description": "diseases" },
+            { "word": "Pulmonologist", "description": "lungs" },
+            { "word": "Cardiologist", "description": "heart" },
+            { "word": "Dermatologist", "description": "skin" },
+            { "word": "Gastroenterologist", "description": "digestive system" },
+            { "word": "Neurologist", "description": "nervous system" },
+            { "word": "Pediatrician", "description": "child" }
         ]
     }
 ]
