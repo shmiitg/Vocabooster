@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Modal } from "react-responsive-modal";
-import "react-responsive-modal/styles.css";
 import EditWord from "./EditOWS";
 import DeleteWord from "../components/DeleteWord";
 import { underlineWord } from "../utils/utils";

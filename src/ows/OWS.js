@@ -1,12 +1,16 @@
 import React, { useState, useEffect, useContext } from "react";
 import { UpdateContext } from "../context/UpdateContext";
+import { Modal } from "react-responsive-modal";
 import Loader from "../components/Loader";
 import OWSContainer from "./OWSContainer";
+import NewOWS from "./NewOWS";
 import { filterWords, sortWords } from "../utils/utils";
 import "../css/OWS.css";
 
 const OWS = () => {
     const { wordUpdate } = useContext(UpdateContext);
+
+    const [open, setOpen] = useState(false);
 
     const [owsWords, setOwsWords] = useState([]);
     const [searchQuery, setSearchQuery] = useState("");
@@ -28,6 +32,14 @@ const OWS = () => {
         } catch (err) {
             setError(true);
         }
+    };
+
+    const handleOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
     };
 
     useEffect(() => {
@@ -56,13 +68,27 @@ const OWS = () => {
                 />
             </div>
             <div className="main-container">
-                <h2 className="main-container-heading">One Word Substitution</h2>
+                <div className="main-container-top">
+                    <h2 className="main-container-heading">One Word Substitution</h2>
+                    <div className="main-container-add">
+                        <button onClick={handleOpen}>Add</button>
+                    </div>
+                </div>
                 <ul className="main-container-list">
                     {filteredWords.map((words) => (
                         <OWSContainer key={words._id} wordType="ows" words={words} />
                     ))}
                 </ul>
             </div>
+            <Modal
+                open={open}
+                onClose={handleClose}
+                showCloseIcon={false}
+                closeOnOverlayClick={false}
+                center
+            >
+                <NewOWS onClose={handleClose} />
+            </Modal>
         </>
     );
 };

@@ -17,6 +17,7 @@ export default function EditWordDialog({ wordType, word, onClose }) {
         ...word,
         entries: initializeEntries(word),
     });
+    const [error, setError] = useState("");
 
     useEffect(() => {
         if (!updatedWord.entries || updatedWord.entries.length === 0) {
@@ -65,13 +66,27 @@ export default function EditWordDialog({ wordType, word, onClose }) {
     const handleSubmit = async () => {
         const { entries } = updatedWord;
 
-        // Filter out empty entries
-        const updatedEntries = entries.filter(
-            (entry) =>
-                entry.word.trim() !== "" ||
-                entry.definition.trim() !== "" ||
-                entry.example.trim() !== ""
-        );
+        // Filter out empty entries and check validation
+        const updatedEntries = entries.filter((entry) => {
+            const hasWord = entry.word.trim() !== "";
+            const hasDefinition = entry.definition.trim() !== "";
+            const hasExample = entry.example.trim() !== "";
+
+            // Validation: If definition or example is written, then word is necessary
+            if ((hasDefinition || hasExample) && !hasWord) {
+                setError("Each definition or example must have an associated word.");
+                return false;
+            }
+
+            // Include non-empty entries
+            return hasWord || hasDefinition || hasExample;
+        });
+
+        // Check if there are no valid entries
+        if (updatedEntries.length === 0) {
+            setError("Please fill out at least one word entry.");
+            return; // Prevent submission
+        }
 
         // Prepare the updated word object for submission
         const updatedWordForSubmission = {
@@ -96,9 +111,18 @@ export default function EditWordDialog({ wordType, word, onClose }) {
             onClose();
             setWordUpdate((prev) => !prev);
         } else {
-            window.alert(data.error);
+            setError(data.error);
         }
     };
+
+    useEffect(() => {
+        if (error) {
+            const timer = setTimeout(() => {
+                setError("");
+            }, 5000);
+            return () => clearTimeout(timer);
+        }
+    }, [error]);
 
     return (
         <div className="modal-content">
@@ -153,6 +177,7 @@ export default function EditWordDialog({ wordType, word, onClose }) {
                     )}
                 </div>
             ))}
+            {error && <p className="error-message">{error}</p>}
             <button className="add-entry-button" onClick={handleAddEntry}>
                 + Add Entry
             </button>

@@ -133,6 +133,16 @@ ul {
     margin: 0 auto;
 }
 
+.main-container-top {
+    position: relative;
+}
+
+.main-container-add {
+    position: absolute;
+    right: 10px;
+    top: 0;
+}
+
 .main-container-heading {
     font-size: 24px;
     text-align: center;
