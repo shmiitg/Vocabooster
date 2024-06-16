@@ -153,6 +153,10 @@ ul {
     letter-spacing: 0.3px;
 }
 
+.word-container:nth-child(n + 2) {
+    margin-top: 25px;
+}
+
 .word-container-top {
     display: flex;
     justify-content: space-between;
