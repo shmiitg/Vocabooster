@@ -130,10 +130,7 @@ export default function EditWordDialog({ wordType, word, onClose }) {
                 <strong>Edit Word</strong>
             </h3>
             {updatedWord.entries.map((entry, index) => (
-                <div
-                    key={index}
-                    className={`entry-group ${index === 0 ? "first-entry-group" : ""}`}
-                >
+                <div key={index} className={`part-group ${index === 0 ? "first-part-group" : ""}`}>
                     <div className="form-group">
                         <div className="form-sub-group">
                             <div className="form-group-name">Word:</div>
@@ -169,7 +166,7 @@ export default function EditWordDialog({ wordType, word, onClose }) {
                     </div>
                     {index > 0 && (
                         <button
-                            className="delete-entry-button"
+                            className="delete-part-button"
                             onClick={() => handleDeleteEntry(index)}
                         >
                             Delete
@@ -178,7 +175,7 @@ export default function EditWordDialog({ wordType, word, onClose }) {
                 </div>
             ))}
             {error && <p className="error-message">{error}</p>}
-            <button className="add-entry-button" onClick={handleAddEntry}>
+            <button className="add-part-button" onClick={handleAddEntry}>
                 + Add Entry
             </button>
             <div className="modal-actions">

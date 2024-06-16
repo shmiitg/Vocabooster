@@ -2,11 +2,9 @@ import React, { useState, useEffect, useContext } from "react";
 import { UpdateContext } from "../context/UpdateContext";
 import { Modal } from "react-responsive-modal";
 import Loader from "../components/Loader";
-import WordContainer from "../components/WordContainer";
+import WordContainer from "./WordContainer";
 import NewWord from "./NewWord";
 import { filterWords, sortWords } from "../utils/utils";
-import "../css/Word.css";
-import "../css/NewWord.css";
 
 const Word = () => {
     const { wordUpdate } = useContext(UpdateContext);
@@ -87,10 +85,8 @@ const Word = () => {
                 </div>
             </div>
             <div className="main-container">
-                <div className="main-container-top">
-                    <div className="main-container-add">
-                        <button onClick={handleOpen}>Add</button>
-                    </div>
+                <div className="main-container-add">
+                    <button onClick={handleOpen}>Add</button>
                 </div>
                 <ul className="main-container-list">
                     {filteredWords.map((word) => (

@@ -5,7 +5,6 @@ import Loader from "../components/Loader";
 import OWSContainer from "./OWSContainer";
 import NewOWS from "./NewOWS";
 import { filterWords, sortWords } from "../utils/utils";
-import "../css/OWS.css";
 
 const OWS = () => {
     const { wordUpdate } = useContext(UpdateContext);
@@ -68,11 +67,8 @@ const OWS = () => {
                 />
             </div>
             <div className="main-container">
-                <div className="main-container-top">
-                    <h2 className="main-container-heading">One Word Substitution</h2>
-                    <div className="main-container-add">
-                        <button onClick={handleOpen}>Add</button>
-                    </div>
+                <div className="main-container-add">
+                    <button onClick={handleOpen}>Add</button>
                 </div>
                 <ul className="main-container-list">
                     {filteredWords.map((words) => (

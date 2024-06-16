@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Modal } from "react-responsive-modal";
 import "react-responsive-modal/styles.css";
 import EditWord from "./EditWord";
-import DeleteWord from "./DeleteWord";
+import DeleteWord from "../components/DeleteWord";
 import { underlineWord } from "../utils/utils";
 
 export default function WordContainer({ wordType, word }) {

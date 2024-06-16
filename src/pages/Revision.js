@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import WordContainer from "../components/WordContainer";
+import WordContainer from "../word/WordContainer";
 import Loader from "../components/Loader";
 
 const Revision = ({ words, loading }) => {
