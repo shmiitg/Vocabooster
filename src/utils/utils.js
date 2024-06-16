@@ -19,7 +19,12 @@ export const filterWords = (words, query) => {
         return words;
     }
 
-    return words.filter((word) => word.word.toLowerCase().includes(query.toLowerCase()));
+    return words.filter((word) => {
+        if (Array.isArray(word.word)) {
+            return word.word.some((w) => w.toLowerCase().includes(query.toLowerCase()));
+        }
+        return word.word.toLowerCase().includes(query.toLowerCase());
+    });
 };
 
 export function underlineWord(text, word) {

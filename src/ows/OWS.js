@@ -68,7 +68,7 @@ const OWS = () => {
             </div>
             <div className="main-container">
                 <div className="main-container-add">
-                    <button onClick={handleOpen}>Add</button>
+                    <button onClick={handleOpen}>Add Word</button>
                 </div>
                 <ul className="main-container-list">
                     {filteredWords.map((words) => (
