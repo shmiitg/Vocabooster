@@ -1,6 +1,6 @@
 import React from "react";
-import NewWord from "../components/NewWord";
-import NewOWS from "../components/NewOWS";
+import NewWord from "../word/NewWord";
+import NewOWS from "../ows/NewOWS";
 
 const New = () => {
     return (

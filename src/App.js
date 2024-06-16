@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import { UpdateContext } from "./context/UpdateContext";
-import Home from "./pages/Home";
+import Word from "./word/Word";
 import Revision from "./pages/Revision";
-import OWS from "./pages/OWS";
+import OWS from "./ows/OWS";
 import New from "./pages/New";
 import Clusters from "./pages/Clusters";
 import "./App.css";
@@ -69,7 +69,7 @@ const App = () => {
                     </div>
                 </header>
                 <Routes>
-                    <Route path="/" element={<Home />} />
+                    <Route path="/" element={<Word />} />
                     <Route
                         path="/revision"
                         element={<Revision words={words} loading={loading} />}

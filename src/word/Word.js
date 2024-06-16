@@ -5,7 +5,7 @@ import Loader from "../components/Loader";
 import { filterWords, sortWords } from "../utils/utils";
 import "../css/Home.css";
 
-const Home = () => {
+const Word = () => {
     const { wordUpdate } = useContext(UpdateContext);
 
     const [words, setWords] = useState([]);
@@ -84,4 +84,4 @@ const Home = () => {
     );
 };
 
-export default Home;
+export default Word;
