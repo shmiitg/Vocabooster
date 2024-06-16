@@ -4,7 +4,6 @@ import { UpdateContext } from "./context/UpdateContext";
 import Word from "./word/Word";
 import Revision from "./pages/Revision";
 import OWS from "./ows/OWS";
-import New from "./pages/New";
 import Clusters from "./pages/Clusters";
 import "./App.css";
 
@@ -61,11 +60,6 @@ const App = () => {
                                 <button>Cluster</button>
                             </Link>
                         </div>
-                        <div className="links">
-                            <Link to="/new">
-                                <button>Add</button>
-                            </Link>
-                        </div>
                     </div>
                 </header>
                 <Routes>
@@ -75,7 +69,6 @@ const App = () => {
                         element={<Revision words={words} loading={loading} />}
                     />
                     <Route path="/ows" element={<OWS />} />
-                    <Route path="/new" element={<New />} />
                     <Route path="/clusters" element={<Clusters />} />
                 </Routes>
             </div>

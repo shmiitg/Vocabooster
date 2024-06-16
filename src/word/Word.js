@@ -1,12 +1,17 @@
 import React, { useState, useEffect, useContext } from "react";
 import { UpdateContext } from "../context/UpdateContext";
-import WordContainer from "../components/WordContainer";
+import { Modal } from "react-responsive-modal";
 import Loader from "../components/Loader";
+import WordContainer from "../components/WordContainer";
+import NewWord from "./NewWord";
 import { filterWords, sortWords } from "../utils/utils";
-import "../css/Home.css";
+import "../css/Word.css";
+import "../css/NewWord.css";
 
 const Word = () => {
     const { wordUpdate } = useContext(UpdateContext);
+
+    const [open, setOpen] = useState(false);
 
     const [words, setWords] = useState([]);
     const [selectedAlphabet, setSelectedAlphabet] = useState("A");
@@ -29,6 +34,14 @@ const Word = () => {
         } catch (err) {
             setError(true);
         }
+    };
+
+    const handleOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
     };
 
     useEffect(() => {
@@ -74,12 +87,26 @@ const Word = () => {
                 </div>
             </div>
             <div className="main-container">
+                <div className="main-container-top">
+                    <div className="main-container-add">
+                        <button onClick={handleOpen}>Add</button>
+                    </div>
+                </div>
                 <ul className="main-container-list">
                     {filteredWords.map((word) => (
                         <WordContainer key={word._id} wordType="word" word={word} />
                     ))}
                 </ul>
             </div>
+            <Modal
+                open={open}
+                onClose={handleClose}
+                showCloseIcon={false}
+                closeOnOverlayClick={false}
+                center
+            >
+                <NewWord onClose={handleClose} />
+            </Modal>
         </>
     );
 };
