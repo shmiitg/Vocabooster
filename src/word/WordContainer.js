@@ -20,7 +20,7 @@ export default function WordContainer({ wordType, word, allWords }) {
         const now = new Date();
         const createdAt = new Date(word.updatedAt);
         const diffInHours = (now - createdAt) / (1000 * 60 * 60);
-        return diffInHours <= 24 * 3;
+        return diffInHours <= 24 * 30;
     };
 
     const handleUpdate = (type) => {
