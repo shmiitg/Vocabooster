@@ -35,7 +35,7 @@ const WordDetailsModal = ({ word, onClose }) => {
         <Modal
             open={true}
             onClose={onClose}
-            showCloseIcon={false}
+            // showCloseIcon={false}
             closeOnOverlayClick={false}
             center
         >
@@ -59,9 +59,6 @@ const WordDetailsModal = ({ word, onClose }) => {
                         )}
                     </div>
                 ))}
-                <button className="submit-button word-review-button" onClick={onClose}>
-                    Close
-                </button>
             </div>
         </Modal>
     );
