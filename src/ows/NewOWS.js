@@ -47,7 +47,7 @@ export default function NewOWS({ onClose }) {
     const handleSubmit = async () => {
         const { entries } = newWord;
 
-        let checkValidation = true;
+        let checkValidation = true; // to check for an assciated word with each definition of example
 
         // Filter out empty entries and check validation
         const updatedEntries = entries.filter((entry) => {

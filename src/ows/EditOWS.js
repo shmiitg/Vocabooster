@@ -66,6 +66,8 @@ export default function EditWordDialog({ wordType, word, onClose }) {
     const handleSubmit = async () => {
         const { entries } = updatedWord;
 
+        let checkValidation = true; // to check for an assciated word with each definition of example
+
         // Filter out empty entries and check validation
         const updatedEntries = entries.filter((entry) => {
             const hasWord = entry.word.trim() !== "";
@@ -75,6 +77,7 @@ export default function EditWordDialog({ wordType, word, onClose }) {
             // Validation: If definition or example is written, then word is necessary
             if ((hasDefinition || hasExample) && !hasWord) {
                 setError("Each definition or example must have an associated word.");
+                checkValidation = false;
                 return false;
             }
 
@@ -82,9 +85,13 @@ export default function EditWordDialog({ wordType, word, onClose }) {
             return hasWord || hasDefinition || hasExample;
         });
 
+        if (!checkValidation) {
+            return;
+        }
+
         // Check if there are no valid entries
         if (updatedEntries.length === 0) {
-            setError("Please fill out at least one word entry.");
+            setError("Please fill out at least one word entry");
             return; // Prevent submission
         }
 
@@ -174,10 +181,12 @@ export default function EditWordDialog({ wordType, word, onClose }) {
                     )}
                 </div>
             ))}
-            {error && <p className="error-message">{error}</p>}
-            <button className="add-part-button" onClick={handleAddEntry}>
-                + Add Entry
-            </button>
+            <div className="add-part">
+                {error && <p className="error-message">*{error}</p>}
+                <button className="add-part-button" onClick={handleAddEntry}>
+                    + Add Entry
+                </button>
+            </div>
             <div className="modal-actions">
                 <button className="submit-button" onClick={onClose}>
                     Cancel

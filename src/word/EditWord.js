@@ -1,10 +1,22 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { UpdateContext } from "../context/UpdateContext";
 
 export default function EditWordDialog({ wordType, word, onClose }) {
     const { setWordUpdate } = useContext(UpdateContext);
     const wordId = word._id;
-    const [updatedWord, setUpdatedWord] = useState({ ...word });
+    const [updatedWord, setUpdatedWord] = useState({
+        ...word,
+        meanings: word.meanings.map((meaning) => ({
+            ...meaning,
+            synonyms: Array.isArray(meaning.synonyms)
+                ? meaning.synonyms.join(", ")
+                : meaning.synonyms,
+            antonyms: Array.isArray(meaning.antonyms)
+                ? meaning.antonyms.join(", ")
+                : meaning.antonyms,
+        })),
+    });
+    const [error, setError] = useState("");
 
     const handleChange = (e, index) => {
         const { name, value } = e.target;
@@ -28,31 +40,18 @@ export default function EditWordDialog({ wordType, word, onClose }) {
     };
 
     const handleAddMeaning = () => {
-        if (wordType === "word") {
-            setUpdatedWord({
-                ...updatedWord,
-                meanings: [
-                    ...updatedWord.meanings,
-                    {
-                        definition: "",
-                        synonyms: "",
-                        antonyms: "",
-                        example: "",
-                    },
-                ],
-            });
-        } else {
-            setUpdatedWord({
-                ...updatedWord,
-                meanings: [
-                    ...updatedWord.meanings,
-                    {
-                        definition: "",
-                        example: "",
-                    },
-                ],
-            });
-        }
+        setUpdatedWord({
+            ...updatedWord,
+            meanings: [
+                ...updatedWord.meanings,
+                {
+                    definition: "",
+                    synonyms: "",
+                    antonyms: "",
+                    example: "",
+                },
+            ],
+        });
     };
 
     const handleDeleteMeaning = (index) => {
@@ -62,33 +61,35 @@ export default function EditWordDialog({ wordType, word, onClose }) {
         });
     };
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e) => {
         const { word, meanings } = updatedWord;
 
-        // Filter out empty meanings
-        const filteredMeanings = meanings.filter(
-            (meaning) =>
-                meaning.definition.trim() !== "" ||
-                (Array.isArray(meaning.synonyms)
-                    ? meaning.synonyms.join("").trim() !== ""
-                    : meaning.synonyms.trim() !== "") ||
-                (Array.isArray(meaning.antonyms)
-                    ? meaning.antonyms.join("").trim() !== ""
-                    : meaning.antonyms.trim() !== "") ||
-                meaning.example.trim() !== ""
-        );
-        const updatedMeanings = filteredMeanings.map((meaning) => ({
+        if (word === "") {
+            setError("Word is required");
+            return;
+        }
+
+        // Filter out empty meanings and validate
+        const updatedMeanings = meanings.filter((meaning) => {
+            const hasDefinition = meaning.definition.trim() !== "";
+            const hasSynonyms = meaning.synonyms.trim() !== "";
+            const hasAntonyms = meaning.antonyms.trim() !== "";
+            const hasExample = meaning.example.trim() !== "";
+
+            return hasDefinition || hasSynonyms || hasAntonyms || hasExample;
+        });
+
+        // Convert synonyms and antonyms strings to arrays
+        const finalMeanings = updatedMeanings.map((meaning) => ({
             ...meaning,
-            synonyms: Array.isArray(meaning.synonyms)
-                ? meaning.synonyms
-                : meaning.synonyms.trim()
-                ? meaning.synonyms.split(",").map((item) => item.trim())
-                : [],
-            antonyms: Array.isArray(meaning.antonyms)
-                ? meaning.antonyms
-                : meaning.antonyms.trim()
-                ? meaning.antonyms.split(",").map((item) => item.trim())
-                : [],
+            synonyms:
+                meaning.synonyms.length > 0
+                    ? meaning.synonyms.split(",").map((item) => item.trim())
+                    : [],
+            antonyms:
+                meaning.antonyms.length > 0
+                    ? meaning.antonyms.split(",").map((item) => item.trim())
+                    : [],
         }));
 
         const url = `${process.env.REACT_APP_SERVER_URL}/word/${wordId}`;
@@ -97,16 +98,26 @@ export default function EditWordDialog({ wordType, word, onClose }) {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ word, meanings: updatedMeanings }),
+            body: JSON.stringify({ word, meanings: finalMeanings }),
         });
         const data = await res.json();
         if (res.status === 200) {
+            window.alert(data.message);
             onClose();
             setWordUpdate((prev) => !prev);
         } else {
-            window.alert(data.error);
+            setError(data.error);
         }
     };
+
+    useEffect(() => {
+        if (error) {
+            const timer = setTimeout(() => {
+                setError("");
+            }, 5000);
+            return () => clearTimeout(timer);
+        }
+    }, [error]);
 
     return (
         <div className="modal-content">
@@ -121,6 +132,7 @@ export default function EditWordDialog({ wordType, word, onClose }) {
                         name="word"
                         value={updatedWord.word}
                         onChange={(e) => handleChange(e)}
+                        required
                     />
                 </div>
             </div>
@@ -143,11 +155,7 @@ export default function EditWordDialog({ wordType, word, onClose }) {
                             <input
                                 type="text"
                                 name="synonyms"
-                                value={
-                                    Array.isArray(meaning.synonyms)
-                                        ? meaning.synonyms.join(", ")
-                                        : meaning.synonyms
-                                }
+                                value={meaning.synonyms}
                                 onChange={(e) => handleChange(e, index)}
                             />
                         </div>
@@ -158,18 +166,14 @@ export default function EditWordDialog({ wordType, word, onClose }) {
                             <input
                                 type="text"
                                 name="antonyms"
-                                value={
-                                    Array.isArray(meaning.antonyms)
-                                        ? meaning.antonyms.join(", ")
-                                        : meaning.antonyms
-                                }
+                                value={meaning.antonyms}
                                 onChange={(e) => handleChange(e, index)}
                             />
                         </div>
                     </div>
                     <div className="form-group">
                         <div className="form-sub-group">
-                            <div className="form-group-name">Example:</div>
+                            Example:
                             <input
                                 type="text"
                                 name="example"
@@ -181,6 +185,7 @@ export default function EditWordDialog({ wordType, word, onClose }) {
                     {index > 0 && (
                         <button
                             className="delete-part-button"
+                            type="button"
                             onClick={() => handleDeleteMeaning(index)}
                         >
                             Delete
@@ -188,14 +193,17 @@ export default function EditWordDialog({ wordType, word, onClose }) {
                     )}
                 </div>
             ))}
-            <button className="add-part-button" onClick={handleAddMeaning}>
-                + Add Meaning
-            </button>
+            <div className="add-part">
+                {error && <p className="error-message">*{error}</p>}
+                <button className="add-part-button" type="button" onClick={handleAddMeaning}>
+                    + Add Meaning
+                </button>
+            </div>
             <div className="modal-actions">
-                <button className="submit-button" onClick={onClose}>
+                <button type="button" className="submit-button" onClick={onClose}>
                     Cancel
                 </button>
-                <button className="submit-button" onClick={handleSubmit}>
+                <button type="submit" className="submit-button" onClick={handleSubmit}>
                     Save
                 </button>
             </div>
