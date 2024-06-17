@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { UpdateContext } from "../context/UpdateContext";
 
-export default function EditWordDialog({ wordType, word, onClose }) {
+export default function EditWordDialog({ word, onClose }) {
     const { setWordUpdate } = useContext(UpdateContext);
     const wordId = word._id;
     const [updatedWord, setUpdatedWord] = useState({

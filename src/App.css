@@ -282,6 +282,12 @@ ul {
     background-color: #999;
 }
 
+.clickable-word {
+    cursor: pointer;
+    text-decoration: underline;
+    color: #0056b3;
+}
+
 /* New-Edit form Styles */
 
 .part-group {

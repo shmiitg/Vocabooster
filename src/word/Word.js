@@ -12,6 +12,7 @@ const Word = () => {
     const [open, setOpen] = useState(false);
 
     const [words, setWords] = useState([]);
+    const [allWords, setAllWords] = useState([]);
     const [selectedAlphabet, setSelectedAlphabet] = useState("A");
     const [searchQuery, setSearchQuery] = useState("");
     const [loading, setLoading] = useState(true);
@@ -26,6 +27,10 @@ const Word = () => {
                 const sortedWords = sortWords(data.words);
                 setWords(sortedWords);
                 setLoading(false);
+
+                // Extract all words and store them in lowercase for easy comparison
+                const allWordsList = data.words.flatMap((word) => word.word.toLowerCase());
+                setAllWords(allWordsList);
             } else {
                 setError(true);
             }
@@ -90,7 +95,12 @@ const Word = () => {
                 </div>
                 <ul className="main-container-list">
                     {filteredWords.map((word) => (
-                        <WordContainer key={word._id} wordType="word" word={word} />
+                        <WordContainer
+                            key={word._id}
+                            wordType="word"
+                            word={word}
+                            allWords={allWords}
+                        />
                     ))}
                 </ul>
             </div>

@@ -3,13 +3,15 @@ import { Modal } from "react-responsive-modal";
 import "react-responsive-modal/styles.css";
 import EditWord from "./EditWord";
 import DeleteWord from "../components/DeleteWord";
+import WordDetailsModal from "./WordDetailsModal";
 import { underlineWord } from "../utils/utils";
 
-export default function WordContainer({ wordType, word }) {
+export default function WordContainer({ wordType, word, allWords }) {
     const [open, setOpen] = useState(false);
+    const [detailsOpen, setDetailsOpen] = useState(false);
     const [updateType, setUpdateType] = useState("edit");
+    const [selectedWord, setSelectedWord] = useState(null);
 
-    // Function to capitalize the first letter of a word
     const capitalizeFirstLetter = (word) => {
         return word.charAt(0).toUpperCase() + word.slice(1);
     };
@@ -30,6 +32,18 @@ export default function WordContainer({ wordType, word }) {
         setOpen(false);
     };
 
+    const handleDetailsOpen = (word) => {
+        setSelectedWord(word);
+        setDetailsOpen(true);
+    };
+
+    const handleDetailsClose = () => {
+        setDetailsOpen(false);
+        setSelectedWord(null);
+    };
+
+    const isWordExisting = (word) => allWords.includes(word.toLowerCase());
+
     return (
         <div className="word-container-item">
             <div className="word-container-top">
@@ -47,12 +61,42 @@ export default function WordContainer({ wordType, word }) {
                     {meaning.example && <p>"{underlineWord(meaning.example, word.word)}"</p>}
                     {meaning.synonyms?.length > 0 && (
                         <p>
-                            <strong>Synonyms:</strong> {meaning.synonyms.join(", ")}
+                            <strong>Synonyms:</strong>{" "}
+                            {meaning.synonyms
+                                .map((synonym) =>
+                                    isWordExisting(synonym) ? (
+                                        <span
+                                            key={synonym}
+                                            className="clickable-word"
+                                            onClick={() => handleDetailsOpen(synonym)}
+                                        >
+                                            {synonym}
+                                        </span>
+                                    ) : (
+                                        <span key={synonym}>{synonym}</span>
+                                    )
+                                )
+                                .reduce((prev, curr) => [prev, ", ", curr])}
                         </p>
                     )}
                     {meaning.antonyms?.length > 0 && (
                         <p>
-                            <strong>Antonyms:</strong> {meaning.antonyms.join(", ")}
+                            <strong>Antonyms:</strong>{" "}
+                            {meaning.antonyms
+                                .map((antonym) =>
+                                    isWordExisting(antonym) ? (
+                                        <span
+                                            key={antonym}
+                                            className="clickable-word"
+                                            onClick={() => handleDetailsOpen(antonym)}
+                                        >
+                                            {antonym}
+                                        </span>
+                                    ) : (
+                                        <span key={antonym}>{antonym}</span>
+                                    )
+                                )
+                                .reduce((prev, curr) => [prev, ", ", curr])}
                         </p>
                     )}
                 </div>
@@ -65,11 +109,12 @@ export default function WordContainer({ wordType, word }) {
                 center
             >
                 {updateType === "edit" ? (
-                    <EditWord wordType={wordType} word={word} onClose={handleClose} />
+                    <EditWord word={word} onClose={handleClose} />
                 ) : (
                     <DeleteWord wordType={wordType} word={word} onClose={handleClose} />
                 )}
             </Modal>
+            {detailsOpen && <WordDetailsModal word={selectedWord} onClose={handleDetailsClose} />}
         </div>
     );
 }
