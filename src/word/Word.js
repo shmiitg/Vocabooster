@@ -80,7 +80,7 @@ const Word = () => {
                         />
                     </div>
                     <div className="main-container-add">
-                        <button onClick={handleOpen}>Add Word</button>
+                        <button onClick={handleOpen}>Add</button>
                     </div>
                 </div>
             </div>
