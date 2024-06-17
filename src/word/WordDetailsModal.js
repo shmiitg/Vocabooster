@@ -59,7 +59,7 @@ const WordDetailsModal = ({ word, onClose }) => {
                         )}
                     </div>
                 ))}
-                <button className="submit-button" onClick={onClose}>
+                <button className="submit-button word-review-button" onClick={onClose}>
                     Close
                 </button>
             </div>
