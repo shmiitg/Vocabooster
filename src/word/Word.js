@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { UpdateContext } from "../context/UpdateContext";
 import { Modal } from "react-responsive-modal";
+import { FaSearch } from "react-icons/fa"; // Import the search icon
 import Loader from "../components/Loader";
 import WordContainer from "./WordContainer";
 import NewWord from "./NewWord";
@@ -26,11 +27,10 @@ const Word = () => {
             if (res.status === 200) {
                 const sortedWords = sortWords(data.words);
                 setWords(sortedWords);
-                setLoading(false);
-
                 // Extract all words and store them in lowercase for easy comparison
                 const allWordsList = data.words.flatMap((word) => word.word.toLowerCase());
                 setAllWords(allWordsList);
+                setLoading(false);
             } else {
                 setError(true);
             }
@@ -67,14 +67,22 @@ const Word = () => {
 
     return (
         <>
-            <div className="search-bar">
-                <input
-                    type="text"
-                    placeholder="Search..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="search-bar"
-                />
+            <div className="main-container-top">
+                <div className="main-container-sub-top">
+                    <div className="search-bar">
+                        <FaSearch className="search-icon" /> {/* Add the search icon here */}
+                        <input
+                            type="text"
+                            placeholder="Search..."
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            className="search-bar"
+                        />
+                    </div>
+                    <div className="main-container-add">
+                        <button onClick={handleOpen}>Add Word</button>
+                    </div>
+                </div>
             </div>
             <div className="alphabet-nav">
                 <div className="alphabets">
@@ -90,9 +98,6 @@ const Word = () => {
                 </div>
             </div>
             <div className="main-container">
-                <div className="main-container-add">
-                    <button onClick={handleOpen}>Add Word</button>
-                </div>
                 <ul className="main-container-list">
                     {filteredWords.map((word) => (
                         <WordContainer

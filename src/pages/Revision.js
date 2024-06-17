@@ -1,45 +1,72 @@
-import React, { useState, useEffect } from "react";
-import WordContainer from "../word/WordContainer";
+import React, { useState, useEffect, useContext } from "react";
+import { UpdateContext } from "../context/UpdateContext";
 import Loader from "../components/Loader";
+import WordContainer from "../word/WordContainer";
+import { sortWords } from "../utils/utils";
 
-const Revision = ({ words, loading }) => {
+const Revision = () => {
+    const { wordUpdate } = useContext(UpdateContext);
+
     const [revisionWords, setRevisionWords] = useState([]);
+    const [allWords, setAllWords] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
+
+    // Get random words
+    const getRandomWords = (list, count) => {
+        const shuffled = list.sort(() => 0.5 - Math.random());
+        return shuffled.slice(0, count);
+    };
+
+    const getWords = async () => {
+        try {
+            const url = `${process.env.REACT_APP_SERVER_URL}/word`;
+            const res = await fetch(url);
+            const data = await res.json();
+            if (res.status === 200) {
+                // Extract all words and store them in lowercase for easy comparison
+                const allWordsList = data.words.flatMap((word) => word.word.toLowerCase());
+                setAllWords(allWordsList);
+
+                const sortedWords = sortWords(getRandomWords(data.words, 10));
+                setRevisionWords([...sortedWords]);
+                setLoading(false);
+            } else {
+                setError(true);
+            }
+        } catch (err) {
+            setError(true);
+        }
+    };
 
     useEffect(() => {
-        const getRandomWords = (list, count) => {
-            const shuffled = list.sort(() => 0.5 - Math.random());
-            return shuffled.slice(0, count);
-        };
-        const selectedWords = getRandomWords(words, 10);
-
-        // Sort the random words alphabetically
-        selectedWords.sort((a, b) => {
-            const wordA = a.word.toLowerCase();
-            const wordB = b.word.toLowerCase();
-            if (wordA < wordB) {
-                return -1;
-            }
-            if (wordA > wordB) {
-                return 1;
-            }
-            return 0;
-        });
-        setRevisionWords([...selectedWords]);
-    }, [words]);
+        getWords();
+    }, [wordUpdate]);
 
     if (loading) {
         return <Loader />;
     }
 
+    if (error) {
+        return <h1>Error</h1>;
+    }
+
     return (
-        <div className="main-container">
-            <h2 className="main-container-heading">Daily Revision</h2>
-            <ul className="main-container-list">
-                {revisionWords.map((word) => (
-                    <WordContainer key={word._id} word={word} />
-                ))}
-            </ul>
-        </div>
+        <>
+            <div className="main-container">
+                <h2 className="main-container-heading">Daily Revision</h2>
+                <ul className="main-container-list">
+                    {revisionWords.map((word) => (
+                        <WordContainer
+                            key={word._id}
+                            wordType="word"
+                            word={word}
+                            allWords={allWords}
+                        />
+                    ))}
+                </ul>
+            </div>
+        </>
     );
 };
 
