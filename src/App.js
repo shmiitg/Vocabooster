@@ -4,6 +4,7 @@ import Word from "./word/Word";
 import Revision from "./pages/Revision";
 import OWS from "./ows/OWS";
 import Clusters from "./pages/Clusters";
+import Footer from "./components/Footer";
 import "./App.css";
 
 const App = () => {
@@ -40,6 +41,7 @@ const App = () => {
                     <Route path="/ows" element={<OWS />} />
                     <Route path="/clusters" element={<Clusters />} />
                 </Routes>
+                <Footer />
             </div>
         </Router>
     );
