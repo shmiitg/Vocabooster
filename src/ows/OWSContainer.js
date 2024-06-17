@@ -24,7 +24,7 @@ export default function OWSContainer({ wordType, words }) {
     return (
         <div className="word-container-item">
             {words.word.map((word, index) => (
-                <div className="word-container">
+                <div key={index} className="word-container">
                     <div className="word-container-top">
                         <h3>{capitalizeFirstLetter(word)}</h3>
                         {index === 0 && (
@@ -34,7 +34,7 @@ export default function OWSContainer({ wordType, words }) {
                             </div>
                         )}
                     </div>
-                    <div key={index} className="word-container-bottom">
+                    <div className="word-container-bottom">
                         {words.meanings[index].definition && (
                             <p>{words.meanings[index].definition}</p>
                         )}

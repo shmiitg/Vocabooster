@@ -62,6 +62,11 @@ const NewWord = ({ onClose }) => {
     const handleSubmit = async (e) => {
         const { word, meanings } = newWord;
 
+        if (word === "") {
+            setError("Word is required");
+            return;
+        }
+
         // Filter out empty meanings and validate
         const updatedMeanings = meanings.filter((meaning) => {
             const hasDefinition = meaning.definition.trim() !== "";
@@ -69,21 +74,18 @@ const NewWord = ({ onClose }) => {
             const hasAntonyms = meaning.antonyms.trim() !== "";
             const hasExample = meaning.example.trim() !== "";
 
-            if ((hasDefinition || hasSynonyms || hasAntonyms || hasExample) && !word) {
-                setError(
-                    "Each definition, synonym, antonym, or example must have an associated word."
-                );
-                return false;
-            }
+            // if ((hasDefinition || hasSynonyms || hasAntonyms || hasExample) && !word) {
+            //     return false;
+            // }
 
             return hasDefinition || hasSynonyms || hasAntonyms || hasExample;
         });
 
         // Check if there are no valid meanings
-        if (updatedMeanings.length === 0) {
-            setError("Please fill out at least one meaning entry.");
-            return; // Prevent submission
-        }
+        // if (updatedMeanings.length === 0) {
+        //     setError("Please fill out at least one entry");
+        //     return; // Prevent submission
+        // }
 
         // Convert synonyms and antonyms strings to arrays
         const finalMeanings = updatedMeanings.map((meaning) => ({
@@ -108,17 +110,7 @@ const NewWord = ({ onClose }) => {
         const data = await res.json();
         if (res.status === 200) {
             window.alert(data.message);
-            setNewWord({
-                word: "",
-                meanings: [
-                    {
-                        definition: "",
-                        synonyms: "",
-                        antonyms: "",
-                        example: "",
-                    },
-                ],
-            });
+            onClose();
             setWordUpdate((prev) => !prev);
         } else {
             setError(data.error);
@@ -208,10 +200,12 @@ const NewWord = ({ onClose }) => {
                     )}
                 </div>
             ))}
-            {error && <p className="error-message">{error}</p>}
-            <button className="add-part-button" type="button" onClick={handleAddMeaning}>
-                + Add Meaning
-            </button>
+            <div className="add-part">
+                {error && <p className="error-message">*{error}</p>}
+                <button className="add-part-button" type="button" onClick={handleAddMeaning}>
+                    + Add Meaning
+                </button>
+            </div>
             <div className="modal-actions">
                 <button type="button" className="submit-button" onClick={onClose}>
                     Cancel

@@ -245,6 +245,7 @@ ul {
 /* Modal */
 .modal-content {
     font-size: 15px;
+    min-width: max(25vw, 280px);
 }
 
 .modal-content h3 {
@@ -325,9 +326,20 @@ ul {
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
+.add-part {
+    position: relative;
+}
+
+.add-part .error-message {
+    position: absolute;
+    color: red;
+    font-size: 14px;
+    top: -20px;
+}
+
 .add-part-button {
     display: inline-block;
-    margin: 15px 0;
+    margin: 20px 0 15px;
     font-size: 14px;
     background-color: #94e8ff;
     border: none;
@@ -375,9 +387,4 @@ ul {
 
 .submit-button:hover {
     background-color: #0056b3;
-}
-
-.error-message {
-    color: red;
-    margin-top: 10px;
 }

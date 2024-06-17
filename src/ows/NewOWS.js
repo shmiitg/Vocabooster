@@ -7,7 +7,7 @@ export default function NewOWS({ onClose }) {
     const [newWord, setNewWord] = useState({
         entries: [{ word: "", definition: "", example: "" }],
     });
-    const [error, setError] = useState("");
+    const [error, setError] = useState(null);
 
     const handleChange = (e, index) => {
         const { name, value } = e.target;
@@ -47,6 +47,8 @@ export default function NewOWS({ onClose }) {
     const handleSubmit = async () => {
         const { entries } = newWord;
 
+        let checkValidation = true;
+
         // Filter out empty entries and check validation
         const updatedEntries = entries.filter((entry) => {
             const hasWord = entry.word.trim() !== "";
@@ -55,13 +57,18 @@ export default function NewOWS({ onClose }) {
 
             // Validation: If definition or example is written, then word is necessary
             if ((hasDefinition || hasExample) && !hasWord) {
-                setError("Each definition or example must have an associated word.");
+                setError("Each definition or example must have an associated word");
+                checkValidation = false;
                 return false;
             }
 
             // Include non-empty entries
             return hasWord || hasDefinition || hasExample;
         });
+
+        if (!checkValidation) {
+            return;
+        }
 
         // Check if there are no valid entries
         if (updatedEntries.length === 0) {
@@ -90,6 +97,7 @@ export default function NewOWS({ onClose }) {
         const data = await res.json();
         if (res.status === 201) {
             // assuming 201 status code for created
+            window.alert(data.message);
             onClose();
             setWordUpdate((prev) => !prev);
         } else {
@@ -156,10 +164,12 @@ export default function NewOWS({ onClose }) {
                     )}
                 </div>
             ))}
-            {error && <p className="error-message">{error}</p>}
-            <button className="add-part-button" onClick={handleAddEntry}>
-                + Add Entry
-            </button>
+            <div className="add-part">
+                {error && <p className="error-message">*{error}</p>}
+                <button className="add-part-button" onClick={handleAddEntry}>
+                    + Add Entry
+                </button>
+            </div>
             <div className="modal-actions">
                 <button className="submit-button" onClick={onClose}>
                     Cancel
