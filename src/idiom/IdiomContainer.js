@@ -20,15 +20,19 @@ export default function IdiomContainer({ idiom }) {
     return (
         <div className="word-container-item">
             <div className="word-container-top">
-                <h3>{idiom.idiom}</h3>
+                <div className="word-container-top-content">
+                    {idiom.idiom.split(",").map((item, index) => (
+                        <h3 key={index}>{item}</h3>
+                    ))}
+                </div>
                 <div className="update-icons">
                     <button onClick={() => handleUpdate("edit")}>Edit</button>
                     <button onClick={() => handleUpdate("delete")}>Delete</button>
                 </div>
             </div>
-            <div className="word-container-bottom">
-                <p>{idiom.meaning}</p>
-                <p>{idiom.example}</p>
+            <div className="word-container-bottom reduce-margin">
+                {idiom.meaning && <p>{idiom.meaning}</p>}
+                {idiom.example && <p>"{idiom.example}"</p>}
             </div>
             <Modal
                 open={open}

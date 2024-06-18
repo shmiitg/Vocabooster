@@ -34,7 +34,7 @@ export default function OWSContainer({ wordType, words }) {
                             </div>
                         )}
                     </div>
-                    <div className="word-container-bottom">
+                    <div className="word-container-bottom reduce-margin">
                         {words.meanings[index].definition && (
                             <p>{words.meanings[index].definition}</p>
                         )}

@@ -270,6 +270,12 @@ ul {
     align-items: center;
 }
 
+.word-container-top-content {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
 .word-container-top h3 {
     font-size: 20px;
     margin: 0;
@@ -285,6 +291,10 @@ ul {
     line-height: 20px;
 }
 
+.word-container-item .reduce-margin {
+    margin-top: 15px;
+}
+
 .word-container-bottom p {
     color: #2f2f2f;
     margin: 5px 0;
@@ -295,7 +305,7 @@ ul {
 }
 
 .underlined {
-    font-family: cursive;
+    font-family: italic;
 }
 
 /* Modal */
