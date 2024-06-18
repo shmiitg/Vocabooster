@@ -6,6 +6,7 @@ import Loader from "../components/Loader";
 import IdiomContainer from "./IdiomContainer";
 import NewIdiom from "./NewIdiom";
 import { idiomTypes } from "./IdiomTypes";
+import { sortWords } from "../utils/utils";
 
 const Idiom = () => {
     const { wordUpdate } = useContext(UpdateContext);
@@ -24,8 +25,10 @@ const Idiom = () => {
             const url = `${process.env.REACT_APP_SERVER_URL}/idiom`;
             const res = await fetch(url);
             const data = await res.json();
+
             if (res.status === 200) {
-                setIdioms(data.idioms);
+                const sortedIdioms = sortWords(data.idioms);
+                setIdioms(sortedIdioms);
                 setLoading(false);
             } else {
                 setError(true);

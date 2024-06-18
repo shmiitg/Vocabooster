@@ -1,8 +1,16 @@
 export const sortWords = (words) => {
     return words.sort((a, b) => {
         // Determine the word to use for comparison
-        const wordA = Array.isArray(a.word) ? a.word[0].toLowerCase() : a.word.toLowerCase();
-        const wordB = Array.isArray(b.word) ? b.word[0].toLowerCase() : b.word.toLowerCase();
+        const wordA = a.word
+            ? Array.isArray(a.word)
+                ? a.word[0].toLowerCase()
+                : a.word.toLowerCase()
+            : a.idiom.toLowerCase();
+        const wordB = b.word
+            ? Array.isArray(b.word)
+                ? b.word[0].toLowerCase()
+                : b.word.toLowerCase()
+            : b.idiom.toLowerCase();
 
         if (wordA < wordB) {
             return -1;
