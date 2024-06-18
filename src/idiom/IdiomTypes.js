@@ -1,1 +1,1 @@
-export const idiomTypes = ["General", "Man", "Sea", "Colour", "Animal"];
+export const idiomTypes = ["General", "Man", "Water", "Sea", "Colour", "Animal"];
