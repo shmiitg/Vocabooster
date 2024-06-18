@@ -178,6 +178,30 @@ body {
     background-color: #21a1f1;
 }
 
+.type-nav {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.type-nav button {
+    margin: 5px;
+    padding: 10px 20px;
+    background-color: #94e8ff;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.type-nav button.selected {
+    background-color: #21a1f1;
+}
+
+.type-nav button:hover {
+    background-color: #21a1f1;
+}
+
 /* Main content styles */
 ul {
     list-style: none;
@@ -271,7 +295,7 @@ ul {
 }
 
 .underlined {
-    text-decoration: underline;
+    font-family: cursive;
 }
 
 /* Modal */
@@ -341,6 +365,7 @@ ul {
     display: flex;
     gap: 2px;
     flex-direction: column;
+    position: relative;
 }
 
 .form-group label {
@@ -362,6 +387,44 @@ ul {
     border-color: #007bff;
     outline: none;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.select-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.idiom-type-select {
+    width: 100%;
+    padding: 8px;
+    padding-right: 30px; /* Adjust padding to accommodate the arrow */
+    margin-top: 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #333;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    appearance: none; /* Remove default arrow */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.idiom-type-select:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.select-wrapper::after {
+    content: "▼";
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #333;
+    font-size: 12px; /* Adjust the size of the arrow if necessary */
 }
 
 .add-part {
