@@ -161,19 +161,25 @@ body {
     background-color: #21a1f1;
 }
 
-.links button {
+.links a {
     display: inline-block;
     margin: 5px;
     font-size: 14px;
+    color: #000;
     background-color: #94e8ff;
     border: none;
     cursor: pointer;
     padding: 10px 20px;
     border-radius: 4px;
     transition: background-color 0.3s ease;
+    text-decoration: none;
 }
 
-.links button:hover {
+.links a:hover {
+    background-color: #21a1f1;
+}
+
+.links-active a {
     background-color: #21a1f1;
 }
 
@@ -219,7 +225,7 @@ ul {
         font-size: 20px;
     }
 
-    .links button {
+    .links {
         padding: 8px 15px;
     }
 }
@@ -230,7 +236,7 @@ ul {
         font-size: 18px;
     }
 
-    .links button {
+    .links {
         padding: 6px 10px;
     }
 }
