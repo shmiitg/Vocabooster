@@ -6,7 +6,7 @@ import DeleteWord from "../components/DeleteWord";
 import WordDetailsModal from "./WordDetailsModal";
 import { underlineWord } from "../utils/utils";
 
-export default function WordContainer({ wordType, word, allWords }) {
+export default function WordContainer({ word, allWords }) {
     const [open, setOpen] = useState(false);
     const [detailsOpen, setDetailsOpen] = useState(false);
     const [updateType, setUpdateType] = useState("edit");
@@ -111,7 +111,7 @@ export default function WordContainer({ wordType, word, allWords }) {
                 {updateType === "edit" ? (
                     <EditWord word={word} onClose={handleClose} />
                 ) : (
-                    <DeleteWord wordType={wordType} word={word} onClose={handleClose} />
+                    <DeleteWord wordType="word" word={word} onClose={handleClose} />
                 )}
             </Modal>
             {detailsOpen && <WordDetailsModal word={selectedWord} onClose={handleDetailsClose} />}

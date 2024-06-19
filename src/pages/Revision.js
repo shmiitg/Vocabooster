@@ -2,34 +2,28 @@ import React, { useState, useEffect, useContext } from "react";
 import { UpdateContext } from "../context/UpdateContext";
 import Loader from "../components/Loader";
 import WordContainer from "../word/WordContainer";
+import IdiomContainer from "../idiom/IdiomContainer";
+import OWSContainer from "../ows/OWSContainer";
 import { sortWords } from "../utils/utils";
 
 const Revision = () => {
     const { wordUpdate } = useContext(UpdateContext);
 
     const [revisionWords, setRevisionWords] = useState([]);
-    const [allWords, setAllWords] = useState([]);
+    const [revisionOWS, setRevisionOWS] = useState([]);
+    const [revisionIdioms, setRevisionIdioms] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
 
-    // Get random words
-    const getRandomWords = (list, count) => {
-        const shuffled = list.sort(() => 0.5 - Math.random());
-        return shuffled.slice(0, count);
-    };
-
-    const getWords = async () => {
+    const getRandomData = async () => {
         try {
-            const url = `${process.env.REACT_APP_SERVER_URL}/word`;
+            const url = `${process.env.REACT_APP_SERVER_URL}/revision`;
             const res = await fetch(url);
             const data = await res.json();
             if (res.status === 200) {
-                // Extract all words and store them in lowercase for easy comparison
-                const allWordsList = data.words.flatMap((word) => word.word.toLowerCase());
-                setAllWords(allWordsList);
-
-                const sortedWords = sortWords(getRandomWords(data.words, 10));
-                setRevisionWords([...sortedWords]);
+                setRevisionWords(sortWords(data.words));
+                setRevisionOWS(sortWords(data.ows));
+                setRevisionIdioms(sortWords(data.idioms));
                 setLoading(false);
             } else {
                 setError(true);
@@ -40,7 +34,7 @@ const Revision = () => {
     };
 
     useEffect(() => {
-        getWords();
+        getRandomData();
     }, [wordUpdate]);
 
     if (loading) {
@@ -57,12 +51,19 @@ const Revision = () => {
                 <h2 className="main-container-heading">Daily Revision</h2>
                 <ul className="main-container-list">
                     {revisionWords.map((word) => (
-                        <WordContainer
-                            key={word._id}
-                            wordType="word"
-                            word={word}
-                            allWords={allWords}
-                        />
+                        <WordContainer key={word._id} word={word} allWords={[]} />
+                    ))}
+                </ul>
+                <h2 className="main-container-heading">One Word Substitutions</h2>
+                <ul className="main-container-list">
+                    {revisionOWS.map((ows) => (
+                        <OWSContainer key={ows._id} ows={ows} />
+                    ))}
+                </ul>
+                <h2 className="main-container-heading">Idioms</h2>
+                <ul className="main-container-list">
+                    {revisionIdioms.map((idiom) => (
+                        <IdiomContainer key={idiom._id} idiom={idiom} />
                     ))}
                 </ul>
             </div>

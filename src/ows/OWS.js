@@ -23,8 +23,7 @@ const OWS = () => {
             const res = await fetch(url);
             const data = await res.json();
             if (res.status === 200) {
-                const sortedWords = sortWords(data.words);
-                setOwsWords(sortedWords);
+                setOwsWords(sortWords(data.words));
                 setLoading(false);
             } else {
                 setError(true);
@@ -54,7 +53,7 @@ const OWS = () => {
         return <h1>Error</h1>;
     }
 
-    const filteredWords = filterWords(owsWords, searchQuery);
+    const filteredOWS = filterWords(owsWords, searchQuery);
 
     return (
         <>
@@ -77,8 +76,8 @@ const OWS = () => {
             </div>
             <div className="main-container">
                 <ul className="main-container-list">
-                    {filteredWords.map((words) => (
-                        <OWSContainer key={words._id} wordType="ows" words={words} />
+                    {filteredOWS.map((ows) => (
+                        <OWSContainer key={ows._id} ows={ows} />
                     ))}
                 </ul>
             </div>

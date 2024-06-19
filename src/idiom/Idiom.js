@@ -27,8 +27,7 @@ const Idiom = () => {
             const data = await res.json();
 
             if (res.status === 200) {
-                const sortedIdioms = sortWords(data.idioms);
-                setIdioms(sortedIdioms);
+                setIdioms(sortWords(data.idioms));
                 setLoading(false);
             } else {
                 setError(true);

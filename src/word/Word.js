@@ -25,8 +25,7 @@ const Word = () => {
             const res = await fetch(url);
             const data = await res.json();
             if (res.status === 200) {
-                const sortedWords = sortWords(data.words);
-                setWords(sortedWords);
+                setWords(sortWords(data.words));
                 // Extract all words and store them in lowercase for easy comparison
                 const allWordsList = data.words.flatMap((word) => word.word.toLowerCase());
                 setAllWords(allWordsList);
@@ -70,7 +69,7 @@ const Word = () => {
             <div className="main-container-top">
                 <div className="main-container-sub-top">
                     <div className="search-bar">
-                        <FaSearch className="search-icon" /> {/* Add the search icon here */}
+                        <FaSearch className="search-icon" />
                         <input
                             type="text"
                             placeholder="Search..."
@@ -100,12 +99,7 @@ const Word = () => {
             <div className="main-container">
                 <ul className="main-container-list">
                     {filteredWords.map((word) => (
-                        <WordContainer
-                            key={word._id}
-                            wordType="word"
-                            word={word}
-                            allWords={allWords}
-                        />
+                        <WordContainer key={word._id} word={word} allWords={allWords} />
                     ))}
                 </ul>
             </div>

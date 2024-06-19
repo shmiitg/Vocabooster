@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Modal } from "react-responsive-modal";
-import EditWord from "./EditOWS";
+import EditOWS from "./EditOWS";
 import DeleteWord from "../components/DeleteWord";
 import { underlineWord } from "../utils/utils";
 
-export default function OWSContainer({ wordType, words }) {
+export default function OWSContainer({ ows }) {
     const [open, setOpen] = useState(false);
     const [updateType, setUpdateType] = useState("edit");
 
@@ -23,7 +23,7 @@ export default function OWSContainer({ wordType, words }) {
     };
     return (
         <div className="word-container-item">
-            {words.word.map((word, index) => (
+            {ows.word.map((word, index) => (
                 <div key={index} className="word-container">
                     <div className="word-container-top">
                         <h3>{capitalizeFirstLetter(word)}</h3>
@@ -35,11 +35,9 @@ export default function OWSContainer({ wordType, words }) {
                         )}
                     </div>
                     <div className="word-container-bottom reduce-margin">
-                        {words.meanings[index].definition && (
-                            <p>{words.meanings[index].definition}</p>
-                        )}
-                        {words.meanings[index].example && (
-                            <p>"{underlineWord(words.meanings[index].example, word)}"</p>
+                        {ows.meanings[index].definition && <p>{ows.meanings[index].definition}</p>}
+                        {ows.meanings[index].example && (
+                            <p>"{underlineWord(ows.meanings[index].example, word)}"</p>
                         )}
                     </div>
                 </div>
@@ -52,9 +50,9 @@ export default function OWSContainer({ wordType, words }) {
                 center
             >
                 {updateType === "edit" ? (
-                    <EditWord wordType={wordType} word={words} onClose={handleClose} />
+                    <EditOWS word={ows} onClose={handleClose} />
                 ) : (
-                    <DeleteWord wordType={wordType} word={words} onClose={handleClose} />
+                    <DeleteWord wordType="ows" word={ows} onClose={handleClose} />
                 )}
             </Modal>
         </div>

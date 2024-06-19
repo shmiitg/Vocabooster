@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { UpdateContext } from "../context/UpdateContext";
 
-export default function EditWordDialog({ wordType, word, onClose }) {
+export default function EditOws({ word, onClose }) {
     const { setWordUpdate } = useContext(UpdateContext);
     const wordId = word._id;
 
@@ -105,7 +105,7 @@ export default function EditWordDialog({ wordType, word, onClose }) {
             })),
         };
 
-        const url = `${process.env.REACT_APP_SERVER_URL}/${wordType}/${wordId}`;
+        const url = `${process.env.REACT_APP_SERVER_URL}/ows/${wordId}`;
         const res = await fetch(url, {
             method: "PUT",
             headers: {
