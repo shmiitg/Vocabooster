@@ -75,11 +75,11 @@ const OWS = () => {
                 </div>
             </div>
             <div className="main-container">
-                <ul className="main-container-list">
+                <div className="main-container-list">
                     {filteredOWS.map((ows) => (
                         <OWSContainer key={ows._id} ows={ows} />
                     ))}
-                </ul>
+                </div>
             </div>
             <Modal
                 open={open}

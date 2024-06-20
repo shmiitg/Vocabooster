@@ -97,11 +97,11 @@ const Word = () => {
                 </div>
             </div>
             <div className="main-container">
-                <ul className="main-container-list">
+                <div className="main-container-list">
                     {filteredWords.map((word) => (
                         <WordContainer key={word._id} word={word} allWords={allWords} />
                     ))}
-                </ul>
+                </div>
             </div>
             <Modal
                 open={open}

@@ -49,23 +49,23 @@ const Revision = () => {
         <>
             <div className="main-container">
                 <h2 className="main-container-heading">Daily Revision</h2>
-                <ul className="main-container-list">
+                <div className="main-container-list">
                     {revisionWords.map((word) => (
                         <WordContainer key={word._id} word={word} allWords={[]} />
                     ))}
-                </ul>
+                </div>
                 <h2 className="main-container-heading">One Word Substitutions</h2>
-                <ul className="main-container-list">
+                <div className="main-container-list">
                     {revisionOWS.map((ows) => (
                         <OWSContainer key={ows._id} ows={ows} />
                     ))}
-                </ul>
+                </div>
                 <h2 className="main-container-heading">Idioms</h2>
-                <ul className="main-container-list">
+                <div className="main-container-list">
                     {revisionIdioms.map((idiom) => (
                         <IdiomContainer key={idiom._id} idiom={idiom} />
                     ))}
-                </ul>
+                </div>
             </div>
         </>
     );

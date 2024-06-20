@@ -26,11 +26,11 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.right-header {
-    display: flex;
+main {
+    margin: 15px 20px 0;
+    min-height: calc(100vh - 160px);
 }
 
-/* Logo styles */
 .logo {
     cursor: pointer;
     font-size: 24px;
@@ -41,17 +41,20 @@ body {
     text-decoration: none;
 }
 
+.right-header {
+    display: flex;
+}
+
 /* Search bar styles */
 
 .main-container-top {
-    margin: 15px auto 0;
+    margin: 0 auto;
     max-width: max(100%, 500px);
 }
 
 .main-container-sub-top {
     display: flex;
     justify-content: space-between;
-    margin: 0 20px;
     gap: 10px;
 }
 
@@ -129,9 +132,7 @@ body {
 .alphabet-nav {
     display: flex;
     justify-content: center;
-    flex-grow: 1;
-    padding: 5px;
-    margin: 5px auto 0;
+    margin-top: 5px;
 }
 
 .alphabets {
@@ -208,13 +209,6 @@ body {
     background-color: #21a1f1;
 }
 
-/* Main content styles */
-ul {
-    list-style: none;
-    padding: 0;
-    margin-top: 20px;
-}
-
 /* Responsive styles */
 @media only screen and (max-width: 768px) {
     /* Adjust padding and font size for smaller screens */
@@ -243,7 +237,7 @@ ul {
 
 /* Word container */
 .main-container {
-    margin: 0 auto;
+    margin: 20px auto;
 }
 
 .main-container-heading {
@@ -253,13 +247,12 @@ ul {
 }
 
 .main-container-list {
-    margin-top: 20px;
     padding: 0;
     text-align: left;
 }
 
 .word-container-item {
-    margin: 0 20px 20px;
+    margin-bottom: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 10px 11px;

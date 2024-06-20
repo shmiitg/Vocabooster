@@ -115,11 +115,11 @@ const Idiom = () => {
                 ))}
             </div>
             <div className="main-container">
-                <ul className="main-container-list">
+                <div className="main-container-list">
                     {filteredIdioms.map((idiom) => (
                         <IdiomContainer key={idiom._id} idiom={idiom} />
                     ))}
-                </ul>
+                </div>
             </div>
             <Modal
                 open={open}
