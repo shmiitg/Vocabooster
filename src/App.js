@@ -4,8 +4,9 @@ import Navbar from "./components/Navbar";
 import Word from "./word/Word";
 import Revision from "./pages/Revision";
 import OWS from "./ows/OWS";
-import Clusters from "./pages/Clusters";
 import Idiom from "./idiom/Idiom";
+import Spelling from "./spelling/Spelling";
+import Clusters from "./pages/Clusters";
 import Footer from "./components/Footer";
 import "./App.css";
 
@@ -20,6 +21,7 @@ const App = () => {
                         <Route path="/revision" element={<Revision />} />
                         <Route path="/ows" element={<OWS />} />
                         <Route path="/idioms" element={<Idiom />} />
+                        <Route path="/spellings" element={<Spelling />} />
                         <Route path="/clusters" element={<Clusters />} />
                     </Routes>
                 </main>

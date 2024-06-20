@@ -9,6 +9,7 @@ const Navbar = () => {
         { name: "Revise", address: "/revision" },
         { name: "OWS", address: "/ows" },
         { name: "Idiom", address: "/idioms" },
+        { name: "Spelling", address: "/spellings" },
         { name: "Cluster", address: "/clusters" },
     ];
 
