@@ -1,6 +1,6 @@
 [
     {
-        "label": "Fears",
+        "label": "Fear",
         "content": [
             { "word": "Acrophobia", "description": "height" },
             { "word": "Algophobia", "description": "pain" },
@@ -84,7 +84,7 @@
         ]
     },
     {
-        "label": "Specialists",
+        "label": "Specialist",
         "content": [
             { "word": "Gynaecologist", "description": "female" },
             { "word": "Nephrologist", "description": "kidney" },
@@ -96,6 +96,14 @@
             { "word": "Gastroenterologist", "description": "digestive system" },
             { "word": "Neurologist", "description": "nervous system" },
             { "word": "Pediatrician", "description": "child" }
+        ]
+    },
+    {
+        "label": "Sentence",
+        "content": [
+            { "description": "Time and Tide wait for none" },
+            { "description": "God made us in his own image" },
+            { "description": "Waxing and waning moon" }
         ]
     }
 ]

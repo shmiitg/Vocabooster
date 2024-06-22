@@ -5,8 +5,8 @@ const Panel = ({ label, content, active, togglePanel }) => {
     const innerRef = useRef(null);
 
     content.sort((a, b) => {
-        const wordA = a.word.toLowerCase();
-        const wordB = b.word.toLowerCase();
+        const wordA = a.word ? a.word.toLowerCase() : a.description;
+        const wordB = b.word ? b.word.toLowerCase() : b.description;
         if (wordA < wordB) {
             return -1;
         }
@@ -38,7 +38,13 @@ const Panel = ({ label, content, active, togglePanel }) => {
                             <>
                                 {index % 2 === 0 && (
                                     <div className="panel__word" key={index}>
-                                        <strong>{word.word}:</strong> {word.description}
+                                        {word.word ? (
+                                            <div>
+                                                <strong>{word.word}:</strong> {word.description}
+                                            </div>
+                                        ) : (
+                                            <div>{word.description}</div>
+                                        )}
                                     </div>
                                 )}
                             </>
@@ -49,7 +55,13 @@ const Panel = ({ label, content, active, togglePanel }) => {
                             <>
                                 {index % 2 === 1 && (
                                     <div className="panel__word" key={index}>
-                                        <strong>{word.word}:</strong> {word.description}
+                                        {word.word ? (
+                                            <div>
+                                                <strong>{word.word}:</strong> {word.description}
+                                            </div>
+                                        ) : (
+                                            <div>{word.description}</div>
+                                        )}
                                     </div>
                                 )}
                             </>
