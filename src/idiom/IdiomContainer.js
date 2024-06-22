@@ -21,7 +21,7 @@ export default function IdiomContainer({ idiom }) {
         <div className="word-container-item">
             <div className="word-container-top">
                 <div className="word-container-top-content">
-                    {idiom.idiom.split(",").map((item, index) => (
+                    {idiom.idiom.map((item, index) => (
                         <h3 key={index}>{item}</h3>
                     ))}
                 </div>
