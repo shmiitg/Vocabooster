@@ -20,9 +20,7 @@ export default function IdiomContainer({ idiom }) {
     return (
         <div className="word-container-item">
             <div className="word-container-top">
-                <div className="word-container-top-content">
-                    <h3>{idiom.idiom}</h3>
-                </div>
+                <h3>{idiom.idiom}</h3>
                 <div className="update-icons">
                     <button onClick={() => handleUpdate("edit")}>Edit</button>
                     <button onClick={() => handleUpdate("delete")}>Delete</button>

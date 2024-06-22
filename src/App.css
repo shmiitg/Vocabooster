@@ -277,12 +277,6 @@ main {
     gap: 5px;
 }
 
-.word-container-top-content {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
 .word-container-top h3 {
     font-size: 20px;
     margin: 0;
