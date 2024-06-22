@@ -21,7 +21,7 @@ export default function IdiomContainer({ idiom }) {
         <div className="word-container-item">
             <div className="word-container-top">
                 <div className="word-container-top-content">
-                    <h3 key={index}>{idiom.idiom}</h3>
+                    <h3>{idiom.idiom}</h3>
                 </div>
                 <div className="update-icons">
                     <button onClick={() => handleUpdate("edit")}>Edit</button>
