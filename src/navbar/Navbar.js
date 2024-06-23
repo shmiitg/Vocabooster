@@ -22,7 +22,7 @@ const Navbar = () => {
 
     return (
         <header>
-            <div className="App-header">
+            <div className={`App-header ${isOpen ? "open" : ""}`}>
                 <div className="left-header">
                     <h1 className="logo">
                         <Link to="/">Vocabrain</Link>
