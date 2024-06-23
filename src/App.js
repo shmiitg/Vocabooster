@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Navbar from "./components/Navbar";
+import Navbar from "./navbar/Navbar";
 import Word from "./word/Word";
 import Revision from "./pages/Revision";
 import OWS from "./ows/OWS";

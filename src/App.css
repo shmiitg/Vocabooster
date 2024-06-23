@@ -10,45 +10,18 @@ body {
     padding-top: 80px;
 }
 
-/* Header styles */
-.App-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000; /* Ensure the header is above other content */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #282c34;
-    padding: 10px 20px;
-    color: white;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
 main {
     margin: 15px 20px 0;
     min-height: calc(100vh - 160px);
 }
 
 @media only screen and (max-width: 768px) {
+    .App {
+        padding-top: 65px;
+    }
     main {
         min-height: calc(100vh - 145px);
     }
-}
-
-.logo {
-    cursor: pointer;
-    font-size: 24px;
-}
-
-.logo a {
-    color: white;
-    text-decoration: none;
-}
-
-.right-header {
-    display: flex;
 }
 
 /* Search bar styles */
@@ -168,28 +141,6 @@ main {
     background-color: #21a1f1;
 }
 
-.links a {
-    display: inline-block;
-    margin-left: 10px;
-    font-size: 14px;
-    color: #000;
-    background-color: #94e8ff;
-    border: none;
-    cursor: pointer;
-    padding: 10px 20px;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
-    text-decoration: none;
-}
-
-.links a:hover {
-    background-color: #21a1f1;
-}
-
-.links-active a {
-    background-color: #21a1f1;
-}
-
 .type-nav {
     display: flex;
     justify-content: center;
@@ -213,32 +164,6 @@ main {
 
 .type-nav button:hover {
     background-color: #21a1f1;
-}
-
-/* Responsive styles */
-@media only screen and (max-width: 768px) {
-    /* Adjust padding and font size for smaller screens */
-    .App {
-        padding-top: 65px;
-    }
-    .logo {
-        font-size: 20px;
-    }
-
-    .links a {
-        padding: 8px 15px;
-    }
-}
-
-@media only screen and (max-width: 480px) {
-    /* Further adjustments for extra small screens */
-    .logo {
-        font-size: 18px;
-    }
-
-    .links a {
-        padding: 6px 10px;
-    }
 }
 
 /* Word container */
