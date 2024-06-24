@@ -4,7 +4,7 @@ import Loader from "../components/Loader";
 import WordContainer from "../word/WordContainer";
 import IdiomContainer from "../idiom/IdiomContainer";
 import OWSContainer from "../ows/OWSContainer";
-import { sortWords } from "../utils/utils";
+import { sortWords, sortOwsWords } from "../utils/utils";
 
 const Revision = () => {
     const { wordUpdate } = useContext(UpdateContext);
@@ -22,7 +22,7 @@ const Revision = () => {
             const data = await res.json();
             if (res.status === 200) {
                 setRevisionWords(sortWords(data.words));
-                setRevisionOWS(sortWords(data.ows));
+                setRevisionOWS(sortOwsWords(data.ows));
                 setRevisionIdioms(sortWords(data.idioms));
                 setLoading(false);
             } else {
