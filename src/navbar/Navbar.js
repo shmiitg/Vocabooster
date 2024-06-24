@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Hamburger from "hamburger-react";
+import { AuthContext } from "../context/AuthContext";
 import "./Navbar.css";
 
 const Navbar = () => {
     const location = useLocation();
     const pathname = location.pathname;
     const [isOpen, setOpen] = useState(false);
+    const { user, logout } = useContext(AuthContext);
 
     const navLinks = [
         { name: "Revise", address: "/revision" },
@@ -43,6 +45,31 @@ const Navbar = () => {
                                 <Link to={navlink.address}>{navlink.name}</Link>
                             </div>
                         ))}
+                        {user ? (
+                            <>
+                                <div className="link">
+                                    <span>Welcome, {user.username}</span>
+                                </div>
+                                <div className="link" onClick={logout}>
+                                    <span>Logout</span>
+                                </div>
+                            </>
+                        ) : (
+                            <>
+                                <div
+                                    className={pathname === "/login" ? "link link-active" : "link"}
+                                >
+                                    <Link to="/login">Login</Link>
+                                </div>
+                                <div
+                                    className={
+                                        pathname === "/register" ? "link link-active" : "link"
+                                    }
+                                >
+                                    <Link to="/register">Register</Link>
+                                </div>
+                            </>
+                        )}
                     </div>
                 </div>
             </div>
@@ -60,6 +87,37 @@ const Navbar = () => {
                             <Link to={navlink.address}>{navlink.name}</Link>
                         </div>
                     ))}
+                    {user ? (
+                        <>
+                            <div className="hamburger-link">
+                                <span>Welcome, {user.username}</span>
+                            </div>
+                            <div className="hamburger-link" onClick={logout}>
+                                <span>Logout</span>
+                            </div>
+                        </>
+                    ) : (
+                        <>
+                            <div
+                                className={
+                                    pathname === "/login"
+                                        ? "hamburger-link-active"
+                                        : "hamburger-link"
+                                }
+                            >
+                                <Link to="/login">Login</Link>
+                            </div>
+                            <div
+                                className={
+                                    pathname === "/register"
+                                        ? "hamburger-link-active"
+                                        : "hamburger-link"
+                                }
+                            >
+                                <Link to="/register">Register</Link>
+                            </div>
+                        </>
+                    )}
                 </div>
             </div>
             {isOpen && (

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { UpdateContext } from "../context/UpdateContext";
 import { Modal } from "react-responsive-modal";
-import { FaSearch } from "react-icons/fa"; // Import the search icon
+import { FaSearch } from "react-icons/fa";
 import Loader from "../components/Loader";
 import WordContainer from "./WordContainer";
 import NewWord from "./NewWord";
