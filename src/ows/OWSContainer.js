@@ -23,10 +23,10 @@ export default function OWSContainer({ ows }) {
     };
     return (
         <div className="word-container-item">
-            {ows.word.map((word, index) => (
+            {ows.ows.map((entry, index) => (
                 <div key={index} className="word-container">
                     <div className="word-container-top">
-                        <h3>{capitalizeFirstLetter(word)}</h3>
+                        <h3>{capitalizeFirstLetter(entry.word)}</h3>
                         {index === 0 && (
                             <div className="update-icons">
                                 <button onClick={() => handleUpdate("edit")}>Edit</button>
@@ -35,10 +35,8 @@ export default function OWSContainer({ ows }) {
                         )}
                     </div>
                     <div className="word-container-bottom reduce-margin">
-                        {ows.meanings[index].definition && <p>{ows.meanings[index].definition}</p>}
-                        {ows.meanings[index].example && (
-                            <p>"{underlineWord(ows.meanings[index].example, word)}"</p>
-                        )}
+                        {entry.definition && <p>{entry.definition}</p>}
+                        {entry.example && <p>"{underlineWord(entry.example, entry.word)}"</p>}
                     </div>
                 </div>
             ))}
@@ -50,7 +48,7 @@ export default function OWSContainer({ ows }) {
                 center
             >
                 {updateType === "edit" ? (
-                    <EditOWS word={ows} onClose={handleClose} />
+                    <EditOWS ows={ows} onClose={handleClose} />
                 ) : (
                     <DeleteWord wordType="ows" word={ows} onClose={handleClose} />
                 )}

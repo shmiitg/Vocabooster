@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
 import { UpdateContext } from "../context/UpdateContext";
 import { Modal } from "react-responsive-modal";
-import { FaSearch } from "react-icons/fa"; // Import the search icon
+import { FaSearch } from "react-icons/fa";
 import Loader from "../components/Loader";
 import OWSContainer from "./OWSContainer";
 import NewOWS from "./NewOWS";
-import { filterWords, sortWords } from "../utils/utils";
+import { filterOwsWords, sortOwsWords } from "../utils/utils";
 
 const OWS = () => {
     const { wordUpdate } = useContext(UpdateContext);
@@ -23,7 +23,7 @@ const OWS = () => {
             const res = await fetch(url);
             const data = await res.json();
             if (res.status === 200) {
-                setOwsWords(sortWords(data.words));
+                setOwsWords(sortOwsWords(data.ows));
                 setLoading(false);
             } else {
                 setError(true);
@@ -53,14 +53,15 @@ const OWS = () => {
         return <h1>Error</h1>;
     }
 
-    const filteredOWS = filterWords(owsWords, searchQuery);
+    // const filteredOWS = filterOwsWords(owsWords, searchQuery);
+    const filteredOWS = owsWords;
 
     return (
         <>
             <div className="main-container-top">
                 <div className="main-container-sub-top">
                     <div className="search-bar">
-                        <FaSearch className="search-icon" /> {/* Add the search icon here */}
+                        <FaSearch className="search-icon" />
                         <input
                             type="text"
                             placeholder="Search..."

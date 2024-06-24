@@ -4,22 +4,32 @@ export const sortWords = (words) => {
         const wordA = a.spelling
             ? a.spelling
             : a.word
-            ? Array.isArray(a.word)
-                ? a.word[0].toLowerCase()
-                : a.word.toLowerCase()
+            ? a.word.toLowerCase()
             : a.idiom.toLowerCase();
         const wordB = b.spelling
             ? b.spelling
             : b.word
-            ? Array.isArray(b.word)
-                ? b.word[0].toLowerCase()
-                : b.word.toLowerCase()
+            ? b.word.toLowerCase()
             : b.idiom.toLowerCase();
 
         if (wordA < wordB) {
             return -1;
         }
         if (wordA > wordB) {
+            return 1;
+        }
+        return 0;
+    });
+};
+
+export const sortOwsWords = (ows) => {
+    return ows.sort((a, b) => {
+        const owsA = a.ows[0].word.toLowerCase();
+        const owsB = b.ows[0].word.toLowerCase();
+        if (owsA < owsB) {
+            return -1;
+        }
+        if (owsA > owsB) {
             return 1;
         }
         return 0;

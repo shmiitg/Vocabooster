@@ -1,21 +1,21 @@
 import React, { useState, useContext, useEffect } from "react";
 import { UpdateContext } from "../context/UpdateContext";
 
-export default function EditOws({ word, onClose }) {
+export default function EditOws({ ows, onClose }) {
     const { setWordUpdate } = useContext(UpdateContext);
-    const wordId = word._id;
+    const owsId = ows._id;
 
-    const initializeEntries = (word) => {
-        return word.word.map((w, index) => ({
-            word: w,
-            definition: word.meanings[index]?.definition || "",
-            example: word.meanings[index]?.example || "",
+    const initializeEntries = (entries) => {
+        return entries.map((entry) => ({
+            word: entry.word,
+            definition: entry?.definition || "",
+            example: entry?.example || "",
         }));
     };
 
     const [updatedWord, setUpdatedWord] = useState({
-        ...word,
-        entries: initializeEntries(word),
+        ...ows,
+        entries: initializeEntries(ows.ows),
     });
     const [error, setError] = useState("");
 
@@ -95,23 +95,13 @@ export default function EditOws({ word, onClose }) {
             return; // Prevent submission
         }
 
-        // Prepare the updated word object for submission
-        const updatedWordForSubmission = {
-            ...updatedWord,
-            word: updatedEntries.map((entry) => entry.word),
-            meanings: updatedEntries.map((entry) => ({
-                definition: entry.definition,
-                example: entry.example,
-            })),
-        };
-
-        const url = `${process.env.REACT_APP_SERVER_URL}/ows/${wordId}`;
+        const url = `${process.env.REACT_APP_SERVER_URL}/ows/${owsId}`;
         const res = await fetch(url, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(updatedWordForSubmission),
+            body: JSON.stringify({ ows: updatedEntries }),
         });
         const data = await res.json();
         if (res.status === 200) {

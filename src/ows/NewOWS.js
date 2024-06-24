@@ -76,15 +76,6 @@ export default function NewOWS({ onClose }) {
             return; // Prevent submission
         }
 
-        // Prepare the new word object for submission
-        const newWordForSubmission = {
-            word: updatedEntries.map((entry) => entry.word),
-            meanings: updatedEntries.map((entry) => ({
-                definition: entry.definition,
-                example: entry.example,
-            })),
-        };
-
         // Perform the API call only if validation passes
         const url = `${process.env.REACT_APP_SERVER_URL}/ows/save`;
         const res = await fetch(url, {
@@ -92,7 +83,7 @@ export default function NewOWS({ onClose }) {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(newWordForSubmission),
+            body: JSON.stringify({ ows: updatedEntries }),
         });
         const data = await res.json();
         if (res.status === 201) {
