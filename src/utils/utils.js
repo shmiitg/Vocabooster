@@ -22,6 +22,19 @@ export const sortWords = (words) => {
     });
 };
 
+export const filterWords = (words, query) => {
+    if (!query) {
+        return words;
+    }
+
+    return words.filter((word) => {
+        if (Array.isArray(word.word)) {
+            return word.word.some((w) => w.toLowerCase().includes(query.toLowerCase()));
+        }
+        return word.word.toLowerCase().includes(query.toLowerCase());
+    });
+};
+
 export const sortOwsWords = (ows) => {
     return ows.sort((a, b) => {
         const owsA = a.ows[0].word.toLowerCase();
@@ -36,26 +49,12 @@ export const sortOwsWords = (ows) => {
     });
 };
 
-export const filterOwsWords = (ows, query) => {
-    if (!query) {
-        return ows;
-    }
-    return ows.filter((entry) => {
-        return entry.ows.some((w) => w.word.toLowerCase().includes(query.toLowerCase()));
-    });
-};
-
-export const filterWords = (words, query) => {
-    if (!query) {
-        return words;
-    }
-
-    return words.filter((word) => {
-        if (Array.isArray(word.word)) {
-            return word.word.some((w) => w.toLowerCase().includes(query.toLowerCase()));
-        }
-        return word.word.toLowerCase().includes(query.toLowerCase());
-    });
+export const filterOwsWords = (ows, alphabet, query) => {
+    return ows.filter(
+        (entry) =>
+            entry.ows.some((w) => w.word.toLowerCase().startsWith(alphabet.toLowerCase())) &&
+            entry.ows.some((w) => w.word.toLowerCase().includes(query.toLowerCase()))
+    );
 };
 
 export function underlineWord(text, word) {

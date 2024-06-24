@@ -5,7 +5,7 @@ import { FaSearch } from "react-icons/fa"; // Import the search icon
 import Loader from "../components/Loader";
 import WordContainer from "./WordContainer";
 import NewWord from "./NewWord";
-import { filterWords, sortWords } from "../utils/utils";
+import { sortWords } from "../utils/utils";
 
 const Word = () => {
     const { wordUpdate } = useContext(UpdateContext);
