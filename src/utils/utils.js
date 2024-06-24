@@ -36,6 +36,15 @@ export const sortOwsWords = (ows) => {
     });
 };
 
+export const filterOwsWords = (ows, query) => {
+    if (!query) {
+        return ows;
+    }
+    return ows.filter((entry) => {
+        return entry.ows.some((w) => w.word.toLowerCase().includes(query.toLowerCase()));
+    });
+};
+
 export const filterWords = (words, query) => {
     if (!query) {
         return words;

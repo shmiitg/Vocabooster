@@ -53,8 +53,7 @@ const OWS = () => {
         return <h1>Error</h1>;
     }
 
-    // const filteredOWS = filterOwsWords(owsWords, searchQuery);
-    const filteredOWS = owsWords;
+    const filteredOWS = filterOwsWords(owsWords, searchQuery);
 
     return (
         <>
