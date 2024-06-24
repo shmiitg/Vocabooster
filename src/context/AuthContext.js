@@ -16,7 +16,7 @@ export const AuthProvider = ({ children }) => {
     }, []);
 
     const login = async (email, password) => {
-        const res = await fetch(`${process.env.REACT_APP_LOCAL_URL}/auth/login`, {
+        const res = await fetch(`${process.env.REACT_APP_SERVER_URL}/auth/login`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -36,7 +36,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     const register = async (username, email, password) => {
-        const res = await fetch(`${process.env.REACT_APP_LOCAL_URL}/auth/register`, {
+        const res = await fetch(`${process.env.REACT_APP_SERVER_URL}/auth/register`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
