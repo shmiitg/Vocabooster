@@ -32,33 +32,33 @@ const WordDetailsModal = ({ word, onClose }) => {
     }
 
     return (
-        <Modal
-            open={true}
-            onClose={onClose}
-            // showCloseIcon={false}
-            closeOnOverlayClick={false}
-            center
-        >
+        <Modal open={true} onClose={onClose} closeOnOverlayClick={false} center>
             <div className="modal-content">
-                <h3>
-                    <strong>{wordDetails.word}</strong>
-                </h3>
-                {wordDetails.meanings.map((meaning, index) => (
-                    <div key={index} className="word-container-bottom">
-                        {meaning.definition && <p>{meaning.definition}</p>}
-                        {meaning.example && <p>"{meaning.example}"</p>}
-                        {meaning.synonyms?.length > 0 && (
-                            <p>
-                                <strong>Synonyms:</strong> {meaning.synonyms.join(", ")}
-                            </p>
-                        )}
-                        {meaning.antonyms?.length > 0 && (
-                            <p>
-                                <strong>Antonyms:</strong> {meaning.antonyms.join(", ")}
-                            </p>
-                        )}
-                    </div>
-                ))}
+                {error ? (
+                    <div>Error</div>
+                ) : (
+                    <>
+                        <h3>
+                            <strong>{wordDetails.word}</strong>
+                        </h3>
+                        {wordDetails.meanings.map((meaning, index) => (
+                            <div key={index} className="word-container-bottom">
+                                {meaning.definition && <p>{meaning.definition}</p>}
+                                {meaning.example && <p>"{meaning.example}"</p>}
+                                {meaning.synonyms?.length > 0 && (
+                                    <p>
+                                        <strong>Synonyms:</strong> {meaning.synonyms.join(", ")}
+                                    </p>
+                                )}
+                                {meaning.antonyms?.length > 0 && (
+                                    <p>
+                                        <strong>Antonyms:</strong> {meaning.antonyms.join(", ")}
+                                    </p>
+                                )}
+                            </div>
+                        ))}
+                    </>
+                )}
             </div>
         </Modal>
     );
