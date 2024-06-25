@@ -2,7 +2,7 @@ import React, { useState, createContext } from "react";
 
 export const UpdateContext = createContext();
 
-const UpdateContextProvider = (props) => {
+const UpdateProvider = (props) => {
     const [wordUpdate, setWordUpdate] = useState(0);
     return (
         <UpdateContext.Provider value={{ wordUpdate, setWordUpdate }}>
@@ -11,4 +11,4 @@ const UpdateContextProvider = (props) => {
     );
 };
 
-export default UpdateContextProvider;
+export default UpdateProvider;

@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Modal } from "react-responsive-modal";
 import "react-responsive-modal/styles.css";
 import EditWord from "./EditWord";
 import DeleteWord from "../components/DeleteWord";
 import WordDetailsModal from "./WordDetailsModal";
 import { underlineWord } from "../utils/utils";
+import { FaStar, FaRegStar } from "react-icons/fa";
+import { AuthContext } from "../context/AuthContext";
 
 export default function WordContainer({ word, allWords }) {
+    const { user, addFavorite, removeFavorite, favorites } = useContext(AuthContext);
     const [open, setOpen] = useState(false);
     const [detailsOpen, setDetailsOpen] = useState(false);
     const [updateType, setUpdateType] = useState("edit");
@@ -44,12 +47,31 @@ export default function WordContainer({ word, allWords }) {
 
     const isWordExisting = (word) => allWords.includes(word.toLowerCase());
 
+    const isFavorite = favorites.some((fav) => fav._id === word._id);
+
+    const toggleFavorite = () => {
+        if (isFavorite) {
+            removeFavorite(word._id);
+        } else {
+            addFavorite(word._id);
+        }
+    };
+
     return (
         <div className="word-container-item">
             <div className="word-container-top">
                 <h3>{capitalizeFirstLetter(word.word)}</h3>
                 {isEditable() && (
                     <div className="update-icons">
+                        {user && (
+                            <button onClick={toggleFavorite}>
+                                {isFavorite ? (
+                                    <FaStar className="star-icon" />
+                                ) : (
+                                    <FaRegStar className="star-icon" />
+                                )}
+                            </button>
+                        )}
                         <button onClick={() => handleUpdate("edit")}>Edit</button>
                         <button onClick={() => handleUpdate("delete")}>Delete</button>
                     </div>

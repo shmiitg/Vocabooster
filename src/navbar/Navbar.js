@@ -55,20 +55,9 @@ const Navbar = () => {
                                 </div>
                             </>
                         ) : (
-                            <>
-                                <div
-                                    className={pathname === "/login" ? "link link-active" : "link"}
-                                >
-                                    <Link to="/login">Login</Link>
-                                </div>
-                                <div
-                                    className={
-                                        pathname === "/register" ? "link link-active" : "link"
-                                    }
-                                >
-                                    <Link to="/register">Register</Link>
-                                </div>
-                            </>
+                            <div className={pathname === "/login" ? "link link-active" : "link"}>
+                                <Link to="/login">Login</Link>
+                            </div>
                         )}
                     </div>
                 </div>
@@ -97,26 +86,13 @@ const Navbar = () => {
                             </div>
                         </>
                     ) : (
-                        <>
-                            <div
-                                className={
-                                    pathname === "/login"
-                                        ? "hamburger-link-active"
-                                        : "hamburger-link"
-                                }
-                            >
-                                <Link to="/login">Login</Link>
-                            </div>
-                            <div
-                                className={
-                                    pathname === "/register"
-                                        ? "hamburger-link-active"
-                                        : "hamburger-link"
-                                }
-                            >
-                                <Link to="/register">Register</Link>
-                            </div>
-                        </>
+                        <div
+                            className={
+                                pathname === "/login" ? "hamburger-link-active" : "hamburger-link"
+                            }
+                        >
+                            <Link to="/login">Login</Link>
+                        </div>
                     )}
                 </div>
             </div>

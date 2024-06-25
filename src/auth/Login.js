@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
 const Login = () => {
@@ -32,6 +33,7 @@ const Login = () => {
                     />
                 </div>
                 <button type="submit">Login</button>
+                <Link to="/register">Register</Link>
             </form>
         </div>
     );
