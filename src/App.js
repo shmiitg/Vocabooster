@@ -6,7 +6,7 @@ import Revision from "./pages/Revision";
 import OWS from "./ows/OWS";
 import Idiom from "./idiom/Idiom";
 import Spelling from "./spelling/Spelling";
-import Clusters from "./pages/Clusters";
+import Cluster from "./cluster/Cluster";
 import Footer from "./components/Footer";
 import Login from "./auth/Login";
 import Register from "./auth/Register";
@@ -23,7 +23,7 @@ const App = () => {
                     <Route path="/ows" element={<OWS />} />
                     <Route path="/idioms" element={<Idiom />} />
                     <Route path="/spellings" element={<Spelling />} />
-                    <Route path="/clusters" element={<Clusters />} />
+                    <Route path="/clusters" element={<Cluster />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
                 </Routes>

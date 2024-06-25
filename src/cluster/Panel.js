@@ -27,7 +27,7 @@ const Panel = ({ label, content, active, togglePanel }) => {
     };
 
     return (
-        <div className="panel" role="tabpanel" aria-expanded={active}>
+        <div className="panel" aria-expanded={active}>
             <button className="panel__label" role="tab" onClick={togglePanel}>
                 {label}
             </button>
