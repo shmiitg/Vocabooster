@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect, useContext } from "react";
 
 export const AuthContext = createContext();
 
@@ -23,7 +23,7 @@ export const AuthProvider = ({ children }) => {
         });
         if (res.ok) {
             const data = await res.json();
-            setFavorites(new Set(data.favorites));
+            setFavorites(new Set(data.favorites.map((fav) => fav._id)));
         } else if (res.status === 401) {
             logout();
         } else {
