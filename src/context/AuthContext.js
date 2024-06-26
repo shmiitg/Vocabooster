@@ -1,10 +1,19 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
-    const [favorites, setFavorites] = useState([]);
+    const [favorites, setFavorites] = useState(new Set());
+
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        if (token) {
+            const user = JSON.parse(atob(token.split(".")[1])); // Decode token payload
+            setUser(user);
+            fetchFavorites(token);
+        }
+    }, []);
 
     const fetchFavorites = async (token) => {
         const res = await fetch(`${process.env.REACT_APP_SERVER_URL}/user/favorites`, {
@@ -14,7 +23,7 @@ export const AuthProvider = ({ children }) => {
         });
         if (res.ok) {
             const data = await res.json();
-            setFavorites(data.favorites);
+            setFavorites(new Set(data.favorites));
         } else if (res.status === 401) {
             logout();
         } else {
@@ -25,7 +34,7 @@ export const AuthProvider = ({ children }) => {
     const logout = () => {
         localStorage.removeItem("token");
         setUser(null);
-        setFavorites([]);
+        setFavorites(new Set());
     };
 
     const addFavorite = async (wordId) => {
@@ -40,7 +49,7 @@ export const AuthProvider = ({ children }) => {
 
         if (res.ok) {
             const data = await res.json();
-            setFavorites(data.favorites);
+            setFavorites(new Set(data.favorites));
         } else {
             window.alert("Failed to add favorite");
         }
@@ -58,7 +67,7 @@ export const AuthProvider = ({ children }) => {
 
         if (res.ok) {
             const data = await res.json();
-            setFavorites(data.favorites);
+            setFavorites(new Set(data.favorites));
         } else {
             window.alert("Failed to remove favorite");
         }
