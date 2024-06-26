@@ -19,13 +19,6 @@ export default function WordContainer({ word, allWords }) {
         return word.charAt(0).toUpperCase() + word.slice(1);
     };
 
-    const isEditable = () => {
-        const now = new Date();
-        const createdAt = new Date(word.updatedAt);
-        const diffInHours = (now - createdAt) / (1000 * 60 * 60);
-        return diffInHours <= 24 * 30;
-    };
-
     const handleUpdate = (type) => {
         setOpen(true);
         setUpdateType(type);
@@ -61,21 +54,19 @@ export default function WordContainer({ word, allWords }) {
         <div className="word-container-item">
             <div className="word-container-top">
                 <h3>{capitalizeFirstLetter(word.word)}</h3>
-                {isEditable() && (
-                    <div className="update-icons">
-                        {user && (
-                            <button onClick={toggleFavorite}>
-                                {isFavorite ? (
-                                    <FaStar className="star-icon" />
-                                ) : (
-                                    <FaRegStar className="star-icon" />
-                                )}
-                            </button>
-                        )}
-                        <button onClick={() => handleUpdate("edit")}>Edit</button>
-                        <button onClick={() => handleUpdate("delete")}>Delete</button>
-                    </div>
-                )}
+                <div className="update-icons">
+                    {user && (
+                        <button onClick={toggleFavorite}>
+                            {isFavorite ? (
+                                <FaStar className="star-icon" />
+                            ) : (
+                                <FaRegStar className="star-icon" />
+                            )}
+                        </button>
+                    )}
+                    <button onClick={() => handleUpdate("edit")}>Edit</button>
+                    <button onClick={() => handleUpdate("delete")}>Delete</button>
+                </div>
             </div>
             {word.meanings.map((meaning, index) => (
                 <div key={index} className="word-container-bottom">

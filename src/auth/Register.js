@@ -1,25 +1,39 @@
 import React, { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
 const Register = () => {
+    const navigate = useNavigate();
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const { register } = useContext(AuthContext);
+    const { setUser, fetchFavorites } = useContext(AuthContext);
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            await register(username, email, password);
-        } catch (err) {
-            alert(err.message);
+    const register = async () => {
+        const res = await fetch(`${process.env.REACT_APP_SERVER_URL}/auth/register`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ username, email, password }),
+        });
+
+        const data = await res.json();
+        if (res.status === 201) {
+            localStorage.setItem("token", data.token);
+            const user = JSON.parse(atob(data.token.split(".")[1]));
+            setUser(user);
+            fetchFavorites(data.token);
+            navigate("/");
+        } else {
+            throw new Error(data.error);
         }
     };
 
     return (
         <div>
             <h2>Register</h2>
-            <form onSubmit={handleSubmit}>
+            <div>
                 <div>
                     <label>Username:</label>
                     <input
@@ -40,8 +54,10 @@ const Register = () => {
                         onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
-                <button type="submit">Register</button>
-            </form>
+                <button type="submit" onClick={register}>
+                    Register
+                </button>
+            </div>
         </div>
     );
 };

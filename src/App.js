@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
 import { Route, Routes } from "react-router-dom";
+import { AuthContext } from "./context/AuthContext";
 import Navbar from "./navbar/Navbar";
 import Word from "./word/Word";
 import Revision from "./pages/Revision";
@@ -13,6 +14,17 @@ import Register from "./auth/Register";
 import "./App.css";
 
 const App = () => {
+    const { fetchFavorites, setUser } = useContext(AuthContext);
+
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        if (token) {
+            const user = JSON.parse(atob(token.split(".")[1])); // Decode token payload
+            setUser(user);
+            fetchFavorites(token);
+        }
+    }, []);
+
     return (
         <div className="App">
             <Navbar />
