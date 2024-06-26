@@ -17,8 +17,10 @@ export const AuthProvider = ({ children }) => {
         if (res.ok) {
             const data = await res.json();
             setFavorites(data);
+        } else if (res.status === 401) {
+            logout();
         } else {
-            setFavorites([]);
+            console.log("Failed to fetch favorites");
         }
     };
 
