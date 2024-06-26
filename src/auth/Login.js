@@ -6,7 +6,7 @@ const Login = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const { setUser, fetchFavorites } = useContext(AuthContext);
+    const { fetchUser } = useContext(AuthContext);
 
     const login = async () => {
         const res = await fetch(`${process.env.REACT_APP_SERVER_URL}/auth/login`, {
@@ -20,10 +20,8 @@ const Login = () => {
         const data = await res.json();
         if (res.status === 200) {
             localStorage.setItem("token", data.token);
-            const user = JSON.parse(atob(data.token.split(".")[1]));
-            setUser(user);
-            fetchFavorites(data.token);
-            navigate("/");
+            fetchUser(data.token);
+            navigate("/dashboard");
         } else {
             throw new Error(data.error);
         }

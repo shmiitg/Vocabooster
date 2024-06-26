@@ -1,28 +1,29 @@
-import React, { createContext, useState, useEffect, useContext } from "react";
+import React, { createContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+    const navigate = useNavigate();
     const [user, setUser] = useState(null);
     const [favorites, setFavorites] = useState(new Set());
 
     useEffect(() => {
         const token = localStorage.getItem("token");
-        if (token) {
-            const user = JSON.parse(atob(token.split(".")[1])); // Decode token payload
-            setUser(user);
-            fetchFavorites(token);
-        }
+        if (!token) return;
+        fetchUser(token);
     }, []);
 
-    const fetchFavorites = async (token) => {
-        const res = await fetch(`${process.env.REACT_APP_SERVER_URL}/user/favorites`, {
+    const fetchUser = async (token) => {
+        const url = `${process.env.REACT_APP_SERVER_URL}/user`;
+        const res = await fetch(url, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
         });
         if (res.ok) {
             const data = await res.json();
+            setUser(data.username);
             setFavorites(new Set(data.favorites.map((fav) => fav._id)));
         } else if (res.status === 401) {
             logout();
@@ -35,6 +36,7 @@ export const AuthProvider = ({ children }) => {
         localStorage.removeItem("token");
         setUser(null);
         setFavorites(new Set());
+        navigate("/login");
     };
 
     const addFavorite = async (wordId) => {
@@ -90,7 +92,7 @@ export const AuthProvider = ({ children }) => {
                 favorites,
                 addFavorite,
                 removeFavorite,
-                fetchFavorites,
+                fetchUser,
             }}
         >
             {children}

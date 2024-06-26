@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "../css/Footer.css";
 
 const Footer = () => {
     const [visitCount, setVisitCount] = useState(0);

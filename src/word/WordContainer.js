@@ -8,7 +8,7 @@ import { underlineWord } from "../utils/utils";
 import { FaStar, FaRegStar } from "react-icons/fa";
 import { AuthContext } from "../context/AuthContext";
 
-export default function WordContainer({ word, allWords }) {
+const WordContainer = ({ word, allWords, forwardedRef }) => {
     const { user, addFavorite, removeFavorite, favorites } = useContext(AuthContext);
     const [open, setOpen] = useState(false);
     const [detailsOpen, setDetailsOpen] = useState(false);
@@ -51,7 +51,7 @@ export default function WordContainer({ word, allWords }) {
     };
 
     return (
-        <div className="word-container-item">
+        <div className="word-container-item" ref={forwardedRef}>
             <div className="word-container-top">
                 <h3>{capitalizeFirstLetter(word.word)}</h3>
                 <div className="update-icons">
@@ -130,4 +130,6 @@ export default function WordContainer({ word, allWords }) {
             {detailsOpen && <WordDetailsModal word={selectedWord} onClose={handleDetailsClose} />}
         </div>
     );
-}
+};
+
+export default WordContainer;

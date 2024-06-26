@@ -1,0 +1,53 @@
+.dashboard-container {
+    display: flex;
+}
+
+.main-content {
+    flex: 1;
+}
+
+.alphabet-selector {
+    position: fixed;
+    right: 0;
+    top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    max-height: calc(100vh - 150px);
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    padding-right: 4px;
+}
+
+.alphabet-selector:hover {
+    overflow-y: auto;
+}
+
+.alphabet-selector::-webkit-scrollbar {
+    width: 0; /* Remove scrollbar space */
+    background: transparent; /* Optional: just to avoid the background to be transparent */
+}
+
+.alphabet-selector button {
+    display: flex;
+    justify-content: center;
+    width: 16px;
+    padding: 2px 0;
+    font-size: 12px;
+    background-color: #94e8ff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.alphabet-selector button:hover {
+    background-color: #21a1f1;
+}
+
+@media only screen and (max-width: 768px) {
+    .alphabet-selector {
+        top: 80px;
+    }
+}
