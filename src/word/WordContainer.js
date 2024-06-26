@@ -40,7 +40,7 @@ export default function WordContainer({ word, allWords }) {
 
     const isWordExisting = (word) => allWords.includes(word.toLowerCase());
 
-    const isFavorite = favorites.some((fav) => fav._id === word._id);
+    const isFavorite = favorites.includes(word._id);
 
     const toggleFavorite = () => {
         if (isFavorite) {

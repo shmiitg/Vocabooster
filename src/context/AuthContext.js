@@ -1,12 +1,10 @@
 import React, { createContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [favorites, setFavorites] = useState([]);
-    const navigate = useNavigate();
 
     const fetchFavorites = async (token) => {
         const res = await fetch(`${process.env.REACT_APP_SERVER_URL}/user/favorites`, {
@@ -16,7 +14,7 @@ export const AuthProvider = ({ children }) => {
         });
         if (res.ok) {
             const data = await res.json();
-            setFavorites(data);
+            setFavorites(data.favorites);
         } else if (res.status === 401) {
             logout();
         } else {
@@ -43,7 +41,6 @@ export const AuthProvider = ({ children }) => {
         if (res.ok) {
             const data = await res.json();
             setFavorites(data.favorites);
-            window.alert(data.msg);
         } else {
             window.alert("Failed to add favorite");
         }
@@ -62,7 +59,6 @@ export const AuthProvider = ({ children }) => {
         if (res.ok) {
             const data = await res.json();
             setFavorites(data.favorites);
-            window.alert(data.msg);
         } else {
             window.alert("Failed to remove favorite");
         }
