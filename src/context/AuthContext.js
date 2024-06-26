@@ -38,6 +38,10 @@ export const AuthProvider = ({ children }) => {
     };
 
     const addFavorite = async (wordId) => {
+        const updatedFavorites = new Set(favorites);
+        updatedFavorites.add(wordId);
+        setFavorites(updatedFavorites);
+
         const token = localStorage.getItem("token");
         const res = await fetch(`${process.env.REACT_APP_SERVER_URL}/user/favorites/${wordId}`, {
             method: "POST",
@@ -56,6 +60,10 @@ export const AuthProvider = ({ children }) => {
     };
 
     const removeFavorite = async (wordId) => {
+        const updatedFavorites = new Set(favorites);
+        updatedFavorites.delete(wordId);
+        setFavorites(updatedFavorites);
+
         const token = localStorage.getItem("token");
         const res = await fetch(`${process.env.REACT_APP_SERVER_URL}/user/favorites/${wordId}`, {
             method: "DELETE",
