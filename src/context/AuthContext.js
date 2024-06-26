@@ -28,7 +28,6 @@ export const AuthProvider = ({ children }) => {
         localStorage.removeItem("token");
         setUser(null);
         setFavorites([]);
-        navigate("/login");
     };
 
     const addFavorite = async (wordId) => {
