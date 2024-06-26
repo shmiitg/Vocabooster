@@ -47,7 +47,11 @@ const Navbar = () => {
                         ))}
                         {user ? (
                             <>
-                                <div className="link">
+                                <div
+                                    className={
+                                        pathname === "/dashboard" ? "link link-active" : "link"
+                                    }
+                                >
                                     <Link to="/dashboard">Dashboard</Link>
                                 </div>
                                 <div className="link" onClick={logout}>
@@ -78,8 +82,14 @@ const Navbar = () => {
                     ))}
                     {user ? (
                         <>
-                            <div className="hamburger-link">
-                                <span>Welcome, {user.username}</span>
+                            <div
+                                className={
+                                    pathname === "/dashboard"
+                                        ? "hamburger-link-active"
+                                        : "hamburger-link"
+                                }
+                            >
+                                <Link to="/dashboard">Dashboard</Link>
                             </div>
                             <div className="hamburger-link" onClick={logout}>
                                 <span>Logout</span>
