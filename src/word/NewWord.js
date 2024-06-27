@@ -74,10 +74,6 @@ const NewWord = ({ onClose }) => {
             const hasAntonyms = meaning.antonyms.trim() !== "";
             const hasExample = meaning.example.trim() !== "";
 
-            // if ((hasDefinition || hasSynonyms || hasAntonyms || hasExample) && !word) {
-            //     return false;
-            // }
-
             return hasDefinition || hasSynonyms || hasAntonyms || hasExample;
         });
 
@@ -92,11 +88,11 @@ const NewWord = ({ onClose }) => {
             ...meaning,
             synonyms:
                 meaning.synonyms.length > 0
-                    ? meaning.synonyms.split(",").map((item) => item.trim())
+                    ? meaning.synonyms.split(",").map((item) => item.trim().toLowerCase())
                     : [],
             antonyms:
                 meaning.antonyms.length > 0
-                    ? meaning.antonyms.split(",").map((item) => item.trim())
+                    ? meaning.antonyms.split(",").map((item) => item.trim().toLowerCase())
                     : [],
         }));
 

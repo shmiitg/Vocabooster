@@ -86,11 +86,11 @@ export default function EditWordDialog({ word, onClose }) {
             ...meaning,
             synonyms:
                 meaning.synonyms.length > 0
-                    ? meaning.synonyms.split(",").map((item) => item.trim())
+                    ? meaning.synonyms.split(",").map((item) => item.trim().toLowerCase())
                     : [],
             antonyms:
                 meaning.antonyms.length > 0
-                    ? meaning.antonyms.split(",").map((item) => item.trim())
+                    ? meaning.antonyms.split(",").map((item) => item.trim().toLowerCase())
                     : [],
         }));
 
