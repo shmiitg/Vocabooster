@@ -8,12 +8,14 @@ export default function EditWordDialog({ word, onClose }) {
         ...word,
         meanings: word.meanings.map((meaning) => ({
             ...meaning,
+            definition: meaning.definition ? meaning.definition : "",
             synonyms: Array.isArray(meaning.synonyms)
                 ? meaning.synonyms.join(", ")
                 : meaning.synonyms,
             antonyms: Array.isArray(meaning.antonyms)
                 ? meaning.antonyms.join(", ")
                 : meaning.antonyms,
+            example: meaning.example ? meaning.example : "",
         })),
     });
     const [error, setError] = useState("");

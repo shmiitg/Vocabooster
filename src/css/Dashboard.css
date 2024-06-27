@@ -9,7 +9,7 @@
 .alphabet-selector {
     position: fixed;
     right: 0;
-    top: 100px;
+    top: 90px;
     display: flex;
     flex-direction: column;
     align-items: center;

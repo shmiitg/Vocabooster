@@ -24,10 +24,7 @@ const App = () => {
             <main>
                 <Routes>
                     <Route path="/" element={<Word />} />
-                    <Route
-                        path="/dashboard"
-                        element={user ? <Dashboard /> : <Navigate to="/login" />}
-                    />
+                    <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/revision" element={<Revision />} />
                     <Route path="/ows" element={<OWS />} />
                     <Route path="/idioms" element={<Idiom />} />
