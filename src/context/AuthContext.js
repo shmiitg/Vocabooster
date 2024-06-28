@@ -15,22 +15,24 @@ export const AuthProvider = ({ children }) => {
     }, []);
 
     const fetchUser = async (token) => {
-        const url = `${process.env.REACT_APP_SERVER_URL}/user`;
-        const res = await fetch(url, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        });
-        if (res.ok) {
-            const data = await res.json();
-            setUser(data.username);
-            setFavorites(new Set(data.favorites.map((fav) => fav._id)));
-        } else if (res.status === 401) {
-            localStorage.removeItem("token");
-            setUser(null);
-            setFavorites(new Set());
-        } else {
-            console.log("Failed to fetch user");
+        try {
+            const url = `${process.env.REACT_APP_SERVER_URL}/user`;
+            const res = await fetch(url, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            if (res.ok) {
+                const data = await res.json();
+                setUser(data.username);
+                setFavorites(new Set(data.favorites.map((fav) => fav._id)));
+            } else {
+                localStorage.removeItem("token");
+                setUser(null);
+                setFavorites(new Set());
+            }
+        } catch (err) {
+            console.log("Something went wrong");
         }
     };
 
