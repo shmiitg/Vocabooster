@@ -1,30 +1,35 @@
 import React, { useState, useEffect, useContext } from "react";
-import { UpdateContext } from "../context/UpdateContext";
+import { UpdateContext } from "../../context/UpdateContext";
 import { Modal } from "react-responsive-modal";
 import { FaSearch } from "react-icons/fa";
-import Loader from "../components/Loader";
-import SpellingContainer from "./SpellingContainer";
-import NewSpelling from "./NewSpelling";
-import { sortWords } from "../utils/utils";
+import Loader from "../../components/Loader";
+import WordContainer from "./WordContainer";
+import NewWord from "./NewWord";
+import { sortWords } from "../../utils/sort";
+import { filterWords } from "../../utils/filter";
 
-const Spelling = () => {
+const Word = () => {
     const { wordUpdate } = useContext(UpdateContext);
 
     const [open, setOpen] = useState(false);
 
-    const [spellings, setSpellings] = useState([]);
+    const [words, setWords] = useState([]);
+    const [allWords, setAllWords] = useState([]);
     const [selectedAlphabet, setSelectedAlphabet] = useState("A");
     const [searchQuery, setSearchQuery] = useState("");
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
 
-    const getSpellings = async () => {
+    const getWords = async () => {
         try {
-            const url = `${process.env.REACT_APP_SERVER_URL}/spelling`;
+            const url = `${process.env.REACT_APP_SERVER_URL}/word`;
             const res = await fetch(url);
             const data = await res.json();
             if (res.status === 200) {
-                setSpellings(sortWords(data.spellings));
+                setWords(sortWords(data.words));
+                // Extract all words and store them in lowercase for easy comparison
+                const allWordsList = data.words.flatMap((word) => word.word.toLowerCase());
+                setAllWords(allWordsList);
                 setLoading(false);
             } else {
                 setError(true);
@@ -43,7 +48,7 @@ const Spelling = () => {
     };
 
     useEffect(() => {
-        getSpellings();
+        getWords();
     }, [wordUpdate]);
 
     if (loading) {
@@ -54,11 +59,7 @@ const Spelling = () => {
         return <h1>Error</h1>;
     }
 
-    const filteredSpellings = spellings.filter(
-        (spelling) =>
-            spelling.spelling.toLowerCase().startsWith(selectedAlphabet.toLowerCase()) &&
-            spelling.spelling.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+    const filteredWords = filterWords(words, selectedAlphabet, searchQuery);
 
     return (
         <>
@@ -94,8 +95,8 @@ const Spelling = () => {
             </div>
             <div className="main-container">
                 <div className="main-container-list">
-                    {filteredSpellings.map((spelling) => (
-                        <SpellingContainer key={spelling._id} spelling={spelling} />
+                    {filteredWords.map((word) => (
+                        <WordContainer key={word._id} word={word} allWords={allWords} />
                     ))}
                 </div>
             </div>
@@ -106,10 +107,10 @@ const Spelling = () => {
                 closeOnOverlayClick={false}
                 center
             >
-                <NewSpelling onClose={handleClose} />
+                <NewWord onClose={handleClose} />
             </Modal>
         </>
     );
 };
 
-export default Spelling;
+export default Word;

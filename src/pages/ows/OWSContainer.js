@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Modal } from "react-responsive-modal";
 import EditOWS from "./EditOWS";
-import DeleteWord from "../components/DeleteWord";
-import { underlineWord } from "../utils/utils";
+import DeleteWord from "../../components/DeleteWord";
+import { underlineWord } from "../../utils/utils";
 
 export default function OWSContainer({ ows }) {
     const [open, setOpen] = useState(false);

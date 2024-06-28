@@ -1,47 +1,51 @@
 import React, { useState, useContext, useEffect } from "react";
-import { UpdateContext } from "../context/UpdateContext";
+import { UpdateContext } from "../../context/UpdateContext";
 
-const NewWord = ({ onClose }) => {
+export default function EditWordDialog({ word, onClose }) {
     const { setWordUpdate } = useContext(UpdateContext);
-    const [newWord, setNewWord] = useState({
-        word: "",
-        meanings: [
-            {
-                definition: "",
-                synonyms: "",
-                antonyms: "",
-                example: "",
-            },
-        ],
+    const wordId = word._id;
+    const [updatedWord, setUpdatedWord] = useState({
+        ...word,
+        meanings: word.meanings.map((meaning) => ({
+            ...meaning,
+            definition: meaning.definition ? meaning.definition : "",
+            synonyms: Array.isArray(meaning.synonyms)
+                ? meaning.synonyms.join(", ")
+                : meaning.synonyms,
+            antonyms: Array.isArray(meaning.antonyms)
+                ? meaning.antonyms.join(", ")
+                : meaning.antonyms,
+            example: meaning.example ? meaning.example : "",
+        })),
     });
     const [error, setError] = useState("");
 
     const handleChange = (e, index) => {
         const { name, value } = e.target;
         if (name === "word") {
-            setNewWord({
-                ...newWord,
+            setUpdatedWord({
+                ...updatedWord,
                 [name]: value,
             });
         } else {
-            const newMeanings = newWord.meanings.map((meaning, i) => {
+            const newMeanings = updatedWord.meanings.map((meaning, i) => {
                 if (i === index) {
                     return { ...meaning, [name]: value };
                 }
                 return meaning;
             });
-            setNewWord({
-                ...newWord,
+            setUpdatedWord({
+                ...updatedWord,
                 meanings: newMeanings,
             });
         }
     };
 
     const handleAddMeaning = () => {
-        setNewWord({
-            ...newWord,
+        setUpdatedWord({
+            ...updatedWord,
             meanings: [
-                ...newWord.meanings,
+                ...updatedWord.meanings,
                 {
                     definition: "",
                     synonyms: "",
@@ -53,14 +57,14 @@ const NewWord = ({ onClose }) => {
     };
 
     const handleDeleteMeaning = (index) => {
-        setNewWord({
-            ...newWord,
-            meanings: newWord.meanings.filter((_, i) => i !== index),
+        setUpdatedWord({
+            ...updatedWord,
+            meanings: updatedWord.meanings.filter((_, i) => i !== index),
         });
     };
 
     const handleSubmit = async (e) => {
-        const { word, meanings } = newWord;
+        const { word, meanings } = updatedWord;
 
         if (word === "") {
             setError("Word is required");
@@ -77,12 +81,6 @@ const NewWord = ({ onClose }) => {
             return hasDefinition || hasSynonyms || hasAntonyms || hasExample;
         });
 
-        // Check if there are no valid meanings
-        // if (updatedMeanings.length === 0) {
-        //     setError("Please fill out at least one entry");
-        //     return; // Prevent submission
-        // }
-
         // Convert synonyms and antonyms strings to arrays
         const finalMeanings = updatedMeanings.map((meaning) => ({
             ...meaning,
@@ -96,8 +94,9 @@ const NewWord = ({ onClose }) => {
                     : [],
         }));
 
-        const res = await fetch(`${process.env.REACT_APP_SERVER_URL}/word/save`, {
-            method: "POST",
+        const url = `${process.env.REACT_APP_SERVER_URL}/word/${wordId}`;
+        const res = await fetch(url, {
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json",
             },
@@ -124,7 +123,7 @@ const NewWord = ({ onClose }) => {
     return (
         <div className="modal-content">
             <h3>
-                <strong>Add New Word</strong>
+                <strong>Edit Word</strong>
             </h3>
             <div className="form-group">
                 <div className="form-sub-group">
@@ -132,13 +131,13 @@ const NewWord = ({ onClose }) => {
                     <input
                         type="text"
                         name="word"
-                        value={newWord.word}
+                        value={updatedWord.word}
                         onChange={(e) => handleChange(e)}
                         required
                     />
                 </div>
             </div>
-            {newWord.meanings.map((meaning, index) => (
+            {updatedWord.meanings.map((meaning, index) => (
                 <div key={index} className={`part-group ${index === 0 ? "first-part-group" : ""}`}>
                     <div className="form-group">
                         <div className="form-sub-group">
@@ -206,11 +205,9 @@ const NewWord = ({ onClose }) => {
                     Cancel
                 </button>
                 <button type="submit" className="submit-button" onClick={handleSubmit}>
-                    Add Word
+                    Save
                 </button>
             </div>
         </div>
     );
-};
-
-export default NewWord;
+}

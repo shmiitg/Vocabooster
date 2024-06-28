@@ -1,34 +1,31 @@
 import React, { useState, useEffect, useContext } from "react";
-import { UpdateContext } from "../context/UpdateContext";
+import { UpdateContext } from "../../context/UpdateContext";
 import { Modal } from "react-responsive-modal";
 import { FaSearch } from "react-icons/fa";
-import Loader from "../components/Loader";
-import WordContainer from "./WordContainer";
-import NewWord from "./NewWord";
-import { sortWords } from "../utils/utils";
+import Loader from "../../components/Loader";
+import OWSContainer from "./OWSContainer";
+import NewOWS from "./NewOWS";
+import { filterOws } from "../../utils/filter";
+import { sortOws } from "../../utils/sort";
 
-const Word = () => {
+const OWS = () => {
     const { wordUpdate } = useContext(UpdateContext);
 
     const [open, setOpen] = useState(false);
 
-    const [words, setWords] = useState([]);
-    const [allWords, setAllWords] = useState([]);
+    const [owsWords, setOwsWords] = useState([]);
     const [selectedAlphabet, setSelectedAlphabet] = useState("A");
     const [searchQuery, setSearchQuery] = useState("");
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
 
-    const getWords = async () => {
+    const getOws = async () => {
         try {
-            const url = `${process.env.REACT_APP_SERVER_URL}/word`;
+            const url = `${process.env.REACT_APP_SERVER_URL}/ows`;
             const res = await fetch(url);
             const data = await res.json();
             if (res.status === 200) {
-                setWords(sortWords(data.words));
-                // Extract all words and store them in lowercase for easy comparison
-                const allWordsList = data.words.flatMap((word) => word.word.toLowerCase());
-                setAllWords(allWordsList);
+                setOwsWords(sortOws(data.ows));
                 setLoading(false);
             } else {
                 setError(true);
@@ -47,7 +44,7 @@ const Word = () => {
     };
 
     useEffect(() => {
-        getWords();
+        getOws();
     }, [wordUpdate]);
 
     if (loading) {
@@ -58,11 +55,7 @@ const Word = () => {
         return <h1>Error</h1>;
     }
 
-    const filteredWords = words.filter(
-        (word) =>
-            word.word.toLowerCase().startsWith(selectedAlphabet.toLowerCase()) &&
-            word.word.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+    const filteredOWS = filterOws(owsWords, selectedAlphabet, searchQuery);
 
     return (
         <>
@@ -98,8 +91,8 @@ const Word = () => {
             </div>
             <div className="main-container">
                 <div className="main-container-list">
-                    {filteredWords.map((word) => (
-                        <WordContainer key={word._id} word={word} allWords={allWords} />
+                    {filteredOWS.map((ows) => (
+                        <OWSContainer key={ows._id} ows={ows} />
                     ))}
                 </div>
             </div>
@@ -110,10 +103,10 @@ const Word = () => {
                 closeOnOverlayClick={false}
                 center
             >
-                <NewWord onClose={handleClose} />
+                <NewOWS onClose={handleClose} />
             </Modal>
         </>
     );
 };
 
-export default Word;
+export default OWS;

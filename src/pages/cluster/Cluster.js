@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Accordion from "./Accordion";
-import "./Cluster.css";
+import "../../css/Cluster.css";
 
 const Cluster = () => {
     const [clusters, setClusters] = useState([]);

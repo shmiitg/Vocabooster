@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Modal } from "react-responsive-modal";
 import "react-responsive-modal/styles.css";
 import EditIdiom from "./EditIdiom";
-import DeleteWord from "../components/DeleteWord";
+import DeleteWord from "../../components/DeleteWord";
 
 export default function IdiomContainer({ idiom }) {
     const [open, setOpen] = useState(false);

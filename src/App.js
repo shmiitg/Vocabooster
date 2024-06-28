@@ -1,16 +1,19 @@
 import React, { useContext } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
-import Navbar from "./navbar/Navbar";
-import Dashboard from "./dashboard/Dashboard";
-import Word from "./word/Word";
-import Revision from "./pages/Revision";
-import OWS from "./ows/OWS";
-import Idiom from "./idiom/Idiom";
-import Spelling from "./spelling/Spelling";
-import Cluster from "./cluster/Cluster";
+// import components
+import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import Login from "./auth/Login";
-import Register from "./auth/Register";
+// import pages
+import Dashboard from "./pages/Dashboard";
+import Word from "./pages/word/Word";
+import Revision from "./pages/Revision";
+import OWS from "./pages/ows/OWS";
+import Idiom from "./pages/idiom/Idiom";
+import Spelling from "./pages/spelling/Spelling";
+import Cluster from "./pages/cluster/Cluster";
+import Login from "./pages/auth/Login";
+import Register from "./pages/auth/Register";
+// import css files
 import "./App.css";
 import "./css/Modal.css";
 import { AuthContext } from "./context/AuthContext";

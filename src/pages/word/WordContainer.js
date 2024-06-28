@@ -2,11 +2,11 @@ import React, { useContext, useState } from "react";
 import { Modal } from "react-responsive-modal";
 import "react-responsive-modal/styles.css";
 import EditWord from "./EditWord";
-import DeleteWord from "../components/DeleteWord";
+import DeleteWord from "../../components/DeleteWord";
 import WordDetailsModal from "./WordDetailsModal";
-import { underlineWord } from "../utils/utils";
+import { underlineWord } from "../../utils/utils";
 import { FaStar, FaRegStar } from "react-icons/fa";
-import { AuthContext } from "../context/AuthContext";
+import { AuthContext } from "../../context/AuthContext";
 
 const WordContainer = ({ word, allWords, forwardedRef }) => {
     const { user, addFavorite, removeFavorite, favorites } = useContext(AuthContext);

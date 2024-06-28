@@ -1,29 +1,31 @@
 import React, { useState, useContext, useEffect } from "react";
-import { UpdateContext } from "../context/UpdateContext";
+import { UpdateContext } from "../../context/UpdateContext";
 
-const NewSpelling = ({ onClose }) => {
+export default function EditSpelling({ spelling, onClose }) {
     const { setWordUpdate } = useContext(UpdateContext);
-    const [NewSpelling, setNewSpelling] = useState({ spelling: "" });
+    const wordId = spelling._id;
+    const [updatedSpelling, setUpdatedSpelling] = useState({ ...spelling });
     const [error, setError] = useState("");
 
-    const handleChange = (e, index) => {
+    const handleChange = (e) => {
         const { name, value } = e.target;
-        setNewSpelling({
-            ...NewSpelling,
+        setUpdatedSpelling({
+            ...updatedSpelling,
             [name]: value,
         });
     };
 
     const handleSubmit = async (e) => {
-        const { spelling } = NewSpelling;
+        const { spelling } = updatedSpelling;
 
         if (spelling === "") {
             setError("Spelling is required");
             return;
         }
 
-        const res = await fetch(`${process.env.REACT_APP_SERVER_URL}/spelling/save`, {
-            method: "POST",
+        const url = `${process.env.REACT_APP_SERVER_URL}/spelling/${wordId}`;
+        const res = await fetch(url, {
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json",
             },
@@ -51,7 +53,7 @@ const NewSpelling = ({ onClose }) => {
     return (
         <div className="modal-content">
             <h3>
-                <strong>Add New Spelling</strong>
+                <strong>Edit Spelling</strong>
             </h3>
             <div className="form-group">
                 <div className="form-sub-group">
@@ -59,7 +61,7 @@ const NewSpelling = ({ onClose }) => {
                     <input
                         type="text"
                         name="spelling"
-                        value={NewSpelling.spelling}
+                        value={updatedSpelling.spelling}
                         onChange={(e) => handleChange(e)}
                         required
                     />
@@ -70,11 +72,9 @@ const NewSpelling = ({ onClose }) => {
                     Cancel
                 </button>
                 <button type="submit" className="submit-button" onClick={handleSubmit}>
-                    Add Spelling
+                    Save
                 </button>
             </div>
         </div>
     );
-};
-
-export default NewSpelling;
+}

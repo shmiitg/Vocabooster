@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { UpdateContext } from "../context/UpdateContext";
+import { UpdateContext } from "../../context/UpdateContext";
 
 export default function NewOWS({ onClose }) {
     const { setWordUpdate } = useContext(UpdateContext);

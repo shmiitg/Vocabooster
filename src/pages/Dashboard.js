@@ -2,8 +2,8 @@ import React, { useState, useEffect, useContext, useRef } from "react";
 import { UpdateContext } from "../context/UpdateContext";
 import { FaSearch } from "react-icons/fa";
 import Loader from "../components/Loader";
-import WordContainer from "../word/WordContainer";
-import { sortWords } from "../utils/utils";
+import WordContainer from "./word/WordContainer";
+import { sortWords } from "../utils/sort";
 import "../css/Dashboard.css";
 
 const Dashboard = () => {

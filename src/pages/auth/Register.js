@@ -1,36 +1,49 @@
 import React, { useState, useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
+import { useNavigate, Link } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
 
-const Login = () => {
+const Register = () => {
     const navigate = useNavigate();
+    const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const { fetchUser } = useContext(AuthContext);
 
-    const login = async () => {
-        const res = await fetch(`${process.env.REACT_APP_SERVER_URL}/auth/login`, {
+    const register = async () => {
+        if (!username || !email || !password) {
+            window.alert("All fields are required");
+            return;
+        }
+        const res = await fetch(`${process.env.REACT_APP_SERVER_URL}/auth/register`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ email, password }),
+            body: JSON.stringify({ username, email, password }),
         });
 
         const data = await res.json();
-        if (res.status === 200) {
+        if (res.status === 201) {
             localStorage.setItem("token", data.token);
             fetchUser(data.token);
             navigate("/dashboard");
         } else {
-            throw new Error(data.error);
+            window.alert(data.error);
         }
     };
 
     return (
         <div>
-            <h2>Login</h2>
+            <h2>Register</h2>
             <div>
+                <div>
+                    <label>Username:</label>
+                    <input
+                        type="text"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                    />
+                </div>
                 <div>
                     <label>Email:</label>
                     <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
@@ -43,13 +56,13 @@ const Login = () => {
                         onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
-                <button type="submit" onClick={login}>
-                    Login
+                <button type="submit" onClick={register}>
+                    Register
                 </button>
-                <Link to="/register">Register</Link>
+                <Link to="/login">Login</Link>
             </div>
         </div>
     );
 };
 
-export default Login;
+export default Register;

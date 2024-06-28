@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { UpdateContext } from "../context/UpdateContext";
+import { UpdateContext } from "../../context/UpdateContext";
 
 const DeleteSpelling = ({ spelling, onClose }) => {
     const { setWordUpdate } = useContext(UpdateContext);

@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import { UpdateContext } from "../context/UpdateContext";
 import Loader from "../components/Loader";
-import WordContainer from "../word/WordContainer";
-import IdiomContainer from "../idiom/IdiomContainer";
-import OWSContainer from "../ows/OWSContainer";
-import { sortWords, sortOwsWords } from "../utils/utils";
+import WordContainer from "./word/WordContainer";
+import IdiomContainer from "./idiom/IdiomContainer";
+import OWSContainer from "./ows/OWSContainer";
+import { sortWords, sortOws, sortIdioms } from "../utils/sort";
 
 const Revision = () => {
     const { wordUpdate } = useContext(UpdateContext);
@@ -22,8 +22,8 @@ const Revision = () => {
             const data = await res.json();
             if (res.status === 200) {
                 setRevisionWords(sortWords(data.words));
-                setRevisionOWS(sortOwsWords(data.ows));
-                setRevisionIdioms(sortWords(data.idioms));
+                setRevisionOWS(sortOws(data.ows));
+                setRevisionIdioms(sortIdioms(data.idioms));
                 setLoading(false);
             } else {
                 setError(true);

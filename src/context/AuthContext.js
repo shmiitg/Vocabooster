@@ -26,9 +26,11 @@ export const AuthProvider = ({ children }) => {
             setUser(data.username);
             setFavorites(new Set(data.favorites.map((fav) => fav._id)));
         } else if (res.status === 401) {
-            logout();
+            localStorage.removeItem("token");
+            setUser(null);
+            setFavorites(new Set());
         } else {
-            console.log("Failed to fetch favorites");
+            console.log("Failed to fetch user");
         }
     };
 
