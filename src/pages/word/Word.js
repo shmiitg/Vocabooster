@@ -78,10 +78,8 @@ const Word = () => {
     return (
         <>
             <div className="main-container-top">
-                <div className="main-container-sub-top">
-                    <div className="main-container-add">
-                        <button onClick={handleOpen}>Add</button>
-                    </div>
+                <div className="main-container-add">
+                    <button onClick={handleOpen}>Add</button>
                 </div>
             </div>
             <div className="main-container">
