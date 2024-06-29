@@ -117,6 +117,7 @@ const Navbar = () => {
                                     ? "hamburger-link-active"
                                     : "hamburger-link"
                             }
+                            onClick={handleMenuToggle}
                         >
                             <Link to={navlink.address}>
                                 {navlink.icon}
@@ -132,6 +133,7 @@ const Navbar = () => {
                                         ? "hamburger-link-active"
                                         : "hamburger-link"
                                 }
+                                onClick={handleMenuToggle}
                             >
                                 <Link to="/dashboard">
                                     <FaUser />

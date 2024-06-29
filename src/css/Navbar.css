@@ -70,11 +70,6 @@
     align-items: center;
 }
 
-.right-header .hamburger {
-    display: none;
-    overflow-y: hidden;
-}
-
 .nav-links {
     display: flex;
     gap: 10px;
@@ -124,11 +119,6 @@
         display: none;
     }
 
-    .right-header .hamburger {
-        display: block;
-        overflow: hidden;
-    }
-
     .logo {
         font-size: 20px;
     }
@@ -150,6 +140,12 @@
 }
 
 /* Hamburger menu styles */
+.hamburger {
+    display: none;
+    width: 45px;
+    height: 45px;
+    overflow: hidden;
+}
 
 .hamburger-menu {
     position: fixed;
@@ -186,7 +182,13 @@
     text-decoration: none;
 }
 
-.hamburger-links a svg {
+.hamburger-links span {
+    display: inline-flex;
+    align-items: center;
+}
+
+.hamburger-links a svg,
+.hamburger-links span svg {
     margin-right: 8px;
 }
 
@@ -212,4 +214,11 @@
 
 .overlay.open {
     display: block;
+}
+
+@media screen and (max-width: 768px) {
+    .hamburger {
+        display: flex;
+        align-items: center;
+    }
 }
