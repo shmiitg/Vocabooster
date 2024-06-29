@@ -1,11 +1,3 @@
-.dashboard-container {
-    display: flex;
-}
-
-.main-content {
-    flex: 1;
-}
-
 .alphabet-selector {
     position: fixed;
     right: 0;
