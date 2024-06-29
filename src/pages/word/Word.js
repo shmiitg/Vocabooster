@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import { UpdateContext } from "../../context/UpdateContext";
 import { SearchContext } from "../../context/SearchContext";
 import { Modal } from "react-responsive-modal";
@@ -17,9 +17,10 @@ const Word = () => {
 
     const [words, setWords] = useState([]);
     const [allWords, setAllWords] = useState(new Set());
-    const [selectedAlphabet, setSelectedAlphabet] = useState("A");
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
+
+    const wordRefs = useRef({});
 
     const getWords = async () => {
         try {
@@ -59,7 +60,20 @@ const Word = () => {
         return <h1>Error</h1>;
     }
 
-    const filteredWords = filterWords(words, selectedAlphabet, searchQuery);
+    const filteredWords = filterWords(words, "", searchQuery);
+
+    const handleAlphabetClick = (letter) => {
+        const wordElement = wordRefs.current[letter];
+        if (wordElement) {
+            wordElement.scrollIntoView({ behavior: "instant" });
+
+            // Determine the offset based on screen width
+            const offset = window.innerWidth <= 768 ? -80 : -90;
+
+            // Adjust for the offset
+            window.scrollBy(0, offset);
+        }
+    };
 
     return (
         <>
@@ -70,25 +84,31 @@ const Word = () => {
                     </div>
                 </div>
             </div>
-            <div className="alphabet-nav">
-                <div className="alphabets">
-                    {"ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map((letter) => (
-                        <button
-                            key={letter}
-                            onClick={() => setSelectedAlphabet(letter)}
-                            className={selectedAlphabet === letter ? "selected" : ""}
-                        >
-                            {letter}
-                        </button>
-                    ))}
-                </div>
-            </div>
             <div className="main-container">
                 <div className="main-container-list">
                     {filteredWords.map((word) => (
-                        <WordContainer key={word._id} word={word} allWords={allWords} />
+                        <div
+                            key={word._id}
+                            ref={(el) => {
+                                const firstLetter = word.word.charAt(0).toUpperCase();
+                                if (searchQuery === "" && !wordRefs.current[firstLetter]) {
+                                    wordRefs.current[firstLetter] = el;
+                                } else if (searchQuery !== "") {
+                                    wordRefs.current[firstLetter] = null;
+                                }
+                            }}
+                        >
+                            <WordContainer key={word._id} word={word} allWords={allWords} />
+                        </div>
                     ))}
                 </div>
+            </div>
+            <div className="alphabet-selector">
+                {"ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map((letter) => (
+                    <button key={letter} onClick={() => handleAlphabetClick(letter)}>
+                        {letter}
+                    </button>
+                ))}
             </div>
             <Modal
                 open={open}
