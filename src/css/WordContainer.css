@@ -1,0 +1,82 @@
+.main-container {
+    margin: 20px auto;
+}
+
+.main-container-heading {
+    font-size: 24px;
+    text-align: center;
+    margin: 35px 0 20px;
+}
+
+.main-container-list {
+    padding: 0;
+    text-align: left;
+}
+
+.word-container-item {
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px 11px;
+    background-color: #f9f9f9;
+    letter-spacing: 0.3px;
+}
+
+.word-container:nth-child(n + 2) {
+    margin-top: 25px;
+}
+
+.word-container-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
+}
+
+.word-container-top h3 {
+    font-size: 20px;
+    margin: 0;
+    color: #333;
+}
+
+.word-container-top .update-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.word-container-top button {
+    border: none;
+    background: none;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 0;
+}
+
+.word-container-top .star-icon {
+    color: #dbb900;
+    font-size: 20px;
+    margin-right: 5px;
+}
+
+.word-container-bottom {
+    margin-top: 20px;
+    line-height: 20px;
+}
+
+.word-container-item .reduce-margin {
+    margin-top: 15px;
+}
+
+.word-container-bottom p {
+    color: #2f2f2f;
+    margin: 5px 0;
+}
+
+.word-container-bottom strong {
+    font-weight: bold;
+}
+
+.underlined {
+    color: #c91f1f;
+}

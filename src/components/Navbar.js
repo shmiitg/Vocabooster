@@ -2,24 +2,41 @@ import React, { useState, useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Hamburger from "hamburger-react";
 import { AuthContext } from "../context/AuthContext";
+import { SearchContext } from "../context/SearchContext";
 import "../css/Navbar.css";
+import {
+    FaHome,
+    FaBook,
+    FaBrain,
+    FaSignOutAlt,
+    FaSignInAlt,
+    FaUser,
+    FaSearch,
+} from "react-icons/fa";
 
 const Navbar = () => {
     const location = useLocation();
     const pathname = location.pathname;
-    const [isOpen, setOpen] = useState(false);
     const { user, logout } = useContext(AuthContext);
+    const { searchQuery, setSearchQuery } = useContext(SearchContext);
+
+    const [isOpen, setOpen] = useState(false);
 
     const navLinks = [
-        { name: "Revise", address: "/revision" },
-        { name: "OWS", address: "/ows" },
-        { name: "Idiom", address: "/idioms" },
-        { name: "Spelling", address: "/spellings" },
-        { name: "Cluster", address: "/clusters" },
+        { name: "Home", address: "/", icon: <FaHome /> },
+        { name: "Revise", address: "/revision", icon: <FaBook /> },
+        { name: "OWS", address: "/ows", icon: <FaBrain /> },
+        { name: "Idiom", address: "/idioms", icon: <FaBook /> },
+        { name: "Spelling", address: "/spellings", icon: <FaBook /> },
+        { name: "Cluster", address: "/clusters", icon: <FaBook /> },
     ];
 
     const handleMenuToggle = () => {
         setOpen(!isOpen);
+    };
+
+    const handleSearchChange = (e) => {
+        setSearchQuery(e.target.value);
     };
 
     return (
@@ -29,6 +46,18 @@ const Navbar = () => {
                     <h1 className="logo">
                         <Link to="/">Vocabrain</Link>
                     </h1>
+                </div>
+                <div className="mid-header">
+                    <div className="search-form">
+                        <FaSearch className="search-button" />
+                        <input
+                            type="text"
+                            className="search-input"
+                            placeholder="Search..."
+                            value={searchQuery}
+                            onChange={handleSearchChange}
+                        />
+                    </div>
                 </div>
                 <div className="right-header">
                     <div className="hamburger">
@@ -42,7 +71,10 @@ const Navbar = () => {
                                     pathname === navlink.address ? "link link-active" : "link"
                                 }
                             >
-                                <Link to={navlink.address}>{navlink.name}</Link>
+                                <Link to={navlink.address}>
+                                    {navlink.icon}
+                                    {navlink.name}
+                                </Link>
                             </div>
                         ))}
                         {user ? (
@@ -52,15 +84,24 @@ const Navbar = () => {
                                         pathname === "/dashboard" ? "link link-active" : "link"
                                     }
                                 >
-                                    <Link to="/dashboard">Dashboard</Link>
+                                    <Link to="/dashboard">
+                                        <FaUser />
+                                        Dashboard
+                                    </Link>
                                 </div>
                                 <div className="link" onClick={logout}>
-                                    <span>Logout</span>
+                                    <span>
+                                        <FaSignOutAlt />
+                                        Logout
+                                    </span>
                                 </div>
                             </>
                         ) : (
                             <div className={pathname === "/login" ? "link link-active" : "link"}>
-                                <Link to="/login">Login</Link>
+                                <Link to="/login">
+                                    <FaSignInAlt />
+                                    Login
+                                </Link>
                             </div>
                         )}
                     </div>
@@ -77,7 +118,10 @@ const Navbar = () => {
                                     : "hamburger-link"
                             }
                         >
-                            <Link to={navlink.address}>{navlink.name}</Link>
+                            <Link to={navlink.address}>
+                                {navlink.icon}
+                                {navlink.name}
+                            </Link>
                         </div>
                     ))}
                     {user ? (
@@ -89,10 +133,16 @@ const Navbar = () => {
                                         : "hamburger-link"
                                 }
                             >
-                                <Link to="/dashboard">Dashboard</Link>
+                                <Link to="/dashboard">
+                                    <FaUser />
+                                    Dashboard
+                                </Link>
                             </div>
                             <div className="hamburger-link" onClick={logout}>
-                                <span>Logout</span>
+                                <span>
+                                    <FaSignOutAlt />
+                                    Logout
+                                </span>
                             </div>
                         </>
                     ) : (
@@ -101,7 +151,10 @@ const Navbar = () => {
                                 pathname === "/login" ? "hamburger-link-active" : "hamburger-link"
                             }
                         >
-                            <Link to="/login">Login</Link>
+                            <Link to="/login">
+                                <FaSignInAlt />
+                                Login
+                            </Link>
                         </div>
                     )}
                 </div>

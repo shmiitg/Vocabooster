@@ -12,11 +12,14 @@
     align-items: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 10px 20px;
+    gap: 20px;
 }
 
 .App-header.open {
     box-shadow: none;
 }
+
+/* Left header */
 
 .logo {
     cursor: pointer;
@@ -28,8 +31,42 @@
     text-decoration: none;
 }
 
+/* Mid header */
+
+.mid-header {
+    flex: 1;
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+    position: relative;
+    max-width: 500px;
+}
+
+.search-input {
+    padding: 7px 12px 7px 32px;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 16px;
+    outline: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-button {
+    position: absolute;
+    left: 10px;
+    color: #969696;
+    z-index: 1;
+}
+
+/* Right header */
+
 .right-header {
     display: flex;
+    align-items: center;
 }
 
 .right-header .hamburger {
@@ -49,13 +86,14 @@
 }
 
 .link a {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
     font-size: 14px;
     color: #000;
     background-color: #94e8ff;
     border: none;
     cursor: pointer;
-    padding: 8px 14px;
+    padding: 8px 12px;
     border-radius: 4px;
     transition: background-color 0.3s ease;
     text-decoration: none;
@@ -65,12 +103,26 @@
     background-color: #21a1f1;
 }
 
+.link span {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+}
+
 .link-active a {
     background-color: #21a1f1;
 }
 
-/* Responsive styles */
+.link a svg,
+.link span svg {
+    margin-right: 6px;
+}
+
 @media only screen and (max-width: 768px) {
+    .App-header {
+        gap: 5px;
+    }
+
     .right-header .nav-links {
         display: none;
     }
@@ -79,6 +131,7 @@
         display: block;
         overflow: hidden;
     }
+
     .logo {
         font-size: 20px;
     }
@@ -95,6 +148,7 @@
 }
 
 /* Hamburger menu styles */
+
 .hamburger-menu {
     position: fixed;
     top: 0;
@@ -113,7 +167,7 @@
 
 .hamburger-menu.open {
     transform: translateY(50px);
-    height: 350px;
+    height: 400px;
 }
 
 .hamburger-links {
@@ -123,9 +177,15 @@
 }
 
 .hamburger-links a {
+    display: inline-flex;
+    align-items: center;
     font-size: 16px;
     color: #fff;
     text-decoration: none;
+}
+
+.hamburger-links a svg {
+    margin-right: 8px;
 }
 
 .hamburger-link-active a {

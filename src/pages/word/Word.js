@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { UpdateContext } from "../../context/UpdateContext";
+import { SearchContext } from "../../context/SearchContext";
 import { Modal } from "react-responsive-modal";
-import { FaSearch } from "react-icons/fa";
 import Loader from "../../components/Loader";
 import WordContainer from "./WordContainer";
 import NewWord from "./NewWord";
@@ -11,13 +11,13 @@ import { filterWords } from "../../utils/filter";
 
 const Word = () => {
     const { wordUpdate } = useContext(UpdateContext);
+    const { searchQuery } = useContext(SearchContext);
 
     const [open, setOpen] = useState(false);
 
     const [words, setWords] = useState([]);
     const [allWords, setAllWords] = useState(new Set());
     const [selectedAlphabet, setSelectedAlphabet] = useState("A");
-    const [searchQuery, setSearchQuery] = useState("");
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
 
@@ -65,16 +65,6 @@ const Word = () => {
         <>
             <div className="main-container-top">
                 <div className="main-container-sub-top">
-                    <div className="search-bar">
-                        <FaSearch className="search-icon" />
-                        <input
-                            type="text"
-                            placeholder="Search..."
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                            className="search-bar"
-                        />
-                    </div>
                     <div className="main-container-add">
                         <button onClick={handleOpen}>Add</button>
                     </div>
