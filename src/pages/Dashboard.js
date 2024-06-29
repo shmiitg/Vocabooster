@@ -3,14 +3,16 @@ import { UpdateContext } from "../context/UpdateContext";
 import { FaSearch } from "react-icons/fa";
 import Loader from "../components/Loader";
 import WordContainer from "./word/WordContainer";
+import { getAllWords } from "../utils/utils";
 import { sortWords } from "../utils/sort";
+import { filterWords } from "../utils/filter";
 import "../css/Dashboard.css";
 
 const Dashboard = () => {
     const { wordUpdate } = useContext(UpdateContext);
 
     const [words, setWords] = useState([]);
-    const [allWords, setAllWords] = useState([]);
+    const [allWords, setAllWords] = useState(new Set());
     const [searchQuery, setSearchQuery] = useState("");
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
@@ -19,24 +21,27 @@ const Dashboard = () => {
 
     const getFavorites = async () => {
         const token = localStorage.getItem("token");
-        if (!token) return;
-        try {
-            const url = `${process.env.REACT_APP_SERVER_URL}/user`;
-            const res = await fetch(url, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-            if (res.ok) {
-                const data = await res.json();
-                setWords(sortWords(data.favorites));
-            } else {
+        if (token) {
+            try {
+                const url = `${process.env.REACT_APP_SERVER_URL}/user`;
+                const res = await fetch(url, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+                if (res.ok) {
+                    const data = await res.json();
+                    setWords(sortWords(data.favorites));
+                    const allWordsList = await getAllWords();
+                    setAllWords(allWordsList);
+                } else {
+                    setError(true);
+                }
+            } catch (err) {
                 setError(true);
             }
-            setLoading(false);
-        } catch (err) {
-            setError(true);
         }
+        setLoading(false);
     };
 
     useEffect(() => {
@@ -51,9 +56,7 @@ const Dashboard = () => {
         return <h1>Error</h1>;
     }
 
-    const filteredWords = words.filter((word) =>
-        word.word.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+    const filteredWords = filterWords(words, "", searchQuery);
 
     const handleAlphabetClick = (letter) => {
         const wordElement = wordRefs.current[letter];
@@ -100,7 +103,7 @@ const Dashboard = () => {
                                         }
                                     }}
                                 >
-                                    <WordContainer word={word} allWords={allWords} />
+                                    <WordContainer key={word._id} word={word} allWords={allWords} />
                                 </div>
                             ))}
                         </div>

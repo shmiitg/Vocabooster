@@ -5,6 +5,7 @@ import { FaSearch } from "react-icons/fa";
 import Loader from "../../components/Loader";
 import WordContainer from "./WordContainer";
 import NewWord from "./NewWord";
+import { getAllWords } from "../../utils/utils";
 import { sortWords } from "../../utils/sort";
 import { filterWords } from "../../utils/filter";
 
@@ -14,7 +15,7 @@ const Word = () => {
     const [open, setOpen] = useState(false);
 
     const [words, setWords] = useState([]);
-    const [allWords, setAllWords] = useState([]);
+    const [allWords, setAllWords] = useState(new Set());
     const [selectedAlphabet, setSelectedAlphabet] = useState("A");
     const [searchQuery, setSearchQuery] = useState("");
     const [loading, setLoading] = useState(true);
@@ -27,16 +28,15 @@ const Word = () => {
             const data = await res.json();
             if (res.status === 200) {
                 setWords(sortWords(data.words));
-                // Extract all words and store them in lowercase for easy comparison
-                const allWordsList = data.words.flatMap((word) => word.word.toLowerCase());
+                const allWordsList = await getAllWords();
                 setAllWords(allWordsList);
-                setLoading(false);
             } else {
                 setError(true);
             }
         } catch (err) {
             setError(true);
         }
+        setLoading(false);
     };
 
     const handleOpen = () => {

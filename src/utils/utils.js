@@ -11,3 +11,23 @@ export function underlineWord(text, word) {
         )
     );
 }
+
+export const getAllWords = async () => {
+    try {
+        const url = `${process.env.REACT_APP_SERVER_URL}/word`;
+        const res = await fetch(url);
+        const data = await res.json();
+        if (res.status === 200) {
+            const allWordsList = data.words.flatMap((word) => word.word.toLowerCase());
+            return new Set(allWordsList);
+        }
+        return new Set();
+    } catch (err) {
+        return new Set();
+    }
+};
+
+export const checkExistingWord = (word, allWords) => {
+    const lowerCaseWord = word.toLowerCase();
+    return allWords.has(lowerCaseWord);
+};

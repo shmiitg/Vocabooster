@@ -4,7 +4,7 @@ import "react-responsive-modal/styles.css";
 import EditWord from "./EditWord";
 import DeleteWord from "../../components/DeleteWord";
 import WordDetailsModal from "./WordDetailsModal";
-import { underlineWord } from "../../utils/utils";
+import { underlineWord, checkExistingWord } from "../../utils/utils";
 import { FaStar, FaRegStar } from "react-icons/fa";
 import { AuthContext } from "../../context/AuthContext";
 
@@ -37,8 +37,6 @@ const WordContainer = ({ word, allWords, forwardedRef }) => {
         setDetailsOpen(false);
         setSelectedWord(null);
     };
-
-    const isWordExisting = (word) => allWords.includes(word.toLowerCase());
 
     const isFavorite = favorites.has(String(word._id));
 
@@ -77,7 +75,7 @@ const WordContainer = ({ word, allWords, forwardedRef }) => {
                             <strong>Synonyms:</strong>{" "}
                             {meaning.synonyms
                                 .map((synonym) =>
-                                    isWordExisting(synonym) ? (
+                                    checkExistingWord(synonym, allWords) ? (
                                         <span
                                             key={synonym}
                                             className="clickable-word"
@@ -97,7 +95,7 @@ const WordContainer = ({ word, allWords, forwardedRef }) => {
                             <strong>Antonyms:</strong>{" "}
                             {meaning.antonyms
                                 .map((antonym) =>
-                                    isWordExisting(antonym) ? (
+                                    checkExistingWord(antonym, allWords) ? (
                                         <span
                                             key={antonym}
                                             className="clickable-word"

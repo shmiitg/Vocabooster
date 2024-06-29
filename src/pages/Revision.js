@@ -4,12 +4,14 @@ import Loader from "../components/Loader";
 import WordContainer from "./word/WordContainer";
 import IdiomContainer from "./idiom/IdiomContainer";
 import OWSContainer from "./ows/OWSContainer";
+import { getAllWords } from "../utils/utils";
 import { sortWords, sortOws, sortIdioms } from "../utils/sort";
 
 const Revision = () => {
     const { wordUpdate } = useContext(UpdateContext);
 
     const [revisionWords, setRevisionWords] = useState([]);
+    const [allWords, setAllWords] = useState(new Set());
     const [revisionOWS, setRevisionOWS] = useState([]);
     const [revisionIdioms, setRevisionIdioms] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -24,13 +26,15 @@ const Revision = () => {
                 setRevisionWords(sortWords(data.words));
                 setRevisionOWS(sortOws(data.ows));
                 setRevisionIdioms(sortIdioms(data.idioms));
-                setLoading(false);
+                const allWordsList = await getAllWords();
+                setAllWords(allWordsList);
             } else {
                 setError(true);
             }
         } catch (err) {
             setError(true);
         }
+        setLoading(false);
     };
 
     useEffect(() => {
@@ -51,7 +55,7 @@ const Revision = () => {
                 <h2 className="main-container-heading">Daily Revision</h2>
                 <div className="main-container-list">
                     {revisionWords.map((word) => (
-                        <WordContainer key={word._id} word={word} allWords={[]} />
+                        <WordContainer key={word._id} word={word} allWords={allWords} />
                     ))}
                 </div>
                 <h2 className="main-container-heading">One Word Substitutions</h2>
