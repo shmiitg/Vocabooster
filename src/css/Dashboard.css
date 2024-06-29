@@ -1,6 +1,6 @@
 .alphabet-selector {
     position: fixed;
-    right: 0;
+    right: 5px;
     top: 90px;
     display: flex;
     flex-direction: column;
@@ -9,7 +9,6 @@
     max-height: calc(100svh - 25px);
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
-    padding-right: 2px;
 }
 
 .alphabet-selector:hover {

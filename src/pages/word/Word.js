@@ -77,11 +77,6 @@ const Word = () => {
 
     return (
         <>
-            <div className="main-container-top">
-                <div className="main-container-add">
-                    <button onClick={handleOpen}>Add</button>
-                </div>
-            </div>
             <div className="main-container">
                 <div className="main-container-list">
                     {filteredWords.map((word) => (
@@ -108,6 +103,9 @@ const Word = () => {
                     </button>
                 ))}
             </div>
+            <button className="add-button" onClick={handleOpen}>
+                Add
+            </button>
             <Modal
                 open={open}
                 onClose={handleClose}
