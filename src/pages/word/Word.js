@@ -5,7 +5,6 @@ import { Modal } from "react-responsive-modal";
 import Loader from "../../components/Loader";
 import WordContainer from "./WordContainer";
 import NewWord from "./NewWord";
-import { getAllWords } from "../../utils/utils";
 import { sortWords } from "../../utils/sort";
 import { filterWords } from "../../utils/filter";
 
@@ -29,7 +28,7 @@ const Word = () => {
             const data = await res.json();
             if (res.status === 200) {
                 setWords(sortWords(data.words));
-                const allWordsList = await getAllWords();
+                const allWordsList = new Set(data.words.flatMap((word) => word.word.toLowerCase()));
                 setAllWords(allWordsList);
             } else {
                 setError(true);
