@@ -1,6 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
 import { UpdateContext } from "../../context/UpdateContext";
-import { idiomTypes } from "./IdiomTypes";
 
 const EditIdiom = ({ idiom, onClose }) => {
     const { setWordUpdate } = useContext(UpdateContext);
@@ -88,27 +87,6 @@ const EditIdiom = ({ idiom, onClose }) => {
                         value={updatedIdiom.example}
                         onChange={handleChange}
                     />
-                </div>
-            </div>
-            <div className="form-group">
-                <div className="form-sub-group">
-                    <div className="form-group-name">Type:</div>
-                    <div className="select-wrapper">
-                        {" "}
-                        {/* Add this wrapper */}
-                        <select
-                            className="idiom-type-select"
-                            name="type"
-                            value={updatedIdiom.type}
-                            onChange={handleChange}
-                        >
-                            {idiomTypes.map((type, index) => (
-                                <option key={index} value={type}>
-                                    {type}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
                 </div>
             </div>
             <div className="add-part">{error && <p className="error-message">*{error}</p>}</div>

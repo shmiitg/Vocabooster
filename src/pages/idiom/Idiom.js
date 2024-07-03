@@ -5,7 +5,6 @@ import { Modal } from "react-responsive-modal";
 import Loader from "../../components/Loader";
 import IdiomContainer from "./IdiomContainer";
 import NewIdiom from "./NewIdiom";
-import { idiomTypes } from "./IdiomTypes";
 import { sortIdioms } from "../../utils/sort";
 import { filterIdioms } from "../../utils/filter";
 
@@ -16,7 +15,6 @@ const Idiom = () => {
     const [open, setOpen] = useState(false);
 
     const [idioms, setIdioms] = useState([]);
-    const [selectedType, setSelectedType] = useState("General");
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
 
@@ -50,7 +48,7 @@ const Idiom = () => {
         getIdioms();
     }, [wordUpdate]);
 
-    const filteredIdioms = filterIdioms(idioms, searchQuery, selectedType);
+    const filteredIdioms = filterIdioms(idioms, searchQuery);
 
     const handleAlphabetClick = (letter) => {
         const idiomElement = idiomRefs.current[letter];
@@ -75,19 +73,6 @@ const Idiom = () => {
 
     return (
         <>
-            {/* <div className="type-nav">
-                {idiomTypes.map((type) => (
-                    <button
-                        key={type}
-                        onClick={() => {
-                            setSelectedType(type);
-                        }}
-                        className={selectedType === type ? "selected" : ""}
-                    >
-                        {type}
-                    </button>
-                ))}
-            </div> */}
             <div className="main-container">
                 <div className="main-container-list">
                     {filteredIdioms.map((entry) => (
