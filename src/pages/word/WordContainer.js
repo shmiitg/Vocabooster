@@ -8,7 +8,7 @@ import { underlineWord, checkExistingWord } from "../../utils/utils";
 import { FaStar, FaRegStar } from "react-icons/fa";
 import { AuthContext } from "../../context/AuthContext";
 
-const WordContainer = ({ word, allWords, forwardedRef }) => {
+const WordContainer = ({ word, allWords }) => {
     const { user, addFavorite, removeFavorite, favorites } = useContext(AuthContext);
     const [open, setOpen] = useState(false);
     const [detailsOpen, setDetailsOpen] = useState(false);
@@ -49,7 +49,7 @@ const WordContainer = ({ word, allWords, forwardedRef }) => {
     };
 
     return (
-        <div className="word-container-item" ref={forwardedRef}>
+        <div className="word-container-item">
             <div className="word-container-top">
                 <h3>{capitalizeFirstLetter(word.word)}</h3>
                 <div className="update-icons">

@@ -87,7 +87,7 @@ const Dashboard = () => {
                                 }
                             }}
                         >
-                            <WordContainer key={word._id} word={word} allWords={allWords} />
+                            <WordContainer word={word} allWords={allWords} />
                         </div>
                     ))}
                 </div>

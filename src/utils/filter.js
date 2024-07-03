@@ -1,9 +1,6 @@
-export const filterWords = (words, alphabet, query) => {
+export const filterWords = (words, query) => {
     return words.filter((entry) => {
-        return (
-            entry.word.toLowerCase().startsWith(alphabet.toLowerCase()) &&
-            entry.word.toLowerCase().includes(query.toLowerCase())
-        );
+        return entry.word.toLowerCase().includes(query.toLowerCase());
     });
 };
 
@@ -15,11 +12,10 @@ export const filterOws = (ows, alphabet, query) => {
     );
 };
 
-export const filterIdioms = (idioms, alphabet, query, type) => {
+export const filterIdioms = (idioms, query, type) => {
     return idioms.filter(
         (entry) =>
             entry.idiom.toLowerCase().includes(query.toLowerCase()) &&
-            (alphabet === "All" || entry.idiom.toLowerCase().startsWith(alphabet.toLowerCase())) &&
             (type === "General" || entry.type === type)
     );
 };

@@ -52,15 +52,7 @@ const Word = () => {
         getWords();
     }, [wordUpdate]);
 
-    if (loading) {
-        return <Loader />;
-    }
-
-    if (error) {
-        return <h1>Error</h1>;
-    }
-
-    const filteredWords = filterWords(words, "", searchQuery);
+    const filteredWords = filterWords(words, searchQuery);
 
     const handleAlphabetClick = (letter) => {
         const wordElement = wordRefs.current[letter];
@@ -74,6 +66,14 @@ const Word = () => {
             window.scrollBy(0, offset);
         }
     };
+
+    if (loading) {
+        return <Loader />;
+    }
+
+    if (error) {
+        return <h1>Error</h1>;
+    }
 
     return (
         <>
@@ -91,7 +91,7 @@ const Word = () => {
                                 }
                             }}
                         >
-                            <WordContainer key={word._id} word={word} allWords={allWords} />
+                            <WordContainer word={word} allWords={allWords} />
                         </div>
                     ))}
                 </div>
