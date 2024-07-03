@@ -152,6 +152,7 @@ const Navbar = () => {
                             className={
                                 pathname === "/login" ? "hamburger-link-active" : "hamburger-link"
                             }
+                            onClick={handleMenuToggle}
                         >
                             <Link to="/login">
                                 <FaSignInAlt />
