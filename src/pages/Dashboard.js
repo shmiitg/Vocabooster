@@ -31,7 +31,8 @@ const Dashboard = () => {
                 });
                 if (res.ok) {
                     const data = await res.json();
-                    setWords(sortWords(data.favorites));
+                    const favs = data.favorites.filter((fav) => fav.itemType === "word");
+                    setWords(sortWords(favs));
                     const allWordsList = await getAllWords();
                     setAllWords(allWordsList);
                 } else {

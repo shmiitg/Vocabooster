@@ -38,13 +38,14 @@ const WordContainer = ({ word, allWords }) => {
         setSelectedWord(null);
     };
 
-    const isFavorite = favorites.has(String(word._id));
+    const favObj = { itemType: "word", itemId: String(word._id) };
+    const isFavorite = favorites.has(favObj);
 
     const toggleFavorite = () => {
         if (isFavorite) {
-            removeFavorite(word._id);
+            removeFavorite("word", word._id);
         } else {
-            addFavorite(word._id);
+            addFavorite("word", word._id);
         }
     };
 

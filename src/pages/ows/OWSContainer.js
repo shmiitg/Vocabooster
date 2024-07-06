@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Modal } from "react-responsive-modal";
 import EditOWS from "./EditOWS";
 import DeleteWord from "../../components/DeleteWord";
 import { underlineWord } from "../../utils/utils";
+import { FaStar, FaRegStar } from "react-icons/fa";
+import { AuthContext } from "../../context/AuthContext";
 
 export default function OWSContainer({ ows }) {
+    const { user, addFavorite, removeFavorite, favorites } = useContext(AuthContext);
     const [open, setOpen] = useState(false);
     const [updateType, setUpdateType] = useState("edit");
 
@@ -21,6 +24,18 @@ export default function OWSContainer({ ows }) {
     const handleClose = () => {
         setOpen(false);
     };
+
+    const favObj = { itemType: "ows", itemId: String(ows._id) };
+    const isFavorite = favorites.has(favObj);
+
+    const toggleFavorite = () => {
+        if (isFavorite) {
+            removeFavorite("ows", ows._id);
+        } else {
+            addFavorite("ows", ows._id);
+        }
+    };
+
     return (
         <div className="word-container-item">
             {ows.ows.map((entry, index) => (
@@ -29,6 +44,15 @@ export default function OWSContainer({ ows }) {
                         <h3>{capitalizeFirstLetter(entry.word)}</h3>
                         {index === 0 && (
                             <div className="update-icons">
+                                {user && (
+                                    <button onClick={toggleFavorite}>
+                                        {isFavorite ? (
+                                            <FaStar className="star-icon" />
+                                        ) : (
+                                            <FaRegStar className="star-icon" />
+                                        )}
+                                    </button>
+                                )}
                                 <button onClick={() => handleUpdate("edit")}>Edit</button>
                                 <button onClick={() => handleUpdate("delete")}>Delete</button>
                             </div>

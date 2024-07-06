@@ -1,12 +1,13 @@
 import React, { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import UniqueObjectSet from "../utils/uniqueObjectSet";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const navigate = useNavigate();
     const [user, setUser] = useState(null);
-    const [favorites, setFavorites] = useState(new Set());
+    const [favorites, setFavorites] = useState(new UniqueObjectSet());
 
     useEffect(() => {
         const token = localStorage.getItem("token");
@@ -25,32 +26,40 @@ export const AuthProvider = ({ children }) => {
             if (res.ok) {
                 const data = await res.json();
                 setUser(data.username);
-                setFavorites(new Set(data.favorites.map((fav) => fav._id)));
+                const favs = data.favorites.map((fav) => ({
+                    itemType: fav.itemType,
+                    itemId: fav._id,
+                }));
+                const uniqueFavorites = new UniqueObjectSet();
+                favs.forEach((fav) => uniqueFavorites.add(fav));
+                setFavorites(uniqueFavorites);
             } else {
                 localStorage.removeItem("token");
                 setUser(null);
-                setFavorites(new Set());
+                setFavorites(new UniqueObjectSet());
             }
         } catch (err) {
-            console.log("Can't fetch userdetails");
+            console.log("Can't fetch user details");
         }
     };
 
     const logout = () => {
         localStorage.removeItem("token");
         setUser(null);
-        setFavorites(new Set());
+        setFavorites(new UniqueObjectSet());
         navigate("/login");
     };
 
-    const addFavorite = async (wordId) => {
-        const updatedFavorites = new Set(favorites);
-        updatedFavorites.add(wordId);
+    const addFavorite = async (itemType, itemId) => {
+        const newFavorite = { itemType, itemId };
+        const updatedFavorites = new UniqueObjectSet();
+        favorites.values().forEach((item) => updatedFavorites.add(item));
+        updatedFavorites.add(newFavorite);
         setFavorites(updatedFavorites);
 
         const token = localStorage.getItem("token");
         const res = await fetch(
-            `${process.env.REACT_APP_SERVER_URL}/user/favorites/word/${wordId}`,
+            `${process.env.REACT_APP_SERVER_URL}/user/favorites/${itemType}/${itemId}`,
             {
                 method: "POST",
                 headers: {
@@ -61,20 +70,30 @@ export const AuthProvider = ({ children }) => {
         );
         if (res.ok) {
             const data = await res.json();
-            setFavorites(new Set(data.favorites.map((fav) => fav.itemId)));
+            const favs = data.favorites.map((fav) => ({
+                itemType,
+                itemId: fav.itemId,
+            }));
+            const uniqueFavorites = new UniqueObjectSet();
+            favs.forEach((fav) => uniqueFavorites.add(fav));
+            setFavorites(uniqueFavorites);
         } else {
             window.alert("Failed to add favorite");
         }
     };
 
-    const removeFavorite = async (wordId) => {
-        const updatedFavorites = new Set(favorites);
-        updatedFavorites.delete(wordId);
+    const removeFavorite = async (itemType, itemId) => {
+        const updatedFavorites = new UniqueObjectSet();
+        favorites.values().forEach((item) => {
+            if (item.itemId !== itemId) {
+                updatedFavorites.add(item);
+            }
+        });
         setFavorites(updatedFavorites);
 
         const token = localStorage.getItem("token");
         const res = await fetch(
-            `${process.env.REACT_APP_SERVER_URL}/user/favorites/word/${wordId}`,
+            `${process.env.REACT_APP_SERVER_URL}/user/favorites/${itemType}/${itemId}`,
             {
                 method: "DELETE",
                 headers: {
@@ -86,7 +105,13 @@ export const AuthProvider = ({ children }) => {
 
         if (res.ok) {
             const data = await res.json();
-            setFavorites(new Set(data.favorites.map((fav) => fav.itemId)));
+            const favs = data.favorites.map((fav) => ({
+                itemType,
+                itemId: fav.itemId,
+            }));
+            const uniqueFavorites = new UniqueObjectSet();
+            favs.forEach((fav) => uniqueFavorites.add(fav));
+            setFavorites(uniqueFavorites);
         } else {
             window.alert("Failed to remove favorite");
         }

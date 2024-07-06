@@ -59,11 +59,6 @@ const OWS = () => {
 
     return (
         <>
-            <div className="main-container-top">
-                <div className="main-container-add">
-                    <button onClick={handleOpen}>Add</button>
-                </div>
-            </div>
             <div className="alphabet-nav">
                 <div className="alphabets">
                     {"ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map((letter) => (
@@ -84,6 +79,9 @@ const OWS = () => {
                     ))}
                 </div>
             </div>
+            <button className="add-button" onClick={handleOpen}>
+                Add
+            </button>
             <Modal
                 open={open}
                 onClose={handleClose}
