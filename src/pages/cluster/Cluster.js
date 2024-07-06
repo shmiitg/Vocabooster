@@ -11,7 +11,7 @@ const Cluster = () => {
             const data = await res.json();
             setClusters(data);
         } catch (err) {
-            console.log(err);
+            window.alert("Something went wrong");
         }
     };
 

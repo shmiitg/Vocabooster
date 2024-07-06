@@ -32,7 +32,7 @@ export const AuthProvider = ({ children }) => {
                 setFavorites(new Set());
             }
         } catch (err) {
-            console.log("Something went wrong");
+            console.log("Can't fetch userdetails");
         }
     };
 
@@ -49,17 +49,19 @@ export const AuthProvider = ({ children }) => {
         setFavorites(updatedFavorites);
 
         const token = localStorage.getItem("token");
-        const res = await fetch(`${process.env.REACT_APP_SERVER_URL}/user/favorites/${wordId}`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`,
-            },
-        });
-
+        const res = await fetch(
+            `${process.env.REACT_APP_SERVER_URL}/user/favorites/word/${wordId}`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        );
         if (res.ok) {
             const data = await res.json();
-            setFavorites(new Set(data.favorites));
+            setFavorites(new Set(data.favorites.map((fav) => fav.itemId)));
         } else {
             window.alert("Failed to add favorite");
         }
@@ -71,17 +73,20 @@ export const AuthProvider = ({ children }) => {
         setFavorites(updatedFavorites);
 
         const token = localStorage.getItem("token");
-        const res = await fetch(`${process.env.REACT_APP_SERVER_URL}/user/favorites/${wordId}`, {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`,
-            },
-        });
+        const res = await fetch(
+            `${process.env.REACT_APP_SERVER_URL}/user/favorites/word/${wordId}`,
+            {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        );
 
         if (res.ok) {
             const data = await res.json();
-            setFavorites(new Set(data.favorites));
+            setFavorites(new Set(data.favorites.map((fav) => fav.itemId)));
         } else {
             window.alert("Failed to remove favorite");
         }
