@@ -21,7 +21,7 @@ const Dashboard = () => {
     const wordRefs = useRef({});
     const alphabetSelectorRef = useRef(null);
     let lastScrollTop = 0;
-    const scrollThreshold = 10; // Define the scroll threshold
+    const scrollThreshold = 5; // Define the scroll threshold
 
     // Define media queries
     const isLargeScreen = useMediaQuery({ query: "(min-width: 769px)" });
