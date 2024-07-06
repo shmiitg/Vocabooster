@@ -4,6 +4,7 @@
     top: 0;
     left: 0;
     right: 0;
+    height: 60px;
     z-index: 1001;
     background-color: #282c34;
     color: white;
@@ -115,6 +116,10 @@
 }
 
 @media only screen and (max-width: 768px) {
+    .App-header {
+        height: 50px;
+    }
+
     .right-header .nav-links {
         display: none;
     }
@@ -127,6 +132,7 @@
 @media only screen and (max-width: 480px) {
     .App-header {
         gap: 5px;
+        height: 45px;
     }
 
     .logo {

@@ -6,6 +6,7 @@ import WordContainer from "./word/WordContainer";
 import { getAllWords } from "../utils/utils";
 import { sortWords } from "../utils/sort";
 import { filterWords } from "../utils/filter";
+import { useMediaQuery } from "react-responsive";
 import "../css/Dashboard.css";
 
 const Dashboard = () => {
@@ -18,6 +19,14 @@ const Dashboard = () => {
     const [error, setError] = useState(false);
 
     const wordRefs = useRef({});
+    const alphabetSelectorRef = useRef(null);
+    let lastScrollTop = 0;
+    const scrollThreshold = 10; // Define the scroll threshold
+
+    // Define media queries
+    const isLargeScreen = useMediaQuery({ query: "(min-width: 769px)" });
+    const isMediumScreen = useMediaQuery({ query: "(max-width: 768px) and (min-width: 481px)" });
+    const isSmallScreen = useMediaQuery({ query: "(max-width: 480px)" });
 
     const getFavorites = async () => {
         const token = localStorage.getItem("token");
@@ -49,6 +58,31 @@ const Dashboard = () => {
         getFavorites();
     }, [wordUpdate]);
 
+    useEffect(() => {
+        const handleScroll = () => {
+            const st = window.pageYOffset || document.documentElement.scrollTop;
+            const offset = isLargeScreen ? "80px" : isMediumScreen ? "70px" : "65px";
+
+            if (st > lastScrollTop) {
+                // Scroll down
+                if (alphabetSelectorRef.current) {
+                    alphabetSelectorRef.current.style.top = offset;
+                }
+            } else if (lastScrollTop - st > scrollThreshold) {
+                // Scroll up beyond threshold
+                if (alphabetSelectorRef.current) {
+                    alphabetSelectorRef.current.style.top = "0px";
+                }
+            }
+            lastScrollTop = st <= 0 ? 0 : st;
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, [isLargeScreen, isMediumScreen, isSmallScreen]);
+
     if (loading) {
         return <Loader />;
     }
@@ -64,10 +98,8 @@ const Dashboard = () => {
         if (wordElement) {
             wordElement.scrollIntoView({ behavior: "instant" });
 
-            // Determine the offset based on screen width
-            const offset = window.innerWidth <= 768 ? -80 : -90;
+            const offset = isLargeScreen ? -115 : isMediumScreen ? -105 : -95;
 
-            // Adjust for the offset
             window.scrollBy(0, offset);
         }
     };
@@ -93,12 +125,14 @@ const Dashboard = () => {
                     ))}
                 </div>
             </div>
-            <div className="alphabet-selector">
-                {"ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map((letter) => (
-                    <button key={letter} onClick={() => handleAlphabetClick(letter)}>
-                        {letter}
-                    </button>
-                ))}
+            <div className="alphabet-selector-container" ref={alphabetSelectorRef}>
+                <div className="alphabet-selector">
+                    {"ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map((letter) => (
+                        <button key={letter} onClick={() => handleAlphabetClick(letter)}>
+                            {letter}
+                        </button>
+                    ))}
+                </div>
             </div>
         </>
     );
