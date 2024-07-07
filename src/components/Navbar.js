@@ -13,6 +13,7 @@ import {
     FaUser,
     FaSearch,
 } from "react-icons/fa";
+import MobileNav from "./MobileNav";
 
 const Navbar = () => {
     const location = useLocation();
@@ -35,10 +36,6 @@ const Navbar = () => {
         { name: "Dashboard", address: "/dashboard", icon: <FaUser /> },
         { name: "Dashboard-2", address: "/dashboard-ows", icon: <FaUser /> },
     ];
-
-    const handleMenuToggle = () => {
-        setOpen(!isOpen);
-    };
 
     const handleSearchChange = (e) => {
         setSearchQuery(e.target.value);
@@ -117,66 +114,12 @@ const Navbar = () => {
                     </div>
                 </div>
             </div>
-            <div className={`hamburger-menu ${isOpen ? "open" : ""}`}>
-                <div className="hamburger-links">
-                    {navLinks.map((navlink, index) => (
-                        <div
-                            key={index}
-                            className={
-                                pathname === navlink.address
-                                    ? "hamburger-link-active"
-                                    : "hamburger-link"
-                            }
-                            onClick={handleMenuToggle}
-                        >
-                            <Link to={navlink.address}>
-                                {navlink.icon}
-                                {navlink.name}
-                            </Link>
-                        </div>
-                    ))}
-                    {user ? (
-                        <>
-                            {userLinks.map((userlink, index) => (
-                                <div
-                                    key={index}
-                                    className={
-                                        pathname === userlink.address
-                                            ? "hamburger-link-active"
-                                            : "hamburger-link"
-                                    }
-                                >
-                                    <Link to={userlink.address}>
-                                        {userlink.icon}
-                                        {userlink.name}
-                                    </Link>
-                                </div>
-                            ))}
-                            <div className="hamburger-link" onClick={logout}>
-                                <span>
-                                    <FaSignOutAlt />
-                                    Logout
-                                </span>
-                            </div>
-                        </>
-                    ) : (
-                        <div
-                            className={
-                                pathname === "/login" ? "hamburger-link-active" : "hamburger-link"
-                            }
-                            onClick={handleMenuToggle}
-                        >
-                            <Link to="/login">
-                                <FaSignInAlt />
-                                Login
-                            </Link>
-                        </div>
-                    )}
-                </div>
-            </div>
-            {isOpen && (
-                <div className={`overlay ${isOpen ? "open" : ""}`} onClick={handleMenuToggle}></div>
-            )}
+            <MobileNav
+                navLinks={navLinks}
+                userLinks={userLinks}
+                isOpen={isOpen}
+                setOpen={setOpen}
+            />
         </header>
     );
 };
