@@ -31,6 +31,11 @@ const Navbar = () => {
         { name: "Cluster", address: "/clusters", icon: <FaBook /> },
     ];
 
+    const userLinks = [
+        { name: "Dashboard", address: "/dashboard", icon: <FaUser /> },
+        { name: "Dashboard-2", address: "/dashboard-ows", icon: <FaUser /> },
+    ];
+
     const handleMenuToggle = () => {
         setOpen(!isOpen);
     };
@@ -79,16 +84,21 @@ const Navbar = () => {
                         ))}
                         {user ? (
                             <>
-                                <div
-                                    className={
-                                        pathname === "/dashboard" ? "link link-active" : "link"
-                                    }
-                                >
-                                    <Link to="/dashboard">
-                                        <FaUser />
-                                        Dashboard
-                                    </Link>
-                                </div>
+                                {userLinks.map((userlink, index) => (
+                                    <div
+                                        key={index}
+                                        className={
+                                            pathname === userlink.address
+                                                ? "link link-active"
+                                                : "link"
+                                        }
+                                    >
+                                        <Link to={userlink.address}>
+                                            {userlink.icon}
+                                            {userlink.name}
+                                        </Link>
+                                    </div>
+                                ))}
                                 <div className="link" onClick={logout}>
                                     <span>
                                         <FaSignOutAlt />
@@ -127,19 +137,21 @@ const Navbar = () => {
                     ))}
                     {user ? (
                         <>
-                            <div
-                                className={
-                                    pathname === "/dashboard"
-                                        ? "hamburger-link-active"
-                                        : "hamburger-link"
-                                }
-                                onClick={handleMenuToggle}
-                            >
-                                <Link to="/dashboard">
-                                    <FaUser />
-                                    Dashboard
-                                </Link>
-                            </div>
+                            {userLinks.map((userlink, index) => (
+                                <div
+                                    key={index}
+                                    className={
+                                        pathname === userlink.address
+                                            ? "hamburger-link-active"
+                                            : "hamburger-link"
+                                    }
+                                >
+                                    <Link to={userlink.address}>
+                                        {userlink.icon}
+                                        {userlink.name}
+                                    </Link>
+                                </div>
+                            ))}
                             <div className="hamburger-link" onClick={logout}>
                                 <span>
                                     <FaSignOutAlt />

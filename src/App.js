@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 // import pages
 import Dashboard from "./pages/Dashboard";
+import DashboardOWS from "./pages/ows/DashboardOWS";
 import Word from "./pages/word/Word";
 import Revision from "./pages/Revision";
 import OWS from "./pages/ows/OWS";
@@ -29,6 +30,7 @@ const App = () => {
                 <Routes>
                     <Route path="/" element={<Word />} />
                     <Route path="/dashboard" element={<Dashboard />} />
+                    <Route path="/dashboard-ows" element={<DashboardOWS />} />
                     <Route path="/revision" element={<Revision />} />
                     <Route path="/ows" element={<OWS />} />
                     <Route path="/idioms" element={<Idiom />} />
