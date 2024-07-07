@@ -82,7 +82,7 @@ const Bookmark = () => {
         };
     }, [isLargeScreen, isMediumScreen, isSmallScreen]);
 
-    const filteredWords = filterWords(words, "", searchQuery);
+    const filteredWords = filterWords(words, searchQuery);
 
     const handleAlphabetClick = (letter) => {
         const wordElement = wordRefs.current[letter];
