@@ -95,6 +95,8 @@ export default function EditOws({ ows, onClose }) {
             return; // Prevent submission
         }
 
+        updatedEntries.sort((a, b) => a.word.localeCompare(b.word));
+
         const url = `${process.env.REACT_APP_SERVER_URL}/ows/${owsId}`;
         const res = await fetch(url, {
             method: "PUT",

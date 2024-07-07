@@ -76,6 +76,8 @@ export default function NewOWS({ onClose }) {
             return; // Prevent submission
         }
 
+        updatedEntries.sort((a, b) => a.word.localeCompare(b.word));
+
         // Perform the API call only if validation passes
         const url = `${process.env.REACT_APP_SERVER_URL}/ows/save`;
         const res = await fetch(url, {
@@ -88,7 +90,6 @@ export default function NewOWS({ onClose }) {
         const data = await res.json();
         if (res.status === 201) {
             // assuming 201 status code for created
-            window.alert(data.message);
             onClose();
             setWordUpdate((prev) => !prev);
         } else {
