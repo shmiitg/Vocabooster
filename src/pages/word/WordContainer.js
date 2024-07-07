@@ -8,7 +8,7 @@ import { underlineWord, checkExistingWord } from "../../utils/utils";
 import { FaStar, FaRegStar } from "react-icons/fa";
 import { AuthContext } from "../../context/AuthContext";
 
-const WordContainer = ({ word, allWords }) => {
+const WordContainer = ({ entry, allWords }) => {
     const { user, addFavorite, removeFavorite, favorites } = useContext(AuthContext);
     const [open, setOpen] = useState(false);
     const [detailsOpen, setDetailsOpen] = useState(false);
@@ -38,21 +38,21 @@ const WordContainer = ({ word, allWords }) => {
         setSelectedWord(null);
     };
 
-    const favObj = { itemType: "word", itemId: String(word._id) };
+    const favObj = { itemType: "word", itemId: String(entry._id) };
     const isFavorite = favorites.has(favObj);
 
     const toggleFavorite = () => {
         if (isFavorite) {
-            removeFavorite("word", word._id);
+            removeFavorite("word", entry._id);
         } else {
-            addFavorite("word", word._id);
+            addFavorite("word", entry._id);
         }
     };
 
     return (
         <div className="word-container-item">
             <div className="word-container-top">
-                <h3>{capitalizeFirstLetter(word.word)}</h3>
+                <h3>{capitalizeFirstLetter(entry.word)}</h3>
                 <div className="update-icons">
                     {user && (
                         <button onClick={toggleFavorite}>
@@ -67,10 +67,10 @@ const WordContainer = ({ word, allWords }) => {
                     <button onClick={() => handleUpdate("delete")}>Delete</button>
                 </div>
             </div>
-            {word.meanings.map((meaning, index) => (
+            {entry.meanings.map((meaning, index) => (
                 <div key={index} className="word-container-bottom">
                     {meaning.definition && <p>{meaning.definition}</p>}
-                    {meaning.example && <p>"{underlineWord(meaning.example, word.word)}"</p>}
+                    {meaning.example && <p>"{underlineWord(meaning.example, entry.word)}"</p>}
                     {meaning.synonyms?.length > 0 && (
                         <p>
                             <strong>Synonyms:</strong>{" "}
@@ -121,9 +121,9 @@ const WordContainer = ({ word, allWords }) => {
                 center
             >
                 {updateType === "edit" ? (
-                    <EditWord word={word} onClose={handleClose} />
+                    <EditWord entry={entry} onClose={handleClose} />
                 ) : (
-                    <DeleteWord wordType="word" word={word} onClose={handleClose} />
+                    <DeleteWord wordType="word" word={entry} onClose={handleClose} />
                 )}
             </Modal>
             {detailsOpen && <WordDetailsModal word={selectedWord} onClose={handleDetailsClose} />}

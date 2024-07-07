@@ -33,7 +33,6 @@ export default function EditSpelling({ spelling, onClose }) {
         });
         const data = await res.json();
         if (res.status === 200) {
-            window.alert(data.message);
             onClose();
             setWordUpdate((prev) => !prev);
         } else {

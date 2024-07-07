@@ -83,14 +83,6 @@ const Dashboard = () => {
         };
     }, [isLargeScreen, isMediumScreen, isSmallScreen]);
 
-    if (loading) {
-        return <Loader />;
-    }
-
-    if (error) {
-        return <h1>Error</h1>;
-    }
-
     const filteredWords = filterWords(words, "", searchQuery);
 
     const handleAlphabetClick = (letter) => {
@@ -104,15 +96,23 @@ const Dashboard = () => {
         }
     };
 
+    if (loading) {
+        return <Loader />;
+    }
+
+    if (error) {
+        return <h1>Error</h1>;
+    }
+
     return (
         <>
             <div className="main-container">
                 <div className="main-container-list">
-                    {filteredWords.map((word) => (
+                    {filteredWords.map((entry) => (
                         <div
-                            key={word._id}
+                            key={entry._id}
                             ref={(el) => {
-                                const firstLetter = word.word.charAt(0).toUpperCase();
+                                const firstLetter = entry.word.charAt(0).toUpperCase();
                                 if (searchQuery === "" && !wordRefs.current[firstLetter]) {
                                     wordRefs.current[firstLetter] = el;
                                 } else if (searchQuery !== "") {
@@ -120,7 +120,7 @@ const Dashboard = () => {
                                 }
                             }}
                         >
-                            <WordContainer word={word} allWords={allWords} />
+                            <WordContainer entry={entry} allWords={allWords} />
                         </div>
                     ))}
                 </div>

@@ -1,12 +1,12 @@
 import React, { useState, useContext, useEffect } from "react";
 import { UpdateContext } from "../../context/UpdateContext";
 
-export default function EditWordDialog({ word, onClose }) {
+export default function EditWordDialog({ entry, onClose }) {
     const { setWordUpdate } = useContext(UpdateContext);
-    const wordId = word._id;
-    const [updatedWord, setUpdatedWord] = useState({
-        ...word,
-        meanings: word.meanings.map((meaning) => ({
+    const entryId = entry._id;
+    const [updatedEntry, setUpdatedEntry] = useState({
+        ...entry,
+        meanings: entry.meanings.map((meaning) => ({
             ...meaning,
             definition: meaning.definition ? meaning.definition : "",
             synonyms: Array.isArray(meaning.synonyms)
@@ -23,29 +23,29 @@ export default function EditWordDialog({ word, onClose }) {
     const handleChange = (e, index) => {
         const { name, value } = e.target;
         if (name === "word") {
-            setUpdatedWord({
-                ...updatedWord,
+            setUpdatedEntry({
+                ...updatedEntry,
                 [name]: value,
             });
         } else {
-            const newMeanings = updatedWord.meanings.map((meaning, i) => {
+            const newMeanings = updatedEntry.meanings.map((meaning, i) => {
                 if (i === index) {
                     return { ...meaning, [name]: value };
                 }
                 return meaning;
             });
-            setUpdatedWord({
-                ...updatedWord,
+            setUpdatedEntry({
+                ...updatedEntry,
                 meanings: newMeanings,
             });
         }
     };
 
     const handleAddMeaning = () => {
-        setUpdatedWord({
-            ...updatedWord,
+        setUpdatedEntry({
+            ...updatedEntry,
             meanings: [
-                ...updatedWord.meanings,
+                ...updatedEntry.meanings,
                 {
                     definition: "",
                     synonyms: "",
@@ -57,14 +57,14 @@ export default function EditWordDialog({ word, onClose }) {
     };
 
     const handleDeleteMeaning = (index) => {
-        setUpdatedWord({
-            ...updatedWord,
-            meanings: updatedWord.meanings.filter((_, i) => i !== index),
+        setUpdatedEntry({
+            ...updatedEntry,
+            meanings: updatedEntry.meanings.filter((_, i) => i !== index),
         });
     };
 
     const handleSubmit = async (e) => {
-        const { word, meanings } = updatedWord;
+        const { word, meanings } = updatedEntry;
 
         if (word === "") {
             setError("Word is required");
@@ -94,7 +94,7 @@ export default function EditWordDialog({ word, onClose }) {
                     : [],
         }));
 
-        const url = `${process.env.REACT_APP_SERVER_URL}/word/${wordId}`;
+        const url = `${process.env.REACT_APP_SERVER_URL}/word/${entryId}`;
         const res = await fetch(url, {
             method: "PUT",
             headers: {
@@ -131,13 +131,13 @@ export default function EditWordDialog({ word, onClose }) {
                     <input
                         type="text"
                         name="word"
-                        value={updatedWord.word}
+                        value={updatedEntry.word}
                         onChange={(e) => handleChange(e)}
                         required
                     />
                 </div>
             </div>
-            {updatedWord.meanings.map((meaning, index) => (
+            {updatedEntry.meanings.map((meaning, index) => (
                 <div key={index} className={`part-group ${index === 0 ? "first-part-group" : ""}`}>
                     <div className="form-group">
                         <div className="form-sub-group">

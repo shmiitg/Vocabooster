@@ -15,3 +15,7 @@ export const filterOws = (ows, alphabet, query) => {
 export const filterIdioms = (idioms, query) => {
     return idioms.filter((entry) => entry.idiom.toLowerCase().includes(query.toLowerCase()));
 };
+
+export const filterSpellings = (spellings, query) => {
+    return spellings.filter((entry) => entry.spelling.toLowerCase().includes(query.toLowerCase()));
+};
