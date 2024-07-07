@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
-import { UpdateContext } from "../../context/UpdateContext";
+import { UpdateContext } from "../context/UpdateContext";
 
-const DeleteSpelling = ({ spelling, onClose }) => {
+const DeleteEntry = ({ entryType, entry, onClose }) => {
     const { setWordUpdate } = useContext(UpdateContext);
-    const spellingId = spelling._id;
+    const entryId = entry._id;
     const handleSubmit = async () => {
-        const url = `${process.env.REACT_APP_SERVER_URL}/spelling/${spellingId}`;
+        const url = `${process.env.REACT_APP_SERVER_URL}/${entryType}/${entryId}`;
         const res = await fetch(url, {
             method: "DELETE",
             headers: {
@@ -24,7 +24,7 @@ const DeleteSpelling = ({ spelling, onClose }) => {
     return (
         <div className="modal-content">
             <h3>
-                Are you sure you want to delete <strong>{spelling.spelling}</strong>?
+                Are you sure you want to delete <strong>{entry[entryType]}</strong>?
             </h3>
             <div className="modal-actions">
                 <button className="submit-button" onClick={onClose}>
@@ -38,4 +38,4 @@ const DeleteSpelling = ({ spelling, onClose }) => {
     );
 };
 
-export default DeleteSpelling;
+export default DeleteEntry;

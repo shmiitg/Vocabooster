@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Modal } from "react-responsive-modal";
 import "react-responsive-modal/styles.css";
 import EditIdiom from "./EditIdiom";
-import DeleteWord from "../../components/DeleteWord";
+import DeleteEntry from "../../components/DeleteEntry";
 
 export default function IdiomContainer({ idiom }) {
     const [open, setOpen] = useState(false);
@@ -40,7 +40,7 @@ export default function IdiomContainer({ idiom }) {
                 {updateType === "edit" ? (
                     <EditIdiom idiom={idiom} onClose={handleClose} />
                 ) : (
-                    <DeleteWord wordType="idiom" word={idiom} onClose={handleClose} />
+                    <DeleteEntry entryType="idiom" entry={idiom} onClose={handleClose} />
                 )}
             </Modal>
         </div>

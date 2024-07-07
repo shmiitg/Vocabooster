@@ -54,8 +54,8 @@ const Revision = () => {
             <div className="main-container">
                 <h2 className="main-container-heading">Daily Revision</h2>
                 <div className="main-container-list">
-                    {revisionWords.map((word) => (
-                        <WordContainer key={word._id} word={word} allWords={allWords} />
+                    {revisionWords.map((entry) => (
+                        <WordContainer key={entry._id} entry={entry} allWords={allWords} />
                     ))}
                 </div>
                 <h2 className="main-container-heading">One Word Substitutions</h2>

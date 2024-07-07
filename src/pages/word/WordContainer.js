@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Modal } from "react-responsive-modal";
 import "react-responsive-modal/styles.css";
 import EditWord from "./EditWord";
-import DeleteWord from "../../components/DeleteWord";
+import DeleteEntry from "../../components/DeleteEntry";
 import WordDetailsModal from "./WordDetailsModal";
 import { underlineWord, checkExistingWord } from "../../utils/utils";
 import { FaStar, FaRegStar } from "react-icons/fa";
@@ -123,7 +123,7 @@ const WordContainer = ({ entry, allWords }) => {
                 {updateType === "edit" ? (
                     <EditWord entry={entry} onClose={handleClose} />
                 ) : (
-                    <DeleteWord wordType="word" word={entry} onClose={handleClose} />
+                    <DeleteEntry entryType="word" entry={entry} onClose={handleClose} />
                 )}
             </Modal>
             {detailsOpen && <WordDetailsModal word={selectedWord} onClose={handleDetailsClose} />}

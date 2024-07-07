@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Modal } from "react-responsive-modal";
 import EditOWS from "./EditOWS";
-import DeleteWord from "../../components/DeleteWord";
+import DeleteEntry from "../../components/DeleteEntry";
 import { underlineWord } from "../../utils/utils";
 import { FaStar, FaRegStar } from "react-icons/fa";
 import { AuthContext } from "../../context/AuthContext";
@@ -74,7 +74,7 @@ export default function OWSContainer({ ows }) {
                 {updateType === "edit" ? (
                     <EditOWS ows={ows} onClose={handleClose} />
                 ) : (
-                    <DeleteWord wordType="ows" word={ows} onClose={handleClose} />
+                    <DeleteEntry entryType="ows" entry={ows} onClose={handleClose} />
                 )}
             </Modal>
         </div>

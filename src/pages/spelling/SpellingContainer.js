@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Modal } from "react-responsive-modal";
 import "react-responsive-modal/styles.css";
 import EditSpelling from "./EditSpelling";
-import DeleteSpelling from "./DeleteSpelling";
+import DeleteEntry from "../../components/DeleteEntry";
 
 export default function SpellingContainer({ spelling }) {
     const [open, setOpen] = useState(false);
@@ -40,7 +40,7 @@ export default function SpellingContainer({ spelling }) {
                 {updateType === "edit" ? (
                     <EditSpelling spelling={spelling} onClose={handleClose} />
                 ) : (
-                    <DeleteSpelling spelling={spelling} onClose={handleClose} />
+                    <DeleteEntry entryType="spelling" entry={spelling} onClose={handleClose} />
                 )}
             </Modal>
         </div>
