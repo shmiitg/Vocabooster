@@ -1,10 +1,30 @@
 import React, { useState, useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { FaSignOutAlt, FaSignInAlt, FaUser, FaChevronDown, FaChevronUp } from "react-icons/fa";
-import { AuthContext } from "../context/AuthContext";
-import "../css/MobileNav.css";
+import {
+    FaHome,
+    FaBook,
+    FaBrain,
+    FaSignOutAlt,
+    FaSignInAlt,
+    FaUser,
+    FaChevronDown,
+    FaChevronUp,
+} from "react-icons/fa";
+import { AuthContext } from "../../context/AuthContext";
 
-const MobileNav = ({ navLinks, userLinks, isOpen, setOpen }) => {
+const MobileNav = ({ isOpen, setOpen }) => {
+    const navLinks = [
+        { name: "Home", address: "/", icon: <FaHome /> },
+        { name: "Revise", address: "/revision", icon: <FaBook /> },
+        { name: "OWS", address: "/ows", icon: <FaBrain /> },
+        { name: "Idiom", address: "/idioms", icon: <FaBook /> },
+        { name: "Spelling", address: "/spellings", icon: <FaBook /> },
+        { name: "Cluster", address: "/clusters", icon: <FaBook /> },
+    ];
+    const userLinks = [
+        { name: "Word", address: "/dashboard" },
+        { name: "OWS", address: "/dashboard-ows" },
+    ];
     const location = useLocation();
     const pathname = location.pathname;
     const { user, logout } = useContext(AuthContext);
@@ -43,7 +63,7 @@ const MobileNav = ({ navLinks, userLinks, isOpen, setOpen }) => {
                             <div className="hamburger-link" onClick={handleSubmenuToggle}>
                                 <span>
                                     <FaUser />
-                                    Dashboard
+                                    Bookmark
                                     {isSubmenuOpen ? <FaChevronUp /> : <FaChevronDown />}
                                 </span>
                             </div>
@@ -58,10 +78,7 @@ const MobileNav = ({ navLinks, userLinks, isOpen, setOpen }) => {
                                                     : "hamburger-link"
                                             }
                                         >
-                                            <Link to={userlink.address}>
-                                                {userlink.icon}
-                                                {userlink.name}
-                                            </Link>
+                                            <Link to={userlink.address}>{userlink.name}</Link>
                                         </div>
                                     ))}
                                 </div>

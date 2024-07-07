@@ -1,3 +1,41 @@
+import { FaHome, FaBook, FaBrain, FaBookmark } from "react-icons/fa";
+
+export const navMenu = [
+    { title: "Home", address: "/", icon: <FaHome /> },
+    { title: "Revise", address: "/revision", icon: <FaBook /> },
+    {
+        title: "Learn",
+        icon: <FaBrain />,
+        submenu: [
+            {
+                title: "OWS",
+                address: "/ows",
+            },
+            {
+                title: "Idiom",
+                address: "/idioms",
+            },
+            {
+                title: "Spelling",
+                address: "/spellings",
+            },
+            {
+                title: "Cluster",
+                address: "/clusters",
+            },
+        ],
+    },
+];
+
+export const bookmarkMenu = {
+    title: "Bookmark",
+    icon: <FaBookmark />,
+    submenu: [
+        { title: "Word", address: "/dashboard" },
+        { title: "OWS", address: "/dashboard-ows" },
+    ],
+};
+
 export function underlineWord(text, word) {
     const regex = new RegExp(`(${word}(?:ing|ed|ly|s|d)?)`, "gi");
     const parts = text.split(regex);
