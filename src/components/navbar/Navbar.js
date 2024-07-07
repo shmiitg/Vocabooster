@@ -54,7 +54,7 @@ const Navbar = () => {
                             <>
                                 <NavItem navItem={bookmarkMenu} />
                                 <div className="link-container" onClick={logout}>
-                                    <span className="link">
+                                    <span className="link logout-link">
                                         <FaSignOutAlt />
                                         Logout
                                     </span>

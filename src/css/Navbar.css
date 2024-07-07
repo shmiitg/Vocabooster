@@ -101,6 +101,15 @@
     background-color: #21a1f1;
 }
 
+.logout-link {
+    background-color: transparent;
+    color: #fff;
+}
+
+.logout-link:hover {
+    background-color: transparent;
+}
+
 .link span {
     display: inline-flex;
     align-items: center;
