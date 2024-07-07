@@ -1,18 +1,16 @@
 import React, { useState, useContext } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Hamburger from "hamburger-react";
 import { AuthContext } from "../../context/AuthContext";
 import { SearchContext } from "../../context/SearchContext";
-import { FaSignOutAlt, FaSignInAlt, FaSearch } from "react-icons/fa";
+import { FaSignOutAlt, FaSearch } from "react-icons/fa";
 import MobileNav from "./MobileNav";
-import { navMenu, bookmarkMenu } from "../../utils/utils";
+import { navMenu } from "../../utils/utils";
 import NavItem from "./NavItem";
 import "../../css/Navbar.css";
 import "../../css/MobileNav.css";
 
 const Navbar = () => {
-    const location = useLocation();
-    const pathname = location.pathname;
     const { user, logout } = useContext(AuthContext);
     const { searchQuery, setSearchQuery } = useContext(SearchContext);
 
@@ -47,28 +45,21 @@ const Navbar = () => {
                         <Hamburger toggled={isOpen} toggle={setOpen} />
                     </div>
                     <div className="nav-links">
-                        {navMenu.map((navItem, index) => (
-                            <NavItem key={index} navItem={navItem} />
-                        ))}
-                        {user ? (
-                            <>
-                                <NavItem navItem={bookmarkMenu} />
-                                <div className="link-container" onClick={logout}>
-                                    <span className="link logout-link">
-                                        <FaSignOutAlt />
-                                        Logout
-                                    </span>
-                                </div>
-                            </>
-                        ) : (
-                            <div className="link-container">
-                                <Link
-                                    className={pathname === "/login" ? "link link-active" : "link"}
-                                    to="/login"
-                                >
-                                    <FaSignInAlt />
-                                    Login
-                                </Link>
+                        {navMenu.map((navItem, index) => {
+                            if (navItem.requiresAuth && !user) {
+                                return null;
+                            }
+                            if (navItem.guestOnly && user) {
+                                return null;
+                            }
+                            return <NavItem key={index} navItem={navItem} />;
+                        })}
+                        {user && (
+                            <div className="link-container" onClick={logout}>
+                                <span className="link logout-link">
+                                    <FaSignOutAlt />
+                                    Logout
+                                </span>
                             </div>
                         )}
                     </div>
