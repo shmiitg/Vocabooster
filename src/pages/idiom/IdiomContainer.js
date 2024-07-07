@@ -26,7 +26,7 @@ export default function IdiomContainer({ idiom }) {
                     <button onClick={() => handleUpdate("delete")}>Delete</button>
                 </div>
             </div>
-            <div className="word-container-bottom reduce-margin">
+            <div className="word-container-bottom">
                 {idiom.meaning && <p>{idiom.meaning}</p>}
                 {idiom.example && <p>"{idiom.example}"</p>}
             </div>
