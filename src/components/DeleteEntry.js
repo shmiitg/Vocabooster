@@ -24,7 +24,8 @@ const DeleteEntry = ({ entryType, entry, onClose }) => {
     return (
         <div className="modal-content">
             <h3>
-                Are you sure you want to delete <strong>{entry[entryType]}</strong>?
+                Are you sure you want to delete
+                {entryType !== "ows" && <strong>{entry[entryType]}</strong>}?
             </h3>
             <div className="modal-actions">
                 <button className="submit-button" onClick={onClose}>
