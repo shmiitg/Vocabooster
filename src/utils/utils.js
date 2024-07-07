@@ -31,8 +31,8 @@ export const bookmarkMenu = {
     title: "Bookmark",
     icon: <FaBookmark />,
     submenu: [
-        { title: "Word", address: "/dashboard" },
-        { title: "OWS", address: "/dashboard-ows" },
+        { title: "Word", address: "/bookmark" },
+        { title: "OWS", address: "/bookmark-ows" },
     ],
 };
 

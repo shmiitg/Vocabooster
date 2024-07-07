@@ -22,8 +22,8 @@ const MobileNav = ({ isOpen, setOpen }) => {
         { name: "Cluster", address: "/clusters", icon: <FaBook /> },
     ];
     const userLinks = [
-        { name: "Word", address: "/dashboard" },
-        { name: "OWS", address: "/dashboard-ows" },
+        { name: "Word", address: "/bookmark" },
+        { name: "OWS", address: "/bookmark-ows" },
     ];
     const location = useLocation();
     const pathname = location.pathname;

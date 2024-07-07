@@ -6,12 +6,11 @@ import OWSContainer from "./OWSContainer";
 import { filterOws } from "../../utils/filter";
 import { sortOws } from "../../utils/sort";
 
-const DashboardOWS = () => {
+const BookmarkOWS = () => {
     const { wordUpdate } = useContext(UpdateContext);
     const { searchQuery } = useContext(SearchContext);
 
     const [ows, setOws] = useState([]);
-    const [selectedAlphabet, setSelectedAlphabet] = useState("A");
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
 
@@ -51,23 +50,10 @@ const DashboardOWS = () => {
         return <h1>Error</h1>;
     }
 
-    const filteredOWS = filterOws(ows, selectedAlphabet, searchQuery);
+    const filteredOWS = filterOws(ows, "", searchQuery);
 
     return (
         <>
-            <div className="alphabet-nav">
-                <div className="alphabets">
-                    {"ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map((letter) => (
-                        <button
-                            key={letter}
-                            onClick={() => setSelectedAlphabet(letter)}
-                            className={selectedAlphabet === letter ? "selected" : ""}
-                        >
-                            {letter}
-                        </button>
-                    ))}
-                </div>
-            </div>
             <div className="main-container">
                 <div className="main-container-list">
                     {filteredOWS.map((ows) => (
@@ -79,4 +65,4 @@ const DashboardOWS = () => {
     );
 };
 
-export default DashboardOWS;
+export default BookmarkOWS;

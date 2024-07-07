@@ -1,15 +1,14 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
-import { UpdateContext } from "../context/UpdateContext";
-import { SearchContext } from "../context/SearchContext";
-import Loader from "../components/Loader";
-import WordContainer from "./word/WordContainer";
-import { getAllWords } from "../utils/utils";
-import { sortWords } from "../utils/sort";
-import { filterWords } from "../utils/filter";
+import { UpdateContext } from "../../context/UpdateContext";
+import { SearchContext } from "../../context/SearchContext";
+import Loader from "../../components/Loader";
+import WordContainer from "./WordContainer";
+import { getAllWords } from "../../utils/utils";
+import { sortWords } from "../../utils/sort";
+import { filterWords } from "../../utils/filter";
 import { useMediaQuery } from "react-responsive";
-import "../css/Dashboard.css";
 
-const Dashboard = () => {
+const Bookmark = () => {
     const { wordUpdate } = useContext(UpdateContext);
     const { searchQuery } = useContext(SearchContext);
 
@@ -138,4 +137,4 @@ const Dashboard = () => {
     );
 };
 
-export default Dashboard;
+export default Bookmark;

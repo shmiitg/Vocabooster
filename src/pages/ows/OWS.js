@@ -15,7 +15,6 @@ const OWS = () => {
     const [open, setOpen] = useState(false);
 
     const [owsWords, setOwsWords] = useState([]);
-    const [selectedAlphabet, setSelectedAlphabet] = useState("A");
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
 
@@ -55,23 +54,10 @@ const OWS = () => {
         return <h1>Error</h1>;
     }
 
-    const filteredOWS = filterOws(owsWords, selectedAlphabet, searchQuery);
+    const filteredOWS = filterOws(owsWords, "", searchQuery);
 
     return (
         <>
-            <div className="alphabet-nav">
-                <div className="alphabets">
-                    {"ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map((letter) => (
-                        <button
-                            key={letter}
-                            onClick={() => setSelectedAlphabet(letter)}
-                            className={selectedAlphabet === letter ? "selected" : ""}
-                        >
-                            {letter}
-                        </button>
-                    ))}
-                </div>
-            </div>
             <div className="main-container">
                 <div className="main-container-list">
                     {filteredOWS.map((ows) => (

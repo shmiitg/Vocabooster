@@ -4,8 +4,8 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/Footer";
 // import pages
-import Dashboard from "./pages/Dashboard";
-import DashboardOWS from "./pages/ows/DashboardOWS";
+import Bookmark from "./pages/word/Bookmark";
+import BookmarkOWS from "./pages/ows/BookmarkOWS";
 import Word from "./pages/word/Word";
 import Revision from "./pages/Revision";
 import OWS from "./pages/ows/OWS";
@@ -29,20 +29,17 @@ const App = () => {
             <main>
                 <Routes>
                     <Route path="/" element={<Word />} />
-                    <Route path="/dashboard" element={<Dashboard />} />
-                    <Route path="/dashboard-ows" element={<DashboardOWS />} />
+                    <Route path="/bookmark" element={<Bookmark />} />
+                    <Route path="/bookmark-ows" element={<BookmarkOWS />} />
                     <Route path="/revision" element={<Revision />} />
                     <Route path="/ows" element={<OWS />} />
                     <Route path="/idioms" element={<Idiom />} />
                     <Route path="/spellings" element={<Spelling />} />
                     <Route path="/clusters" element={<Cluster />} />
-                    <Route
-                        path="/login"
-                        element={user ? <Navigate to="/dashboard" /> : <Login />}
-                    />
+                    <Route path="/login" element={user ? <Navigate to="/bookmark" /> : <Login />} />
                     <Route
                         path="/register"
-                        element={user ? <Navigate to="/dashboard" /> : <Register />}
+                        element={user ? <Navigate to="/bookmark" /> : <Register />}
                     />
                 </Routes>
             </main>

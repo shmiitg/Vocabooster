@@ -26,7 +26,7 @@ const Register = () => {
         if (res.status === 201) {
             localStorage.setItem("token", data.token);
             fetchUser(data.token);
-            navigate("/dashboard");
+            navigate("/bookmark");
         } else {
             window.alert(data.error);
         }
