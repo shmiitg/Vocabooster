@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Dropdown from "./Dropdown";
 
@@ -7,14 +7,20 @@ const NavItem = ({ navItem }) => {
     const pathname = location.pathname;
 
     const [dropdown, setDropdown] = useState(false);
+    const navItemRef = useRef(null);
+
+    const handleDropdownToggle = (event) => {
+        event.stopPropagation();
+        setDropdown((prev) => !prev);
+    };
 
     return (
         <>
             {navItem.submenu ? (
-                <div className="link-container">
+                <div ref={navItemRef} className="link-container">
                     <button
                         aria-expanded={dropdown ? "true" : "false"}
-                        onClick={() => setDropdown((prev) => !prev)}
+                        onClick={handleDropdownToggle}
                         className="link"
                     >
                         {navItem.icon}
@@ -24,6 +30,7 @@ const NavItem = ({ navItem }) => {
                         dropdown={dropdown}
                         submenu={navItem.submenu}
                         setDropdown={setDropdown}
+                        navItemRef={navItemRef}
                     />
                 </div>
             ) : (
