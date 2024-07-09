@@ -14,11 +14,11 @@ const Word = () => {
     const { searchQuery } = useContext(SearchContext);
 
     const [open, setOpen] = useState(false);
-
     const [words, setWords] = useState([]);
     const [allWords, setAllWords] = useState(new Set());
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
+    const [isFirstLoad, setIsFirstLoad] = useState(true); // New state to track the first load
 
     const wordRefs = useRef({});
     const alphabetSelectorRef = useRef(null);
@@ -30,13 +30,28 @@ const Word = () => {
     const isMediumScreen = useMediaQuery({ query: "(max-width: 768px) and (min-width: 481px)" });
     const isSmallScreen = useMediaQuery({ query: "(max-width: 480px)" });
 
-    const getWords = async () => {
+    const getWords = async (useCache = false) => {
+        if (useCache) {
+            const cachedWords = localStorage.getItem("cachedWords");
+            if (cachedWords) {
+                const parsedWords = JSON.parse(cachedWords);
+                setWords(sortWords(parsedWords));
+                const allWordsList = new Set(
+                    parsedWords.flatMap((word) => word.word.toLowerCase())
+                );
+                setAllWords(allWordsList);
+                setLoading(false);
+                return;
+            }
+        }
+
         try {
             const url = `${process.env.REACT_APP_SERVER_URL}/word`;
             const res = await fetch(url);
             const data = await res.json();
             if (res.status === 200) {
                 setWords(sortWords(data.words));
+                localStorage.setItem("cachedWords", JSON.stringify(data.words));
                 const allWordsList = new Set(data.words.flatMap((word) => word.word.toLowerCase()));
                 setAllWords(allWordsList);
             } else {
@@ -57,7 +72,12 @@ const Word = () => {
     };
 
     useEffect(() => {
-        getWords();
+        if (isFirstLoad) {
+            getWords(true); // Load from cache on first load
+            setIsFirstLoad(false); // Set the first load flag to false
+        } else {
+            getWords(); // Fetch from server on subsequent updates
+        }
     }, [wordUpdate]);
 
     const filteredWords = filterWords(words, searchQuery);
