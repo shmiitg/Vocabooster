@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import MobileNavItem from "./MobileNavItem";
 import { navMenu } from "../../utils/utils";
 import { FaSignOutAlt } from "react-icons/fa";
