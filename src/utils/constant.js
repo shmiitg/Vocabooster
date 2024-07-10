@@ -1,1 +1,1 @@
-const scrollThreshold = 5;
+export const scrollThreshold = 0;
