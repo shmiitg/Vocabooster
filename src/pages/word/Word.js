@@ -7,6 +7,7 @@ import WordContainer from "./WordContainer";
 import NewWord from "./NewWord";
 import { sortWords } from "../../utils/sort";
 import { filterWords } from "../../utils/filter";
+import { scrollThreshold } from "../../utils/constant";
 import { useMediaQuery } from "react-responsive";
 
 const Word = () => {
@@ -18,40 +19,23 @@ const Word = () => {
     const [allWords, setAllWords] = useState(new Set());
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
-    const [isFirstLoad, setIsFirstLoad] = useState(true); // New state to track the first load
 
     const wordRefs = useRef({});
     const alphabetSelectorRef = useRef(null);
     let lastScrollTop = 0;
-    const scrollThreshold = 5; // Define the scroll threshold
 
     // Define media queries
     const isLargeScreen = useMediaQuery({ query: "(min-width: 769px)" });
     const isMediumScreen = useMediaQuery({ query: "(max-width: 768px) and (min-width: 481px)" });
     const isSmallScreen = useMediaQuery({ query: "(max-width: 480px)" });
 
-    const getWords = async (useCache = false) => {
-        if (useCache) {
-            const cachedWords = localStorage.getItem("cachedWords");
-            if (cachedWords) {
-                const parsedWords = JSON.parse(cachedWords);
-                setWords(sortWords(parsedWords));
-                const allWordsList = new Set(
-                    parsedWords.flatMap((word) => word.word.toLowerCase())
-                );
-                setAllWords(allWordsList);
-                setLoading(false);
-                return;
-            }
-        }
-
+    const getWords = async () => {
         try {
             const url = `${process.env.REACT_APP_SERVER_URL}/word`;
             const res = await fetch(url);
             const data = await res.json();
             if (res.status === 200) {
                 setWords(sortWords(data.words));
-                localStorage.setItem("cachedWords", JSON.stringify(data.words));
                 const allWordsList = new Set(data.words.flatMap((word) => word.word.toLowerCase()));
                 setAllWords(allWordsList);
             } else {
@@ -72,12 +56,7 @@ const Word = () => {
     };
 
     useEffect(() => {
-        if (isFirstLoad) {
-            getWords(true); // Load from cache on first load
-            setIsFirstLoad(false); // Set the first load flag to false
-        } else {
-            getWords(); // Fetch from server on subsequent updates
-        }
+        getWords();
     }, [wordUpdate]);
 
     const filteredWords = filterWords(words, searchQuery);

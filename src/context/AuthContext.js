@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import UniqueObjectSet from "../utils/uniqueObjectSet";
+import UniqueObjectSet from "../utils/class/uniqueObjectSet";
 
 export const AuthContext = createContext();
 
