@@ -95,7 +95,16 @@ export default function EditOws({ ows, onClose }) {
             return; // Prevent submission
         }
 
-        updatedEntries.sort((a, b) => a.word.localeCompare(b.word));
+        const finalEntries = updatedEntries.map((entry) => {
+            const trimmedWord = entry.word.trim();
+            const word = trimmedWord.charAt(0).toUpperCase() + trimmedWord.slice(1).toLowerCase();
+            const definition = entry.definition.trim();
+            const example = entry.example.trim();
+
+            return { word, definition, example };
+        });
+
+        finalEntries.sort((a, b) => a.word.localeCompare(b.word));
 
         const url = `${process.env.REACT_APP_SERVER_URL}/ows/${owsId}`;
         const res = await fetch(url, {
@@ -103,7 +112,7 @@ export default function EditOws({ ows, onClose }) {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ ows: updatedEntries }),
+            body: JSON.stringify({ ows: finalEntries }),
         });
         const data = await res.json();
         if (res.status === 200) {
