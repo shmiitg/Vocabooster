@@ -6,6 +6,7 @@ import WordContainer from "./WordContainer";
 import { getAllWords } from "../../utils/utils";
 import { sortWords } from "../../utils/sort";
 import { filterWords } from "../../utils/filter";
+import { scrollThreshold } from "../../utils/constant";
 import { useMediaQuery } from "react-responsive";
 
 const Bookmark = () => {
@@ -20,7 +21,6 @@ const Bookmark = () => {
     const wordRefs = useRef({});
     const alphabetSelectorRef = useRef(null);
     let lastScrollTop = 0;
-    const scrollThreshold = 5; // Define the scroll threshold
 
     // Define media queries
     const isLargeScreen = useMediaQuery({ query: "(min-width: 769px)" });

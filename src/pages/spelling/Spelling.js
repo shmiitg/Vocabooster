@@ -7,6 +7,7 @@ import SpellingContainer from "./SpellingContainer";
 import NewSpelling from "./NewSpelling";
 import { sortSpellings } from "../../utils/sort";
 import { filterSpellings } from "../../utils/filter";
+import { scrollThreshold } from "../../utils/constant";
 import { useMediaQuery } from "react-responsive";
 
 const Spelling = () => {
@@ -22,7 +23,6 @@ const Spelling = () => {
     const spellingRefs = useRef({});
     const alphabetSelectorRef = useRef(null);
     let lastScrollTop = 0;
-    const scrollThreshold = 5; // Define the scroll threshold
 
     // Define media queries
     const isLargeScreen = useMediaQuery({ query: "(min-width: 769px)" });
