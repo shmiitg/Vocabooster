@@ -86,9 +86,8 @@ const NewWord = ({ onClose }) => {
             return;
         }
 
-        // Convert synonyms and antonyms strings to arrays
         const finalMeanings = updatedMeanings.map((meaning) => ({
-            ...meaning,
+            definition: meaning.definition.trim(),
             synonyms:
                 meaning.synonyms.length > 0
                     ? meaning.synonyms.split(",").map((item) => item.trim().toLowerCase())
@@ -97,6 +96,7 @@ const NewWord = ({ onClose }) => {
                 meaning.antonyms.length > 0
                     ? meaning.antonyms.split(",").map((item) => item.trim().toLowerCase())
                     : [],
+            example: meaning.example.trim(),
         }));
 
         const res = await fetch(`${process.env.REACT_APP_SERVER_URL}/word/save`, {

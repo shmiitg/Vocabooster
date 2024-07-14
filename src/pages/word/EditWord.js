@@ -91,8 +91,7 @@ export default function EditWordDialog({ entry, onClose }) {
         }
 
         const finalMeanings = updatedMeanings.map((meaning) => ({
-            ...meaning,
-            definition: meaning.definition.length > 0 ? "" : "",
+            definition: meaning.definition.trim(),
             synonyms:
                 meaning.synonyms.length > 0
                     ? meaning.synonyms.split(",").map((item) => item.trim().toLowerCase())
@@ -101,6 +100,7 @@ export default function EditWordDialog({ entry, onClose }) {
                 meaning.antonyms.length > 0
                     ? meaning.antonyms.split(",").map((item) => item.trim().toLowerCase())
                     : [],
+            example: meaning.example.trim(),
         }));
 
         const url = `${process.env.REACT_APP_SERVER_URL}/word/${entryId}`;
