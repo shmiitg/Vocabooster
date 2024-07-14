@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { UpdateContext } from "../../context/UpdateContext";
+import { trimCapitalize } from "../../utils/utils";
 
 export default function EditWordDialog({ entry, onClose }) {
     const { setWordUpdate } = useContext(UpdateContext);
@@ -66,7 +67,9 @@ export default function EditWordDialog({ entry, onClose }) {
     const handleSubmit = async (e) => {
         const { word, meanings } = updatedEntry;
 
-        if (word === "") {
+        const finalWord = trimCapitalize(word);
+
+        if (finalWord === "") {
             setError("Word is required");
             return;
         }
@@ -81,9 +84,15 @@ export default function EditWordDialog({ entry, onClose }) {
             return hasDefinition || hasSynonyms || hasAntonyms || hasExample;
         });
 
-        // Convert synonyms and antonyms strings to arrays
+        // Check if there are no valid meanings
+        if (updatedMeanings.length === 0) {
+            setError("Please fill out at least one entry");
+            return;
+        }
+
         const finalMeanings = updatedMeanings.map((meaning) => ({
             ...meaning,
+            definition: meaning.definition.length > 0 ? "" : "",
             synonyms:
                 meaning.synonyms.length > 0
                     ? meaning.synonyms.split(",").map((item) => item.trim().toLowerCase())
@@ -100,7 +109,7 @@ export default function EditWordDialog({ entry, onClose }) {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ word, meanings: finalMeanings }),
+            body: JSON.stringify({ word: finalWord, meanings: finalMeanings }),
         });
         const data = await res.json();
         if (res.status === 200) {

@@ -1,36 +1,9 @@
-import { FaHome, FaBook, FaBrain, FaBookmark, FaSignInAlt } from "react-icons/fa";
-
-export const navMenu = [
-    { title: "Home", address: "/", icon: <FaHome />, requiresAuth: false },
-    { title: "Revise", address: "/revision", icon: <FaBook />, requiresAuth: false },
-    {
-        title: "Learn",
-        icon: <FaBrain />,
-        requiresAuth: false,
-        submenu: [
-            { title: "OWS", address: "/ows" },
-            { title: "Idiom", address: "/idioms" },
-            { title: "Spelling", address: "/spellings" },
-            { title: "Cluster", address: "/clusters" },
-        ],
-    },
-    {
-        title: "Bookmark",
-        icon: <FaBookmark />,
-        requiresAuth: true,
-        submenu: [
-            { title: "Word", address: "/bookmark" },
-            { title: "OWS", address: "/bookmark-ows" },
-        ],
-    },
-    {
-        title: "Login",
-        address: "/login",
-        icon: <FaSignInAlt />,
-        requiresAuth: false,
-        guestOnly: true,
-    },
-];
+export function trimCapitalize(word) {
+    const trimmedWord = word.trim();
+    if (trimmedWord === "") return "";
+    const finalWord = trimmedWord.charAt(0).toUpperCase() + trimmedWord.slice(1).toLowerCase();
+    return finalWord;
+}
 
 export function underlineWord(text, word) {
     const regex = new RegExp(`(${word}(?:ing|ed|ly|s|d)?)`, "gi");

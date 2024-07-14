@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { UpdateContext } from "../../context/UpdateContext";
+import { trimCapitalize } from "../../utils/utils";
 
 export default function EditSpelling({ spelling, onClose }) {
     const { setWordUpdate } = useContext(UpdateContext);
@@ -18,7 +19,9 @@ export default function EditSpelling({ spelling, onClose }) {
     const handleSubmit = async (e) => {
         const { spelling } = updatedSpelling;
 
-        if (spelling === "") {
+        const finalSpelling = trimCapitalize(spelling);
+
+        if (finalSpelling === "") {
             setError("Spelling is required");
             return;
         }
@@ -29,7 +32,7 @@ export default function EditSpelling({ spelling, onClose }) {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ spelling }),
+            body: JSON.stringify({ spelling: finalSpelling }),
         });
         const data = await res.json();
         if (res.status === 200) {

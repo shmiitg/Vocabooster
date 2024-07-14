@@ -5,7 +5,7 @@ import { AuthContext } from "../../context/AuthContext";
 import { SearchContext } from "../../context/SearchContext";
 import { FaSignOutAlt, FaSearch } from "react-icons/fa";
 import MobileNav from "./MobileNav";
-import { navMenu } from "../../utils/utils";
+import { navMenu } from "../../utils/constant";
 import NavItem from "./NavItem";
 import "../../css/Navbar.css";
 import "../../css/MobileNav.css";

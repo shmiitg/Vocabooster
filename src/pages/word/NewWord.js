@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { UpdateContext } from "../../context/UpdateContext";
+import { trimCapitalize } from "../../utils/utils";
 
 const NewWord = ({ onClose }) => {
     const { setWordUpdate } = useContext(UpdateContext);
@@ -62,7 +63,9 @@ const NewWord = ({ onClose }) => {
     const handleSubmit = async (e) => {
         const { word, meanings } = newWord;
 
-        if (word === "") {
+        const finalWord = trimCapitalize(word);
+
+        if (finalWord === "") {
             setError("Word is required");
             return;
         }
@@ -78,10 +81,10 @@ const NewWord = ({ onClose }) => {
         });
 
         // Check if there are no valid meanings
-        // if (updatedMeanings.length === 0) {
-        //     setError("Please fill out at least one entry");
-        //     return; // Prevent submission
-        // }
+        if (updatedMeanings.length === 0) {
+            setError("Please fill out at least one entry");
+            return;
+        }
 
         // Convert synonyms and antonyms strings to arrays
         const finalMeanings = updatedMeanings.map((meaning) => ({
@@ -101,7 +104,7 @@ const NewWord = ({ onClose }) => {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ word, meanings: finalMeanings }),
+            body: JSON.stringify({ word: finalWord, meanings: finalMeanings }),
         });
         const data = await res.json();
         if (res.status === 200) {

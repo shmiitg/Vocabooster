@@ -1,23 +1,26 @@
 import React, { useState, useContext, useEffect } from "react";
 import { UpdateContext } from "../../context/UpdateContext";
+import { trimCapitalize } from "../../utils/utils";
 
 const NewSpelling = ({ onClose }) => {
     const { setWordUpdate } = useContext(UpdateContext);
-    const [NewSpelling, setNewSpelling] = useState({ spelling: "" });
+    const [newSpelling, setNewSpelling] = useState({ spelling: "" });
     const [error, setError] = useState("");
 
-    const handleChange = (e, index) => {
+    const handleChange = (e) => {
         const { name, value } = e.target;
         setNewSpelling({
-            ...NewSpelling,
+            ...newSpelling,
             [name]: value,
         });
     };
 
     const handleSubmit = async (e) => {
-        const { spelling } = NewSpelling;
+        const { spelling } = newSpelling;
 
-        if (spelling === "") {
+        const finalSpelling = trimCapitalize(spelling);
+
+        if (finalSpelling === "") {
             setError("Spelling is required");
             return;
         }
@@ -27,7 +30,7 @@ const NewSpelling = ({ onClose }) => {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ spelling }),
+            body: JSON.stringify({ spelling: finalSpelling }),
         });
         const data = await res.json();
         if (res.status === 200) {
@@ -58,7 +61,7 @@ const NewSpelling = ({ onClose }) => {
                     <input
                         type="text"
                         name="spelling"
-                        value={NewSpelling.spelling}
+                        value={newSpelling.spelling}
                         onChange={(e) => handleChange(e)}
                         required
                     />

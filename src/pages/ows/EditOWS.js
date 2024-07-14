@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { UpdateContext } from "../../context/UpdateContext";
+import { trimCapitalize } from "../../utils/utils";
 
 export default function EditOws({ ows, onClose }) {
     const { setWordUpdate } = useContext(UpdateContext);
@@ -96,8 +97,7 @@ export default function EditOws({ ows, onClose }) {
         }
 
         const finalEntries = updatedEntries.map((entry) => {
-            const trimmedWord = entry.word.trim();
-            const word = trimmedWord.charAt(0).toUpperCase() + trimmedWord.slice(1).toLowerCase();
+            const word = trimCapitalize(entry.word);
             const definition = entry.definition.trim();
             const example = entry.example.trim();
 

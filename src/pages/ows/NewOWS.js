@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { UpdateContext } from "../../context/UpdateContext";
+import { trimCapitalize } from "../../utils/utils";
 
 export default function NewOWS({ onClose }) {
     const { setWordUpdate } = useContext(UpdateContext);
@@ -73,12 +74,11 @@ export default function NewOWS({ onClose }) {
         // Check if there are no valid entries
         if (updatedEntries.length === 0) {
             setError("Please fill out at least one word entry.");
-            return; // Prevent submission
+            return;
         }
 
         const finalEntries = updatedEntries.map((entry) => {
-            const trimmedWord = entry.word.trim();
-            const word = trimmedWord.charAt(0).toUpperCase() + trimmedWord.slice(1).toLowerCase();
+            const word = trimCapitalize(entry.word);
             const definition = entry.definition.trim();
             const example = entry.example.trim();
 
