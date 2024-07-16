@@ -23,18 +23,22 @@ const Dropdown = ({ submenu, dropdown, setDropdown, navItemRef }) => {
     }, [dropdown]);
 
     return (
-        <div ref={dropdownRef} className={`dropdown ${dropdown ? "dropdown-show" : ""}`}>
-            {submenu.map((item, index) => (
-                <Link
-                    to={item.address}
-                    key={index}
-                    className="dropdown-items"
-                    onClick={() => setDropdown(false)}
-                >
-                    {item.title}
-                </Link>
-            ))}
-        </div>
+        <>
+            {dropdown && (
+                <div ref={dropdownRef} className="dropdown">
+                    {submenu.map((item, index) => (
+                        <Link
+                            to={item.address}
+                            key={index}
+                            className="dropdown-items"
+                            onClick={() => setDropdown(false)}
+                        >
+                            {item.title}
+                        </Link>
+                    ))}
+                </div>
+            )}
+        </>
     );
 };
 

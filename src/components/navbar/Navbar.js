@@ -8,7 +8,6 @@ import MobileNav from "./MobileNav";
 import { navMenu } from "../../utils/constant";
 import NavItem from "./NavItem";
 import "../../css/Navbar.css";
-import "../../css/MobileNav.css";
 
 const Navbar = () => {
     const { user, logout } = useContext(AuthContext);

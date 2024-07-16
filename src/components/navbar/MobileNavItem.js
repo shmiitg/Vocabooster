@@ -10,6 +10,11 @@ const MobileNavItem = ({ navItem, handleMenuToggle }) => {
 
     const toggleDropdown = () => setDropdown((prev) => !prev);
 
+    const handleMenuToggleMobile = () => {
+        handleMenuToggle();
+        toggleDropdown();
+    };
+
     return (
         <div>
             {navItem.submenu ? (
@@ -31,7 +36,7 @@ const MobileNavItem = ({ navItem, handleMenuToggle }) => {
                                             ? "hamburger-link-active"
                                             : "hamburger-link"
                                     }
-                                    onClick={handleMenuToggle}
+                                    onClick={handleMenuToggleMobile}
                                 >
                                     <Link to={item.address}>{item.title}</Link>
                                 </div>
