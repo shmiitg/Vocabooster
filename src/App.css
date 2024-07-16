@@ -138,6 +138,7 @@ main {
     justify-content: center;
     transform: translateX(-50%);
     position: fixed;
+    top: 0;
     left: 50%;
     transition: top 0.3s ease; /* Smooth transition for hiding */
     z-index: 1; /* Ensure it hides behind the header */
