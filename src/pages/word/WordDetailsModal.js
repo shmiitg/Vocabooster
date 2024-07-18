@@ -7,23 +7,23 @@ const WordDetailsModal = ({ word, onClose }) => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
 
-    useEffect(() => {
-        const fetchWordDetails = async () => {
-            try {
-                const url = `${process.env.REACT_APP_SERVER_URL}/word/${word}`;
-                const res = await fetch(url);
-                const data = await res.json();
-                if (res.status === 200) {
-                    setWordDetails(data.word);
-                    setLoading(false);
-                } else {
-                    setError(true);
-                }
-            } catch (err) {
+    const fetchWordDetails = async () => {
+        const words = JSON.parse(localStorage.getItem("words"));
+        try {
+            const lowerCaseWord = word.toLowerCase();
+            const wordDetails = words.find((w) => w.word.toLowerCase() === lowerCaseWord);
+            if (wordDetails) {
+                setWordDetails(wordDetails);
+                setLoading(false);
+            } else {
                 setError(true);
             }
-        };
+        } catch (err) {
+            setError(true);
+        }
+    };
 
+    useEffect(() => {
         fetchWordDetails();
     }, [word]);
 

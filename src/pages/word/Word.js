@@ -38,6 +38,7 @@ const Word = () => {
                 setWords(sortWords(data.words));
                 const allWordsList = new Set(data.words.flatMap((word) => word.word.toLowerCase()));
                 setAllWords(allWordsList);
+                localStorage.setItem("words", JSON.stringify(data.words));
             } else {
                 setError(true);
             }
