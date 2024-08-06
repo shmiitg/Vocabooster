@@ -2,7 +2,16 @@ import { FaHome, FaBook, FaBrain, FaBookmark, FaSignInAlt } from "react-icons/fa
 
 export const navMenu = [
     { title: "Home", address: "/", icon: <FaHome />, requiresAuth: false },
-    { title: "Revise", address: "/revision", icon: <FaBook />, requiresAuth: false },
+    {
+        title: "Revise",
+        icon: <FaBook />,
+        requiresAuth: false,
+        submenu: [
+            { title: "Word", address: "/revise-word" },
+            { title: "OWS", address: "/revise-ows" },
+            { title: "Idiom", address: "/revise-idiom" },
+        ],
+    },
     {
         title: "Learn",
         icon: <FaBrain />,
