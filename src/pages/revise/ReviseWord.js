@@ -8,39 +8,52 @@ import { sortWords } from "../../utils/sort";
 const ReviseWord = () => {
     const { wordUpdate } = useContext(UpdateContext);
 
+    const [wordInfo, setWordInfo] = useState([]);
     const [reviseWords, setReviseWords] = useState([]);
-    const [allWords, setAllWords] = useState(new Set());
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(false);
 
-    const getNewData = async () => {
-        try {
-            const url = `${process.env.REACT_APP_SERVER_URL}/revision`;
-            const res = await fetch(url);
-            const data = await res.json();
-            if (res.status === 200) {
-                setReviseWords(sortWords(data.words));
-                const allWordsList = await getAllWords();
-                setAllWords(allWordsList);
-            } else {
-                setError(true);
-            }
-        } catch (err) {
-            setError(true);
-        }
+    const [wordList, setWordList] = useState(new Set());
+
+    function getRandomWordIds(wordList, count) {
+        const ids = wordList.map((word) => word._id);
+        const shuffled = ids.sort(() => 0.5 - Math.random());
+        return shuffled.slice(0, count);
+    }
+
+    const changeWords = () => {
+        const newWordIds = getRandomWordIds(wordInfo, 15);
+        localStorage.setItem("revisionWordIds", JSON.stringify(newWordIds));
+        updateReviseWords(newWordIds);
+    };
+
+    const updateReviseWords = (ids) => {
+        if (wordInfo.length === 0) return;
+        const wordsToDisplay = sortWords(ids.map((id) => wordInfo.find((word) => word._id === id)));
+        setReviseWords(wordsToDisplay);
+    };
+
+    const getWords = async () => {
+        const allWords = await getAllWords();
+        setWordList(allWords.wordList);
+        setWordInfo(allWords.wordInfo);
         setLoading(false);
     };
 
     useEffect(() => {
-        getNewData();
+        getWords();
     }, [wordUpdate]);
+
+    useEffect(() => {
+        const storedIds = JSON.parse(localStorage.getItem("revisionWordIds"));
+        if (storedIds && storedIds.length > 0) {
+            updateReviseWords(storedIds);
+        } else {
+            changeWords();
+        }
+    }, [wordInfo]);
 
     if (loading) {
         return <Loader />;
-    }
-
-    if (error) {
-        return <h1>Error</h1>;
     }
 
     return (
@@ -48,11 +61,11 @@ const ReviseWord = () => {
             <div className="main-container">
                 <div className="main-container-list">
                     {reviseWords.map((entry) => (
-                        <WordContainer key={entry._id} entry={entry} allWords={allWords} />
+                        <WordContainer key={entry._id} entry={entry} allWords={wordList} />
                     ))}
                 </div>
             </div>
-            <button className="add-button" onClick={getNewData}>
+            <button className="add-button" onClick={changeWords}>
                 Change
             </button>
         </>

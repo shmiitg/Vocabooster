@@ -14,7 +14,7 @@ const Bookmark = () => {
     const { searchQuery } = useContext(SearchContext);
 
     const [words, setWords] = useState([]);
-    const [allWords, setAllWords] = useState(new Set());
+    const [wordList, setWordList] = useState(new Set());
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
 
@@ -41,8 +41,8 @@ const Bookmark = () => {
                     const data = await res.json();
                     const favs = data.favorites.filter((fav) => fav.itemType === "word");
                     setWords(sortWords(favs));
-                    const allWordsList = await getAllWords();
-                    setAllWords(allWordsList);
+                    const allWords = await getAllWords();
+                    setWordList(allWords.wordList);
                 } else {
                     setError(true);
                 }
@@ -119,7 +119,7 @@ const Bookmark = () => {
                                 }
                             }}
                         >
-                            <WordContainer entry={entry} allWords={allWords} />
+                            <WordContainer entry={entry} allWords={wordList} />
                         </div>
                     ))}
                 </div>

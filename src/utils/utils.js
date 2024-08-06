@@ -20,17 +20,20 @@ export function underlineWord(text, word) {
 }
 
 export const getAllWords = async () => {
+    let wordList = new Set();
+    let wordInfo = new Array();
     try {
         const url = `${process.env.REACT_APP_SERVER_URL}/word`;
         const res = await fetch(url);
         const data = await res.json();
         if (res.status === 200) {
+            wordInfo = data.words;
             const allWordsList = data.words.flatMap((word) => word.word.toLowerCase());
-            return new Set(allWordsList);
+            wordList = new Set(allWordsList);
         }
-        return new Set();
+        return { wordList, wordInfo };
     } catch (err) {
-        return new Set();
+        return { wordList, wordInfo };
     }
 };
 
