@@ -1,16 +1,31 @@
 import React, { useState, useEffect, useContext } from "react";
 import { UpdateContext } from "../../context/UpdateContext";
 import Loader from "../../components/Loader";
-import WordContainer from "../word/WordContainer";
 import { getAllWords } from "../../utils/utils";
 import { sortWords } from "../../utils/sort";
+import Accordion from "./Accordion";
+import "../../css/Revise.css";
 
 const ReviseWord = () => {
+    const [activeTabs, setActiveTabs] = useState([]);
+
+    const togglePanel = (index) => {
+        setActiveTabs((prevActiveTabs) => {
+            const isActive = prevActiveTabs.includes(index);
+            if (isActive) {
+                return prevActiveTabs.filter((tabIndex) => tabIndex !== index);
+            } else {
+                return [...prevActiveTabs, index];
+            }
+        });
+    };
+
     const { wordUpdate } = useContext(UpdateContext);
 
     const [wordInfo, setWordInfo] = useState([]);
     const [reviseWords, setReviseWords] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [wordsChange, setWordsChange] = useState(0);
 
     const [wordList, setWordList] = useState(new Set());
 
@@ -21,9 +36,10 @@ const ReviseWord = () => {
     }
 
     const changeWords = () => {
-        const newWordIds = getRandomWordIds(wordInfo, 15);
+        const newWordIds = getRandomWordIds(wordInfo, 10);
         localStorage.setItem("revisionWordIds", JSON.stringify(newWordIds));
         updateReviseWords(newWordIds);
+        setWordsChange((prev) => !prev);
     };
 
     const updateReviseWords = (ids) => {
@@ -60,8 +76,15 @@ const ReviseWord = () => {
         <>
             <div className="main-container">
                 <div className="main-container-list">
-                    {reviseWords.map((entry) => (
-                        <WordContainer key={entry._id} entry={entry} allWords={wordList} />
+                    {reviseWords.map((entry, index) => (
+                        <Accordion
+                            key={index}
+                            entry={entry}
+                            allWords={wordList}
+                            active={activeTabs.includes(index)}
+                            togglePanel={() => togglePanel(index)}
+                            wordsChange={wordsChange}
+                        />
                     ))}
                 </div>
             </div>

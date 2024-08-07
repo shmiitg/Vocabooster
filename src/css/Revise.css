@@ -1,0 +1,57 @@
+.revise-container {
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px 15px;
+    background-color: #f9f9f9;
+    letter-spacing: 0.3px;
+}
+
+.revise-label {
+    position: relative;
+    display: block;
+    width: 100%;
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 10px 45px 10px 0;
+    font-weight: 500;
+    font-size: 18px;
+    font-family: inherit;
+    transition: color 0.2s linear;
+    cursor: pointer;
+}
+
+.revise-label:focus {
+    outline: none;
+}
+
+.revise-label:after,
+.revise-label:before {
+    content: "";
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    width: 22px;
+    height: 2px;
+    margin-top: -2px;
+    background-color: #372717;
+}
+.revise-label:before {
+    transform: rotate(-90deg);
+    transition: transform 0.35s cubic-bezier(0.65, 0.05, 0.36, 1);
+}
+
+.revise-container[aria-expanded="true"] .revise-label:before {
+    transform: rotate(0deg);
+}
+
+.revise-container-bottom {
+    overflow: hidden;
+    will-change: height;
+    transition: height 0.4s cubic-bezier(0.65, 0.05, 0.36, 1);
+}
+
+.revise-container-bottom .word-container-bottom {
+    margin-top: 10px;
+}

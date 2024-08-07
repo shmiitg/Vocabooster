@@ -41,7 +41,7 @@
 
 .word-container-top .update-icons {
     display: flex;
-    gap: 15px;
+    gap: 10px;
 }
 
 .word-container-top button {
@@ -51,12 +51,12 @@
     cursor: pointer;
     font-size: 14px;
     padding: 0;
+    margin: 0 3px;
 }
 
 .word-container-top .star-icon {
     color: #dbb900;
     font-size: 20px;
-    margin-right: 5px;
 }
 
 .word-container-bottom {

@@ -3,7 +3,7 @@ import { Modal } from "react-responsive-modal";
 import "react-responsive-modal/styles.css";
 import EditWord from "./EditWord";
 import DeleteEntry from "../../components/DeleteEntry";
-import WordDetailsModal from "./WordDetailsModal";
+import WordDetailsModal from "../../components/WordDetailsModal";
 import { underlineWord, checkExistingWord } from "../../utils/utils";
 import { FaStar, FaRegStar } from "react-icons/fa";
 import { AuthContext } from "../../context/AuthContext";
