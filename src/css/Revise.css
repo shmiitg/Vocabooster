@@ -7,10 +7,9 @@
     letter-spacing: 0.3px;
 }
 
-.revise-label {
+.revise-container-top {
     position: relative;
     display: block;
-    width: 100%;
     background: none;
     border: none;
     text-align: left;
@@ -22,12 +21,12 @@
     cursor: pointer;
 }
 
-.revise-label:focus {
+.revise-container-top:focus {
     outline: none;
 }
 
-.revise-label:after,
-.revise-label:before {
+.revise-container-top:after,
+.revise-container-top:before {
     content: "";
     position: absolute;
     right: 10px;
@@ -37,12 +36,12 @@
     margin-top: -2px;
     background-color: #372717;
 }
-.revise-label:before {
+.revise-container-top:before {
     transform: rotate(-90deg);
     transition: transform 0.35s cubic-bezier(0.65, 0.05, 0.36, 1);
 }
 
-.revise-container[aria-expanded="true"] .revise-label:before {
+.revise-container[aria-expanded="true"] .revise-container-top:before {
     transform: rotate(0deg);
 }
 

@@ -3,7 +3,7 @@ import { UpdateContext } from "../../context/UpdateContext";
 import Loader from "../../components/Loader";
 import { getAllWords } from "../../utils/utils";
 import { sortWords } from "../../utils/sort";
-import Accordion from "./Accordion";
+import WordAccordion from "./WordAccordion";
 import "../../css/Revise.css";
 
 const ReviseWord = () => {
@@ -77,7 +77,7 @@ const ReviseWord = () => {
             <div className="main-container">
                 <div className="main-container-list">
                     {reviseWords.map((entry, index) => (
-                        <Accordion
+                        <WordAccordion
                             key={index}
                             entry={entry}
                             allWords={wordList}

@@ -9,7 +9,7 @@ import { underlineWord, checkExistingWord } from "../../utils/utils";
 import { FaStar, FaRegStar } from "react-icons/fa";
 import { AuthContext } from "../../context/AuthContext";
 
-const Panel = ({ entry, allWords, active, togglePanel, wordsChange }) => {
+const WordAccordion = ({ entry, allWords, active, togglePanel, wordsChange }) => {
     const { wordUpdate } = useContext(UpdateContext);
 
     const [height, setHeight] = useState(0);
@@ -17,7 +17,7 @@ const Panel = ({ entry, allWords, active, togglePanel, wordsChange }) => {
 
     useEffect(() => {
         if (innerRef.current) {
-            setHeight(innerRef.current.scrollHeight + 5);
+            setHeight(innerRef.current.scrollHeight + 20);
         }
     }, [wordUpdate, wordsChange]);
 
@@ -70,7 +70,7 @@ const Panel = ({ entry, allWords, active, togglePanel, wordsChange }) => {
 
     return (
         <div className="revise-container" aria-expanded={active}>
-            <button className="revise-label" role="tab" onClick={togglePanel}>
+            <div className="revise-container-top" role="tab" onClick={togglePanel}>
                 <div className="word-container-top">
                     <h3>{capitalizeFirstLetter(entry.word)}</h3>
                     <div className="update-icons">
@@ -91,15 +91,10 @@ const Panel = ({ entry, allWords, active, togglePanel, wordsChange }) => {
                         )}
                     </div>
                 </div>
-            </button>
-            <div
-                className="revise-container-bottom"
-                ref={innerRef}
-                style={innerStyle}
-                aria-hidden={!active}
-            >
+            </div>
+            <div className="revise-container-bottom" style={innerStyle} aria-hidden={!active}>
                 {entry.meanings.map((meaning, index) => (
-                    <div key={index} className="word-container-bottom">
+                    <div key={index} className="word-container-bottom" ref={innerRef}>
                         {meaning.definition && <p>{meaning.definition}</p>}
                         {meaning.example && <p>"{underlineWord(meaning.example, entry.word)}"</p>}
                         {meaning.synonyms?.length > 0 && (
@@ -165,4 +160,4 @@ const Panel = ({ entry, allWords, active, togglePanel, wordsChange }) => {
     );
 };
 
-export default Panel;
+export default WordAccordion;
