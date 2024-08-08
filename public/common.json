@@ -13,7 +13,7 @@
             { "word": "Demophobia", "description": "public speaking" },
             { "word": "Dendrophobia", "description": "trees" },
             { "word": "Gamophobia", "description": "marriage" },
-            { "word": "Genophobia or Coitophobia", "description": "sex" },
+            { "word": "Genophobia", "description": "sex" },
             { "word": "Geraphobia", "description": "old age" },
             { "word": "Graphophobia", "description": "writing" },
             { "word": "Xenophobia", "description": "foreigners" },
@@ -43,7 +43,8 @@
             { "word": "Patricide", "description": "father" },
             { "word": "Regicide", "description": "king" },
             { "word": "Uxoricide", "description": "wife" },
-            { "word": "Fratricide", "description": "brother/sister" },
+            { "word": "Fratricide", "description": "brother" },
+            { "word": "Sororicide", "description": "sister" },
             { "word": "Deicide", "description": "god" },
             { "word": "Genocide", "description": "large group of people" },
             { "word": "Tyrannicide", "description": "tyrant" }
@@ -87,8 +88,6 @@
             { "word": "Ophthalmologist", "description": "eye" },
             { "word": "Pathologist", "description": "diseases" },
             { "word": "Pulmonologist", "description": "lungs" },
-            { "word": "Cardiologist", "description": "heart" },
-            { "word": "Dermatologist", "description": "skin" },
             { "word": "Gastroenterologist", "description": "digestive system" },
             { "word": "Neurologist", "description": "nervous system" },
             { "word": "Pediatrician", "description": "child" }

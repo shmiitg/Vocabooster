@@ -1,20 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
+import { sortCommonTerms } from "../../utils/sort";
 
 const Accordion = ({ label, content, active, togglePanel }) => {
     const [height, setHeight] = useState(0);
     const innerRef = useRef(null);
 
-    content.sort((a, b) => {
-        const wordA = a.word ? a.word.toLowerCase() : a.description;
-        const wordB = b.word ? b.word.toLowerCase() : b.description;
-        if (wordA < wordB) {
-            return -1;
-        }
-        if (wordA > wordB) {
-            return 1;
-        }
-        return 0;
-    });
+    sortCommonTerms(content);
 
     useEffect(() => {
         if (innerRef.current) {
@@ -34,16 +25,16 @@ const Accordion = ({ label, content, active, togglePanel }) => {
             <div className="panel__inner" ref={innerRef} style={innerStyle} aria-hidden={!active}>
                 <p className="panel__content">
                     <div className="panel__section">
-                        {content.map((word, index) => (
+                        {content.map((entry, index) => (
                             <>
                                 {index % 2 === 0 && (
                                     <div className="panel__word" key={index}>
-                                        {word.word ? (
+                                        {entry.word ? (
                                             <div>
-                                                <strong>{word.word}:</strong> {word.description}
+                                                <strong>{entry.word}:</strong> {entry.description}
                                             </div>
                                         ) : (
-                                            <div>{word.description}</div>
+                                            <div>{entry.description}</div>
                                         )}
                                     </div>
                                 )}
@@ -51,16 +42,16 @@ const Accordion = ({ label, content, active, togglePanel }) => {
                         ))}
                     </div>
                     <div className="panel__section">
-                        {content.map((word, index) => (
+                        {content.map((entry, index) => (
                             <>
                                 {index % 2 === 1 && (
                                     <div className="panel__word" key={index}>
-                                        {word.word ? (
+                                        {entry.word ? (
                                             <div>
-                                                <strong>{word.word}:</strong> {word.description}
+                                                <strong>{entry.word}:</strong> {entry.description}
                                             </div>
                                         ) : (
-                                            <div>{word.description}</div>
+                                            <div>{entry.description}</div>
                                         )}
                                     </div>
                                 )}
