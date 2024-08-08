@@ -13,7 +13,7 @@ import ReviseIdiom from "./pages/revise/ReviseIdiom";
 import OWS from "./pages/ows/OWS";
 import Idiom from "./pages/idiom/Idiom";
 import Spelling from "./pages/spelling/Spelling";
-import Cluster from "./pages/cluster/Cluster";
+import Common from "./pages/common/Common";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 // import css files
@@ -39,7 +39,7 @@ const App = () => {
                     <Route path="/ows" element={<OWS />} />
                     <Route path="/idioms" element={<Idiom />} />
                     <Route path="/spellings" element={<Spelling />} />
-                    <Route path="/clusters" element={<Cluster />} />
+                    <Route path="/common" element={<Common />} />
                     <Route path="/login" element={user ? <Navigate to="/bookmark" /> : <Login />} />
                     <Route
                         path="/register"

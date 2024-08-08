@@ -2,7 +2,6 @@
     {
         "label": "Fear",
         "content": [
-            { "word": "Acrophobia", "description": "height" },
             { "word": "Algophobia", "description": "pain" },
             { "word": "Androphobia", "description": "boys" },
             { "word": "Anthrophobia", "description": "humans" },
@@ -13,18 +12,12 @@
             { "word": "Cynophobia", "description": "dogs" },
             { "word": "Demophobia", "description": "public speaking" },
             { "word": "Dendrophobia", "description": "trees" },
-            { "word": "Ergophobia", "description": "work" },
             { "word": "Gamophobia", "description": "marriage" },
             { "word": "Genophobia or Coitophobia", "description": "sex" },
             { "word": "Geraphobia", "description": "old age" },
             { "word": "Graphophobia", "description": "writing" },
-            { "word": "Gynophobia", "description": "girls" },
-            { "word": "Pedophobia", "description": "children" },
-            { "word": "Theophobia", "description": "religion" },
             { "word": "Xenophobia", "description": "foreigners" },
             { "word": "Xerophobia", "description": "dryness" },
-            { "word": "Zoophobia", "description": "animals" },
-            { "word": "Claustrophobia", "description": "confined spaces" },
             { "word": "Aviophobia", "description": "flying" },
             { "word": "Arachnophobia", "description": "spiders" },
             { "word": "Aquaphobia", "description": "water" },
@@ -35,10 +28,7 @@
         "label": "Interest",
         "content": [
             { "word": "Ergophile", "description": "work" },
-            { "word": "Orophile", "description": "mountains" },
             { "word": "Oenophile", "description": "wine" },
-            { "word": "Bibliophile", "description": "books" },
-            { "word": "Technophile", "description": "technology" },
             { "word": "Dendrophile", "description": "trees" },
             { "word": "Pluviophile", "description": "rain" }
         ]
@@ -55,7 +45,6 @@
             { "word": "Uxoricide", "description": "wife" },
             { "word": "Fratricide", "description": "brother/sister" },
             { "word": "Deicide", "description": "god" },
-            { "word": "Infanticide", "description": "infant" },
             { "word": "Genocide", "description": "large group of people" },
             { "word": "Tyrannicide", "description": "tyrant" }
         ]
@@ -72,15 +61,22 @@
             { "word": "Kakistocracy", "description": "incompetent" },
             { "word": "Kleptocracy", "description": "thieves" },
             { "word": "Mediocracy", "description": "mediocre people" },
-            { "word": "Meritocracy", "description": "performance or merit" },
             { "word": "Neocracy", "description": "inexperienced people" },
             { "word": "Oligarchy", "description": "small group of people" },
             { "word": "Panarchy", "description": "freely choose govt" },
             { "word": "Plutocracy", "description": "wealthy people" },
             { "word": "Theocracy", "description": "religious leaders" },
-            { "word": "Technocracy", "description": "technical experts" },
             { "word": "Monarchy", "description": "monarch" },
             { "word": "Cryptocracy", "description": "secret govt" }
+        ]
+    },
+    {
+        "label": "Study",
+        "content": [
+            { "word": "Entomology", "description": "insects" },
+            { "word": "Ethnology", "description": "human races" },
+            { "word": "Etymology", "description": "words" },
+            { "word": "Orology", "description": "mountains" }
         ]
     },
     {

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 
-const Panel = ({ label, content, active, togglePanel }) => {
+const Accordion = ({ label, content, active, togglePanel }) => {
     const [height, setHeight] = useState(0);
     const innerRef = useRef(null);
 
@@ -73,4 +73,4 @@ const Panel = ({ label, content, active, togglePanel }) => {
     );
 };
 
-export default Panel;
+export default Accordion;

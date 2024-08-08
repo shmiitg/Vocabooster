@@ -20,7 +20,7 @@ export const navMenu = [
             { title: "OWS", address: "/ows" },
             { title: "Idiom", address: "/idioms" },
             { title: "Spelling", address: "/spellings" },
-            { title: "Cluster", address: "/clusters" },
+            { title: "Common", address: "/common" },
         ],
     },
     {
