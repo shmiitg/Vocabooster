@@ -45,9 +45,7 @@
             { "word": "Uxoricide", "description": "wife" },
             { "word": "Fratricide", "description": "brother" },
             { "word": "Sororicide", "description": "sister" },
-            { "word": "Deicide", "description": "god" },
-            { "word": "Genocide", "description": "large group of people" },
-            { "word": "Tyrannicide", "description": "tyrant" }
+            { "word": "Deicide", "description": "god" }
         ]
     },
     {
@@ -67,7 +65,6 @@
             { "word": "Panarchy", "description": "freely choose govt" },
             { "word": "Plutocracy", "description": "wealthy people" },
             { "word": "Theocracy", "description": "religious leaders" },
-            { "word": "Monarchy", "description": "monarch" },
             { "word": "Cryptocracy", "description": "secret govt" }
         ]
     },
@@ -77,7 +74,32 @@
             { "word": "Entomology", "description": "insects" },
             { "word": "Ethnology", "description": "human races" },
             { "word": "Etymology", "description": "words" },
-            { "word": "Orology", "description": "mountains" }
+            { "word": "Orology", "description": "mountains" },
+            { "word": "Epigraphy", "description": "inscriptions" },
+            { "word": "Climatology", "description": "atmosphere" },
+            { "word": "Conchology", "description": "mollusc shells" },
+            { "word": "Cosmology", "description": "universe" },
+            { "word": "Cytology", "description": "cell" },
+            { "word": "Genealogy", "description": "families" },
+            { "word": "Geology", "description": "earth" },
+            { "word": "Geomorphology", "description": "lithosphere" },
+            { "word": "Gerontology", "description": "old people and ageing" },
+            { "word": "Hematology", "description": "blood" },
+            { "word": "Histology", "description": "tissues and organs" },
+            { "word": "Limnology", "description": "lakes" },
+            { "word": "Lithology", "description": "physical characteristics of rocks" },
+            { "word": "Meteorology", "description": "atmosphere" },
+            { "word": "Morphology", "description": "structures" },
+            { "word": "Mycology", "description": "fungi" },
+            { "word": "Nephology", "description": "clouds" },
+            { "word": "Oncology", "description": "cancer" },
+            { "word": "Ornithology", "description": "birds" },
+            { "word": "Paleontology", "description": "fossils" },
+            { "word": "Pedology", "description": "soil" },
+            { "word": "Petrology", "description": "rocks" },
+            { "word": "Phycology", "description": "algae" },
+            { "word": "Selenology", "description": "moon" },
+            { "word": "Theology", "description": "god" }
         ]
     },
     {
@@ -91,6 +113,16 @@
             { "word": "Gastroenterologist", "description": "digestive system" },
             { "word": "Neurologist", "description": "nervous system" },
             { "word": "Pediatrician", "description": "child" }
+        ]
+    },
+    {
+        "label": "Animal Sound",
+        "content": [
+            { "word": "Screech", "description": "bat" },
+            { "word": "Grunt", "description": "camel" },
+            { "word": "Hoot", "description": "owl" },
+            { "word": "Howl", "description": "wolf" },
+            { "word": "Snort", "description": "pig" }
         ]
     },
     {
