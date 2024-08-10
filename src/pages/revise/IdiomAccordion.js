@@ -74,9 +74,11 @@ const IdiomAccordion = ({ entry, active, togglePanel, idiomsChange }) => {
                 </div>
             </div>
             <div className="revise-container-bottom" style={innerStyle} aria-hidden={!active}>
-                <div className="word-container-bottom" ref={innerRef}>
-                    {entry.meaning && <p>{entry.meaning}</p>}
-                    {entry.example && <p>"{entry.example}"</p>}
+                <div className="revise-subcontainer-bottom">
+                    <div className="word-container-bottom" ref={innerRef}>
+                        {entry.meaning && <p>{entry.meaning}</p>}
+                        {entry.example && <p>"{entry.example}"</p>}
+                    </div>
                 </div>
                 <Modal
                     open={open}
