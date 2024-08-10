@@ -1,16 +1,16 @@
 import React, { useState, useContext, useEffect } from "react";
 import { UpdateContext } from "../../context/UpdateContext";
 
-const EditIdiom = ({ idiom, onClose }) => {
+const EditIdiom = ({ entry, onClose }) => {
     const { setWordUpdate } = useContext(UpdateContext);
-    const idiomId = idiom._id;
-    const [updatedIdiom, setUpdatedIdiom] = useState({ ...idiom });
+    const idiomId = entry._id;
+    const [updatedEntry, setUpdatedEntry] = useState({ ...entry });
     const [error, setError] = useState("");
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setUpdatedIdiom({
-            ...updatedIdiom,
+        setUpdatedEntry({
+            ...updatedEntry,
             [name]: value,
         });
     };
@@ -18,7 +18,7 @@ const EditIdiom = ({ idiom, onClose }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!updatedIdiom.idiom) {
+        if (!updatedEntry.idiom) {
             setError("Idiom is required");
             return;
         }
@@ -28,7 +28,7 @@ const EditIdiom = ({ idiom, onClose }) => {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(updatedIdiom),
+            body: JSON.stringify(updatedEntry),
         });
 
         const data = await res.json();
@@ -60,7 +60,7 @@ const EditIdiom = ({ idiom, onClose }) => {
                     <input
                         type="text"
                         name="idiom"
-                        value={updatedIdiom.idiom}
+                        value={updatedEntry.idiom}
                         onChange={handleChange}
                         required
                     />
@@ -72,7 +72,7 @@ const EditIdiom = ({ idiom, onClose }) => {
                     <input
                         type="text"
                         name="meaning"
-                        value={updatedIdiom.meaning}
+                        value={updatedEntry.meaning}
                         onChange={handleChange}
                         required
                     />
@@ -84,7 +84,7 @@ const EditIdiom = ({ idiom, onClose }) => {
                     <input
                         type="text"
                         name="example"
-                        value={updatedIdiom.example}
+                        value={updatedEntry.example}
                         onChange={handleChange}
                     />
                 </div>

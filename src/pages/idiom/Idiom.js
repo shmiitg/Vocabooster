@@ -120,7 +120,7 @@ const Idiom = () => {
                                 }
                             }}
                         >
-                            <IdiomContainer idiom={entry} />
+                            <IdiomContainer entry={entry} />
                         </div>
                     ))}
                 </div>

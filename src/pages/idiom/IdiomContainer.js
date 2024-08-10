@@ -4,7 +4,7 @@ import "react-responsive-modal/styles.css";
 import EditIdiom from "./EditIdiom";
 import DeleteEntry from "../../components/DeleteEntry";
 
-export default function IdiomContainer({ idiom }) {
+export default function IdiomContainer({ entry }) {
     const [open, setOpen] = useState(false);
     const [updateType, setUpdateType] = useState("edit");
 
@@ -20,15 +20,15 @@ export default function IdiomContainer({ idiom }) {
     return (
         <div className="word-container-item">
             <div className="word-container-top">
-                <h3>{idiom.idiom}</h3>
+                <h3>{entry.idiom}</h3>
                 <div className="update-icons">
                     <button onClick={() => handleUpdate("edit")}>Edit</button>
                     <button onClick={() => handleUpdate("delete")}>Delete</button>
                 </div>
             </div>
             <div className="word-container-bottom">
-                {idiom.meaning && <p>{idiom.meaning}</p>}
-                {idiom.example && <p>"{idiom.example}"</p>}
+                {entry.meaning && <p>{entry.meaning}</p>}
+                {entry.example && <p>"{entry.example}"</p>}
             </div>
             <Modal
                 open={open}
@@ -38,9 +38,9 @@ export default function IdiomContainer({ idiom }) {
                 center
             >
                 {updateType === "edit" ? (
-                    <EditIdiom idiom={idiom} onClose={handleClose} />
+                    <EditIdiom entry={entry} onClose={handleClose} />
                 ) : (
-                    <DeleteEntry entryType="idiom" entry={idiom} onClose={handleClose} />
+                    <DeleteEntry entryType="idiom" entry={entry} onClose={handleClose} />
                 )}
             </Modal>
         </div>
