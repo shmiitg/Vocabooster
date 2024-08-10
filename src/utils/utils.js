@@ -21,7 +21,7 @@ export function underlineWord(text, word) {
 
 export const getAllWords = async () => {
     let wordList = new Set();
-    let wordInfo = new Array();
+    let wordInfo = [];
     try {
         const url = `${process.env.REACT_APP_SERVER_URL}/word`;
         const res = await fetch(url);
@@ -34,6 +34,21 @@ export const getAllWords = async () => {
         return { wordList, wordInfo };
     } catch (err) {
         return { wordList, wordInfo };
+    }
+};
+
+export const getAllIdioms = async () => {
+    try {
+        let idiomInfo = [];
+        const url = `${process.env.REACT_APP_SERVER_URL}/idiom`;
+        const res = await fetch(url);
+        const data = await res.json();
+        if (res.status === 200) {
+            idiomInfo = data.idioms;
+        }
+        return { idiomInfo };
+    } catch (err) {
+        return { error: "Failed to load" };
     }
 };
 
