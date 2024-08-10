@@ -3,7 +3,6 @@ import { UpdateContext } from "../../context/UpdateContext";
 import { Modal } from "react-responsive-modal";
 import "react-responsive-modal/styles.css";
 import EditIdiom from "../idiom/EditIdiom";
-import DeleteEntry from "../../components/DeleteEntry";
 import { FaStar, FaRegStar } from "react-icons/fa";
 import { AuthContext } from "../../context/AuthContext";
 
@@ -25,12 +24,10 @@ const IdiomAccordion = ({ entry, active, togglePanel, idiomsChange }) => {
 
     const { user, addFavorite, removeFavorite, favorites } = useContext(AuthContext);
     const [open, setOpen] = useState(false);
-    const [updateType, setUpdateType] = useState("edit");
 
     const handleUpdate = (type, e) => {
         e.stopPropagation();
         setOpen(true);
-        setUpdateType(type);
     };
 
     const handleClose = () => {
@@ -64,12 +61,7 @@ const IdiomAccordion = ({ entry, active, togglePanel, idiomsChange }) => {
                                 )}
                             </button>
                         )}
-                        {active && (
-                            <>
-                                <button onClick={(e) => handleUpdate("edit", e)}>Edit</button>
-                                <button onClick={(e) => handleUpdate("delete", e)}>Delete</button>
-                            </>
-                        )}
+                        {active && <button onClick={(e) => handleUpdate("edit", e)}>Edit</button>}
                     </div>
                 </div>
             </div>
@@ -87,11 +79,7 @@ const IdiomAccordion = ({ entry, active, togglePanel, idiomsChange }) => {
                     closeOnOverlayClick={false}
                     center
                 >
-                    {updateType === "edit" ? (
-                        <EditIdiom entry={entry} onClose={handleClose} />
-                    ) : (
-                        <DeleteEntry entryType="word" entry={entry} onClose={handleClose} />
-                    )}
+                    <EditIdiom entry={entry} onClose={handleClose} />
                 </Modal>
             </div>
         </div>

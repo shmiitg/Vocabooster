@@ -17,6 +17,7 @@ export const navMenu = [
         icon: <FaBrain />,
         requiresAuth: false,
         submenu: [
+            { title: "Word", address: "/word" },
             { title: "OWS", address: "/ows" },
             { title: "Idiom", address: "/idioms" },
             { title: "Spelling", address: "/spellings" },

@@ -3,7 +3,6 @@ import { UpdateContext } from "../../context/UpdateContext";
 import { Modal } from "react-responsive-modal";
 import "react-responsive-modal/styles.css";
 import EditWord from "../word/EditWord";
-import DeleteEntry from "../../components/DeleteEntry";
 import WordDetailsModal from "../../components/WordDetailsModal";
 import { underlineWord, checkExistingWord } from "../../utils/utils";
 import { FaStar, FaRegStar } from "react-icons/fa";
@@ -28,7 +27,6 @@ const WordAccordion = ({ entry, allWords, active, togglePanel, wordsChange }) =>
     const { user, addFavorite, removeFavorite, favorites } = useContext(AuthContext);
     const [open, setOpen] = useState(false);
     const [detailsOpen, setDetailsOpen] = useState(false);
-    const [updateType, setUpdateType] = useState("edit");
     const [selectedWord, setSelectedWord] = useState(null);
 
     const capitalizeFirstLetter = (word) => {
@@ -38,7 +36,6 @@ const WordAccordion = ({ entry, allWords, active, togglePanel, wordsChange }) =>
     const handleUpdate = (type, e) => {
         e.stopPropagation();
         setOpen(true);
-        setUpdateType(type);
     };
 
     const handleClose = () => {
@@ -83,12 +80,7 @@ const WordAccordion = ({ entry, allWords, active, togglePanel, wordsChange }) =>
                                 )}
                             </button>
                         )}
-                        {active && (
-                            <>
-                                <button onClick={(e) => handleUpdate("edit", e)}>Edit</button>
-                                <button onClick={(e) => handleUpdate("delete", e)}>Delete</button>
-                            </>
-                        )}
+                        {active && <button onClick={(e) => handleUpdate("edit", e)}>Edit</button>}
                     </div>
                 </div>
             </div>
@@ -150,11 +142,7 @@ const WordAccordion = ({ entry, allWords, active, togglePanel, wordsChange }) =>
                     closeOnOverlayClick={false}
                     center
                 >
-                    {updateType === "edit" ? (
-                        <EditWord entry={entry} onClose={handleClose} />
-                    ) : (
-                        <DeleteEntry entryType="word" entry={entry} onClose={handleClose} />
-                    )}
+                    <EditWord entry={entry} onClose={handleClose} />
                 </Modal>
                 {detailsOpen && (
                     <WordDetailsModal word={selectedWord} onClose={handleDetailsClose} />
