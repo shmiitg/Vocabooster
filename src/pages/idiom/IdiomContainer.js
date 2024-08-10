@@ -18,7 +18,7 @@ export default function IdiomContainer({ entry }) {
     };
 
     return (
-        <div className="word-container-item">
+        <div className="word-container">
             <div className="word-container-top">
                 <h3>{entry.idiom}</h3>
                 <div className="update-icons">

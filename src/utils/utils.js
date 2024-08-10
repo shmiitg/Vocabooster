@@ -19,6 +19,11 @@ export function underlineWord(text, word) {
     );
 }
 
+export const checkExistingWord = (word, wordList) => {
+    const lowerCaseWord = word.toLowerCase();
+    return wordList.has(lowerCaseWord);
+};
+
 export const getAllWords = async () => {
     try {
         let words = [];
@@ -50,9 +55,4 @@ export const getAllIdioms = async () => {
     } catch (err) {
         return { error: "Failed to load" };
     }
-};
-
-export const checkExistingWord = (word, allWords) => {
-    const lowerCaseWord = word.toLowerCase();
-    return allWords.has(lowerCaseWord);
 };

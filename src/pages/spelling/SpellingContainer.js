@@ -3,14 +3,11 @@ import { Modal } from "react-responsive-modal";
 import "react-responsive-modal/styles.css";
 import EditSpelling from "./EditSpelling";
 import DeleteEntry from "../../components/DeleteEntry";
+import { trimCapitalize } from "../../utils/utils";
 
-export default function SpellingContainer({ spelling }) {
+export default function SpellingContainer({ entry }) {
     const [open, setOpen] = useState(false);
     const [updateType, setUpdateType] = useState("edit");
-
-    const capitalizeFirstLetter = (spelling) => {
-        return spelling.charAt(0).toUpperCase() + spelling.slice(1);
-    };
 
     const handleUpdate = (type) => {
         setOpen(true);
@@ -22,9 +19,9 @@ export default function SpellingContainer({ spelling }) {
     };
 
     return (
-        <div className="word-container-item">
+        <div className="word-container">
             <div className="word-container-top">
-                <h3>{capitalizeFirstLetter(spelling.spelling)}</h3>
+                <h3>{trimCapitalize(entry.spelling)}</h3>
                 <div className="update-icons">
                     <button onClick={() => handleUpdate("edit")}>Edit</button>
                     <button onClick={() => handleUpdate("delete")}>Delete</button>
@@ -38,9 +35,9 @@ export default function SpellingContainer({ spelling }) {
                 center
             >
                 {updateType === "edit" ? (
-                    <EditSpelling spelling={spelling} onClose={handleClose} />
+                    <EditSpelling entry={entry} onClose={handleClose} />
                 ) : (
-                    <DeleteEntry entryType="spelling" entry={spelling} onClose={handleClose} />
+                    <DeleteEntry entryType="spelling" entry={entry} onClose={handleClose} />
                 )}
             </Modal>
         </div>

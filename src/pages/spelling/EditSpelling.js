@@ -2,10 +2,10 @@ import React, { useState, useContext, useEffect } from "react";
 import { UpdateContext } from "../../context/UpdateContext";
 import { trimCapitalize } from "../../utils/utils";
 
-export default function EditSpelling({ spelling, onClose }) {
+export default function EditSpelling({ entry, onClose }) {
     const { setWordUpdate } = useContext(UpdateContext);
-    const wordId = spelling._id;
-    const [updatedSpelling, setUpdatedSpelling] = useState({ ...spelling });
+    const spellingId = entry._id;
+    const [updatedSpelling, setUpdatedSpelling] = useState({ ...entry });
     const [error, setError] = useState("");
 
     const handleChange = (e) => {
@@ -26,7 +26,7 @@ export default function EditSpelling({ spelling, onClose }) {
             return;
         }
 
-        const url = `${process.env.REACT_APP_SERVER_URL}/spelling/${wordId}`;
+        const url = `${process.env.REACT_APP_SERVER_URL}/spelling/${spellingId}`;
         const res = await fetch(url, {
             method: "PUT",
             headers: {

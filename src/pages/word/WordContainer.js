@@ -4,7 +4,7 @@ import "react-responsive-modal/styles.css";
 import EditWord from "./EditWord";
 import DeleteEntry from "../../components/DeleteEntry";
 import WordDetailsModal from "../../components/WordDetailsModal";
-import { underlineWord, checkExistingWord } from "../../utils/utils";
+import { underlineWord, checkExistingWord, trimCapitalize } from "../../utils/utils";
 import { FaStar, FaRegStar } from "react-icons/fa";
 import { AuthContext } from "../../context/AuthContext";
 
@@ -14,10 +14,6 @@ const WordContainer = ({ entry, wordList }) => {
     const [detailsOpen, setDetailsOpen] = useState(false);
     const [updateType, setUpdateType] = useState("edit");
     const [selectedWord, setSelectedWord] = useState(null);
-
-    const capitalizeFirstLetter = (word) => {
-        return word.charAt(0).toUpperCase() + word.slice(1);
-    };
 
     const handleUpdate = (type) => {
         setOpen(true);
@@ -50,9 +46,9 @@ const WordContainer = ({ entry, wordList }) => {
     };
 
     return (
-        <div className="word-container-item">
+        <div className="word-container">
             <div className="word-container-top">
-                <h3>{capitalizeFirstLetter(entry.word)}</h3>
+                <h3>{trimCapitalize(entry.word)}</h3>
                 <div className="update-icons">
                     {user && (
                         <button onClick={toggleFavorite}>

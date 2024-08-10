@@ -120,7 +120,7 @@ const Spelling = () => {
                                 }
                             }}
                         >
-                            <SpellingContainer spelling={entry} />
+                            <SpellingContainer entry={entry} />
                         </div>
                     ))}
                 </div>

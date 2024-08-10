@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { Modal } from "react-responsive-modal";
 import EditOWS from "./EditOWS";
 import DeleteEntry from "../../components/DeleteEntry";
-import { underlineWord } from "../../utils/utils";
+import { underlineWord, trimCapitalize } from "../../utils/utils";
 import { FaStar, FaRegStar } from "react-icons/fa";
 import { AuthContext } from "../../context/AuthContext";
 
@@ -10,11 +10,6 @@ export default function OWSContainer({ ows }) {
     const { user, addFavorite, removeFavorite, favorites } = useContext(AuthContext);
     const [open, setOpen] = useState(false);
     const [updateType, setUpdateType] = useState("edit");
-
-    // Function to capitalize the first letter of a word
-    const capitalizeFirstLetter = (word) => {
-        return word.charAt(0).toUpperCase() + word.slice(1);
-    };
 
     const handleUpdate = (type) => {
         setOpen(true);
@@ -37,11 +32,11 @@ export default function OWSContainer({ ows }) {
     };
 
     return (
-        <div className="word-container-item">
+        <div className="word-container">
             {ows.ows.map((entry, index) => (
-                <div key={index} className="word-container">
+                <div key={index} className="word-container-item">
                     <div className="word-container-top">
-                        <h3>{capitalizeFirstLetter(entry.word)}</h3>
+                        <h3>{trimCapitalize(entry.word)}</h3>
                         {index === 0 && (
                             <div className="update-icons">
                                 {user && (
@@ -58,7 +53,7 @@ export default function OWSContainer({ ows }) {
                             </div>
                         )}
                     </div>
-                    <div className="word-container-bottom reduce-margin">
+                    <div className="word-container-bottom">
                         {entry.definition && <p>{entry.definition}</p>}
                         {entry.example && <p>"{underlineWord(entry.example, entry.word)}"</p>}
                     </div>
