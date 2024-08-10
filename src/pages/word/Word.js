@@ -5,6 +5,7 @@ import { Modal } from "react-responsive-modal";
 import Loader from "../../components/Loader";
 import WordContainer from "./WordContainer";
 import NewWord from "./NewWord";
+import { getAllWords } from "../../utils/utils";
 import { sortWords } from "../../utils/sort";
 import { filterWords } from "../../utils/filter";
 import { scrollThreshold } from "../../utils/constant";
@@ -15,8 +16,10 @@ const Word = () => {
     const { searchQuery } = useContext(SearchContext);
 
     const [open, setOpen] = useState(false);
+
     const [words, setWords] = useState([]);
-    const [allWords, setAllWords] = useState(new Set());
+    const [wordList, setWordList] = useState(new Set());
+
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
 
@@ -30,20 +33,13 @@ const Word = () => {
     const isSmallScreen = useMediaQuery({ query: "(max-width: 480px)" });
 
     const getWords = async () => {
-        try {
-            const url = `${process.env.REACT_APP_SERVER_URL}/word`;
-            const res = await fetch(url);
-            const data = await res.json();
-            if (res.status === 200) {
-                setWords(sortWords(data.words));
-                const allWordsList = new Set(data.words.flatMap((word) => word.word.toLowerCase()));
-                setAllWords(allWordsList);
-                localStorage.setItem("words", JSON.stringify(data.words));
-            } else {
-                setError(true);
-            }
-        } catch (err) {
-            setError(true);
+        const wordsData = await getAllWords();
+        if (wordsData.error) {
+            setError(wordsData.error);
+        } else {
+            setWords(sortWords(wordsData.words));
+            setWordList(wordsData.wordList);
+            localStorage.setItem("words", JSON.stringify(wordsData.words));
         }
         setLoading(false);
     };
@@ -123,7 +119,7 @@ const Word = () => {
                                 }
                             }}
                         >
-                            <WordContainer entry={entry} allWords={allWords} />
+                            <WordContainer entry={entry} wordList={wordList} />
                         </div>
                     ))}
                 </div>

@@ -5,6 +5,7 @@ import { Modal } from "react-responsive-modal";
 import Loader from "../../components/Loader";
 import IdiomContainer from "./IdiomContainer";
 import NewIdiom from "./NewIdiom";
+import { getAllIdioms } from "../../utils/utils";
 import { sortIdioms } from "../../utils/sort";
 import { filterIdioms } from "../../utils/filter";
 import { scrollThreshold } from "../../utils/constant";
@@ -30,17 +31,11 @@ const Idiom = () => {
     const isSmallScreen = useMediaQuery({ query: "(max-width: 480px)" });
 
     const getIdioms = async () => {
-        try {
-            const url = `${process.env.REACT_APP_SERVER_URL}/idiom`;
-            const res = await fetch(url);
-            const data = await res.json();
-            if (res.status === 200) {
-                setIdioms(sortIdioms(data.idioms));
-            } else {
-                setError(true);
-            }
-        } catch (err) {
-            setError(true);
+        const idiomsData = await getAllIdioms();
+        if (idiomsData.error) {
+            setError(idiomsData.error);
+        } else {
+            setIdioms(sortIdioms(idiomsData.idioms));
         }
         setLoading(false);
     };

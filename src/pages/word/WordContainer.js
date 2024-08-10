@@ -8,7 +8,7 @@ import { underlineWord, checkExistingWord } from "../../utils/utils";
 import { FaStar, FaRegStar } from "react-icons/fa";
 import { AuthContext } from "../../context/AuthContext";
 
-const WordContainer = ({ entry, allWords }) => {
+const WordContainer = ({ entry, wordList }) => {
     const { user, addFavorite, removeFavorite, favorites } = useContext(AuthContext);
     const [open, setOpen] = useState(false);
     const [detailsOpen, setDetailsOpen] = useState(false);
@@ -76,7 +76,7 @@ const WordContainer = ({ entry, allWords }) => {
                             <strong>Synonyms:</strong>{" "}
                             {meaning.synonyms
                                 .map((synonym) =>
-                                    checkExistingWord(synonym, allWords) ? (
+                                    checkExistingWord(synonym, wordList) ? (
                                         <span
                                             key={synonym}
                                             className="clickable-word"
@@ -96,7 +96,7 @@ const WordContainer = ({ entry, allWords }) => {
                             <strong>Antonyms:</strong>{" "}
                             {meaning.antonyms
                                 .map((antonym) =>
-                                    checkExistingWord(antonym, allWords) ? (
+                                    checkExistingWord(antonym, wordList) ? (
                                         <span
                                             key={antonym}
                                             className="clickable-word"

@@ -22,12 +22,13 @@ const ReviseWord = () => {
 
     const { wordUpdate } = useContext(UpdateContext);
 
-    const [wordInfo, setWordInfo] = useState([]);
+    const [words, setWords] = useState([]);
     const [reviseWords, setReviseWords] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [wordList, setWordList] = useState(new Set());
     const [wordsChange, setWordsChange] = useState(0);
 
-    const [wordList, setWordList] = useState(new Set());
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
 
     function getRandomWordIds(wordList, count) {
         const ids = wordList.map((word) => word._id);
@@ -36,22 +37,26 @@ const ReviseWord = () => {
     }
 
     const changeWords = () => {
-        const newWordIds = getRandomWordIds(wordInfo, 10);
+        const newWordIds = getRandomWordIds(words, 10);
         localStorage.setItem("revisionWordIds", JSON.stringify(newWordIds));
         updateReviseWords(newWordIds);
         setWordsChange((prev) => !prev);
     };
 
     const updateReviseWords = (ids) => {
-        if (wordInfo.length === 0) return;
-        const wordsToDisplay = sortWords(ids.map((id) => wordInfo.find((word) => word._id === id)));
+        if (words.length === 0) return;
+        const wordsToDisplay = sortWords(ids.map((id) => words.find((word) => word._id === id)));
         setReviseWords(wordsToDisplay);
     };
 
     const getWords = async () => {
-        const allWords = await getAllWords();
-        setWordList(allWords.wordList);
-        setWordInfo(allWords.wordInfo);
+        const wordsData = await getAllWords();
+        if (wordsData.error) {
+            setError(wordsData.error);
+        } else {
+            setWords(wordsData.words);
+            setWordList(wordsData.wordList);
+        }
         setLoading(false);
     };
 
@@ -66,10 +71,14 @@ const ReviseWord = () => {
         } else {
             changeWords();
         }
-    }, [wordInfo]);
+    }, [words]);
 
     if (loading) {
         return <Loader />;
+    }
+
+    if (error) {
+        return <h1>{error}</h1>;
     }
 
     return (

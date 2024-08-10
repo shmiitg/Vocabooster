@@ -15,6 +15,7 @@ const Bookmark = () => {
 
     const [words, setWords] = useState([]);
     const [wordList, setWordList] = useState(new Set());
+
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
 
@@ -41,13 +42,17 @@ const Bookmark = () => {
                     const data = await res.json();
                     const favs = data.favorites.filter((fav) => fav.itemType === "word");
                     setWords(sortWords(favs));
-                    const allWords = await getAllWords();
-                    setWordList(allWords.wordList);
+                    const wordsData = await getAllWords();
+                    if (wordsData.error) {
+                        setError(wordsData.error);
+                    } else {
+                        setWordList(wordsData.wordList);
+                    }
                 } else {
-                    setError(true);
+                    setError("Failed to fetch");
                 }
             } catch (err) {
-                setError(true);
+                setError("Failed to fetch");
             }
         }
         setLoading(false);
@@ -100,7 +105,7 @@ const Bookmark = () => {
     }
 
     if (error) {
-        return <h1>Error</h1>;
+        return <h1>{error}</h1>;
     }
 
     return (
@@ -119,7 +124,7 @@ const Bookmark = () => {
                                 }
                             }}
                         >
-                            <WordContainer entry={entry} allWords={wordList} />
+                            <WordContainer entry={entry} wordList={wordList} />
                         </div>
                     ))}
                 </div>

@@ -20,33 +20,33 @@ export function underlineWord(text, word) {
 }
 
 export const getAllWords = async () => {
-    let wordList = new Set();
-    let wordInfo = [];
     try {
+        let words = [];
+        let wordList = new Set();
         const url = `${process.env.REACT_APP_SERVER_URL}/word`;
         const res = await fetch(url);
         const data = await res.json();
         if (res.status === 200) {
-            wordInfo = data.words;
-            const allWordsList = data.words.flatMap((word) => word.word.toLowerCase());
+            words = data.words;
+            const allWordsList = data.words.flatMap((entry) => entry.word.toLowerCase());
             wordList = new Set(allWordsList);
         }
-        return { wordList, wordInfo };
+        return { words, wordList };
     } catch (err) {
-        return { wordList, wordInfo };
+        return { error: "Failed to load" };
     }
 };
 
 export const getAllIdioms = async () => {
     try {
-        let idiomInfo = [];
+        let idioms = [];
         const url = `${process.env.REACT_APP_SERVER_URL}/idiom`;
         const res = await fetch(url);
         const data = await res.json();
         if (res.status === 200) {
-            idiomInfo = data.idioms;
+            idioms = data.idioms;
         }
-        return { idiomInfo };
+        return { idioms };
     } catch (err) {
         return { error: "Failed to load" };
     }

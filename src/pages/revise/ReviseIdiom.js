@@ -21,7 +21,7 @@ const ReviseIdiom = () => {
 
     const { wordUpdate } = useContext(UpdateContext);
 
-    const [idiomInfo, setIdiomInfo] = useState([]);
+    const [idioms, setIdioms] = useState([]);
     const [reviseIdioms, setReviseIdioms] = useState([]);
     const [idiomsChange, setIdiomsChange] = useState(0);
     const [loading, setLoading] = useState(true);
@@ -34,26 +34,26 @@ const ReviseIdiom = () => {
     }
 
     const changeIdioms = () => {
-        const newIdiomIds = getRandomIdiomIds(idiomInfo, 10);
+        const newIdiomIds = getRandomIdiomIds(idioms, 10);
         localStorage.setItem("revisionIdiomIds", JSON.stringify(newIdiomIds));
         updateReviseIdioms(newIdiomIds);
         setIdiomsChange((prev) => !prev);
     };
 
     const updateReviseIdioms = (ids) => {
-        if (idiomInfo.length === 0) return;
+        if (idioms.length === 0) return;
         const idiomsToDisplay = sortIdioms(
-            ids.map((id) => idiomInfo.find((idiom) => idiom._id === id))
+            ids.map((id) => idioms.find((idiom) => idiom._id === id))
         );
         setReviseIdioms(idiomsToDisplay);
     };
 
     const getIdioms = async () => {
-        const allIdioms = await getAllIdioms();
-        if (allIdioms.error) {
-            setError(allIdioms.error);
+        const idiomsData = await getAllIdioms();
+        if (idiomsData.error) {
+            setError(idiomsData.error);
         } else {
-            setIdiomInfo(allIdioms.idiomInfo);
+            setIdioms(idiomsData.idioms);
         }
         setLoading(false);
     };
@@ -69,7 +69,7 @@ const ReviseIdiom = () => {
         } else {
             changeIdioms();
         }
-    }, [idiomInfo]);
+    }, [idioms]);
 
     if (loading) {
         return <Loader />;
