@@ -93,52 +93,56 @@ const WordAccordion = ({ entry, allWords, active, togglePanel, wordsChange }) =>
                 </div>
             </div>
             <div className="revise-container-bottom" style={innerStyle} aria-hidden={!active}>
-                {entry.meanings.map((meaning, index) => (
-                    <div key={index} className="word-container-bottom" ref={innerRef}>
-                        {meaning.definition && <p>{meaning.definition}</p>}
-                        {meaning.example && <p>"{underlineWord(meaning.example, entry.word)}"</p>}
-                        {meaning.synonyms?.length > 0 && (
-                            <p>
-                                <strong>Synonyms:</strong>{" "}
-                                {meaning.synonyms
-                                    .map((synonym) =>
-                                        checkExistingWord(synonym, allWords) ? (
-                                            <span
-                                                key={synonym}
-                                                className="clickable-word"
-                                                onClick={(e) => handleDetailsOpen(synonym, e)}
-                                            >
-                                                {synonym}
-                                            </span>
-                                        ) : (
-                                            <span key={synonym}>{synonym}</span>
+                <div className="revise-subcontainer-bottom" ref={innerRef}>
+                    {entry.meanings.map((meaning, index) => (
+                        <div key={index} className="word-container-bottom">
+                            {meaning.definition && <p>{meaning.definition}</p>}
+                            {meaning.example && (
+                                <p>"{underlineWord(meaning.example, entry.word)}"</p>
+                            )}
+                            {meaning.synonyms?.length > 0 && (
+                                <p>
+                                    <strong>Synonyms:</strong>{" "}
+                                    {meaning.synonyms
+                                        .map((synonym) =>
+                                            checkExistingWord(synonym, allWords) ? (
+                                                <span
+                                                    key={synonym}
+                                                    className="clickable-word"
+                                                    onClick={(e) => handleDetailsOpen(synonym, e)}
+                                                >
+                                                    {synonym}
+                                                </span>
+                                            ) : (
+                                                <span key={synonym}>{synonym}</span>
+                                            )
                                         )
-                                    )
-                                    .reduce((prev, curr) => [prev, ", ", curr])}
-                            </p>
-                        )}
-                        {meaning.antonyms?.length > 0 && (
-                            <p>
-                                <strong>Antonyms:</strong>{" "}
-                                {meaning.antonyms
-                                    .map((antonym) =>
-                                        checkExistingWord(antonym, allWords) ? (
-                                            <span
-                                                key={antonym}
-                                                className="clickable-word"
-                                                onClick={(e) => handleDetailsOpen(antonym, e)}
-                                            >
-                                                {antonym}
-                                            </span>
-                                        ) : (
-                                            <span key={antonym}>{antonym}</span>
+                                        .reduce((prev, curr) => [prev, ", ", curr])}
+                                </p>
+                            )}
+                            {meaning.antonyms?.length > 0 && (
+                                <p>
+                                    <strong>Antonyms:</strong>{" "}
+                                    {meaning.antonyms
+                                        .map((antonym) =>
+                                            checkExistingWord(antonym, allWords) ? (
+                                                <span
+                                                    key={antonym}
+                                                    className="clickable-word"
+                                                    onClick={(e) => handleDetailsOpen(antonym, e)}
+                                                >
+                                                    {antonym}
+                                                </span>
+                                            ) : (
+                                                <span key={antonym}>{antonym}</span>
+                                            )
                                         )
-                                    )
-                                    .reduce((prev, curr) => [prev, ", ", curr])}
-                            </p>
-                        )}
-                    </div>
-                ))}
+                                        .reduce((prev, curr) => [prev, ", ", curr])}
+                                </p>
+                            )}
+                        </div>
+                    ))}
+                </div>
                 <Modal
                     open={open}
                     onClose={handleClose}
