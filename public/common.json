@@ -116,13 +116,22 @@
         ]
     },
     {
-        "label": "Animal Sound",
+        "label": "Sound",
         "content": [
             { "word": "Screech", "description": "bat" },
             { "word": "Grunt", "description": "camel" },
             { "word": "Hoot", "description": "owl" },
             { "word": "Howl", "description": "wolf" },
             { "word": "Snort", "description": "pig" }
+        ]
+    },
+    {
+        "label": "Arena",
+        "content": [
+            { "word": "Dojo", "description": "martial arts" },
+            { "word": "Rink", "description": "ice skating" },
+            { "word": "Shiajo", "description": "judo" },
+            { "word": "Velodrome", "description": "cycling" }
         ]
     },
     {

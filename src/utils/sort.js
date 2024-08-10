@@ -57,6 +57,20 @@ export const sortSpellings = (spellings) => {
     });
 };
 
+export const sortCommon = (common) => {
+    return common.sort((a, b) => {
+        const labelA = a.label;
+        const labelB = b.label;
+        if (labelA < labelB) {
+            return -1;
+        }
+        if (labelA > labelB) {
+            return 1;
+        }
+        return 0;
+    });
+};
+
 export const sortCommonTerms = (terms) => {
     return terms.sort((a, b) => {
         const termA = a.word ? a.word.toLowerCase() : a.description;

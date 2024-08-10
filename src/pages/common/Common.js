@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react";
 import Accordion from "./Accordion";
+import { sortCommon } from "../../utils/sort";
+import Loader from "../../components/Loader";
 import "../../css/Common.css";
 
 const Common = () => {
     const [commonTerms, setCommonTerms] = useState([]);
     const [activeTabs, setActiveTabs] = useState([]);
+
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
 
     const togglePanel = (index) => {
         setActiveTabs((prevActiveTabs) => {
@@ -21,15 +26,24 @@ const Common = () => {
         try {
             const res = await fetch("/common.json");
             const data = await res.json();
-            setCommonTerms(data);
+            setCommonTerms(sortCommon(data));
         } catch (err) {
-            window.alert("Something went wrong");
+            setError("Something went wrong");
         }
+        setLoading(false);
     };
 
     useEffect(() => {
         fetchCommonTerms();
     }, []);
+
+    if (loading) {
+        return <Loader />;
+    }
+
+    if (error) {
+        return <h1>{error}</h1>;
+    }
 
     return (
         <div className="main-container">
