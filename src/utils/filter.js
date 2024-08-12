@@ -2,8 +2,10 @@ export const filterWords = (words, query) => {
     return words.filter((entry) => {
         return (
             entry.word.toLowerCase().includes(query.toLowerCase()) ||
-            entry.meanings.some((meaning) =>
-                meaning.example?.toLowerCase().includes(query.toLowerCase())
+            entry.meanings.some(
+                (meaning) =>
+                    meaning.definition?.toLowerCase().includes(query.toLowerCase()) ||
+                    meaning.example?.toLowerCase().includes(query.toLowerCase())
             )
         );
     });
