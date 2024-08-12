@@ -6,7 +6,7 @@ export function trimCapitalize(word) {
 }
 
 export function underlineWord(text, word) {
-    const regex = new RegExp(`(${word}(?:ing|ed|ly|s|d)?)`, "gi");
+    const regex = new RegExp(`(${word}(?:ing|ed|red|ly|s|d)?)`, "gi");
     const parts = text.split(regex);
     return parts.map((part, index) =>
         regex.test(part) ? (
