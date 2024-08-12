@@ -25,7 +25,7 @@ const IdiomAccordion = ({ entry, active, togglePanel, idiomsChange }) => {
     const { user, addFavorite, removeFavorite, favorites } = useContext(AuthContext);
     const [open, setOpen] = useState(false);
 
-    const handleUpdate = (type, e) => {
+    const handleUpdate = (e) => {
         e.stopPropagation();
         setOpen(true);
     };
@@ -48,39 +48,41 @@ const IdiomAccordion = ({ entry, active, togglePanel, idiomsChange }) => {
 
     return (
         <div className="revise-container" aria-expanded={active}>
-            <div className="revise-container-top" role="tab" onClick={togglePanel}>
-                <div className="word-container-top">
-                    <h3>{entry.idiom}</h3>
-                    <div className="update-icons">
-                        {user && (
-                            <button onClick={toggleFavorite}>
-                                {isFavorite ? (
-                                    <FaStar className="star-icon" />
-                                ) : (
-                                    <FaRegStar className="star-icon" />
-                                )}
-                            </button>
-                        )}
-                        {active && <button onClick={(e) => handleUpdate("edit", e)}>Edit</button>}
+            <div className="revise-container-item">
+                <div className="revise-container-top" role="tab" onClick={togglePanel}>
+                    <div className="word-container-top">
+                        <h3>{entry.idiom}</h3>
+                        <div className="update-icons">
+                            {user && (
+                                <button onClick={toggleFavorite}>
+                                    {isFavorite ? (
+                                        <FaStar className="star-icon" />
+                                    ) : (
+                                        <FaRegStar className="star-icon" />
+                                    )}
+                                </button>
+                            )}
+                            {active && <button onClick={handleUpdate}>Edit</button>}
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div className="revise-container-bottom" style={innerStyle} aria-hidden={!active}>
-                <div className="revise-subcontainer-bottom">
-                    <div className="word-container-bottom" ref={innerRef}>
-                        {entry.meaning && <p>{entry.meaning}</p>}
-                        {entry.example && <p>"{entry.example}"</p>}
+                <div className="revise-container-bottom" style={innerStyle} aria-hidden={!active}>
+                    <div className="revise-subcontainer-bottom">
+                        <div className="word-container-bottom" ref={innerRef}>
+                            {entry.meaning && <p>{entry.meaning}</p>}
+                            {entry.example && <p>"{entry.example}"</p>}
+                        </div>
                     </div>
+                    <Modal
+                        open={open}
+                        onClose={handleClose}
+                        showCloseIcon={false}
+                        closeOnOverlayClick={false}
+                        center
+                    >
+                        <EditIdiom entry={entry} onClose={handleClose} />
+                    </Modal>
                 </div>
-                <Modal
-                    open={open}
-                    onClose={handleClose}
-                    showCloseIcon={false}
-                    closeOnOverlayClick={false}
-                    center
-                >
-                    <EditIdiom entry={entry} onClose={handleClose} />
-                </Modal>
             </div>
         </div>
     );

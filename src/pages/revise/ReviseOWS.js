@@ -1,11 +1,24 @@
 import React, { useState, useEffect, useContext } from "react";
 import { UpdateContext } from "../../context/UpdateContext";
 import Loader from "../../components/Loader";
-import OWSContainer from "../ows/OWSContainer";
 import { getAllOws } from "../../utils/utils";
 import { sortOws } from "../../utils/sort";
+import OWSAccordion from "./OWSAccordion";
 
 const ReviseOWS = () => {
+    const [activeTabs, setActiveTabs] = useState([]);
+
+    const togglePanel = (index) => {
+        setActiveTabs((prevActiveTabs) => {
+            const isActive = prevActiveTabs.includes(index);
+            if (isActive) {
+                return prevActiveTabs.filter((tabIndex) => tabIndex !== index);
+            } else {
+                return [...prevActiveTabs, index];
+            }
+        });
+    };
+
     const { wordUpdate } = useContext(UpdateContext);
 
     const [ows, setOws] = useState([]);
@@ -69,8 +82,14 @@ const ReviseOWS = () => {
         <>
             <div className="main-container">
                 <div className="main-container-list">
-                    {reviseOws.map((ows) => (
-                        <OWSContainer key={ows._id} ows={ows} />
+                    {reviseOws.map((entry, index) => (
+                        <OWSAccordion
+                            key={entry._id}
+                            entry={entry}
+                            active={activeTabs.includes(index)}
+                            togglePanel={() => togglePanel(index)}
+                            owsChange={owsChange}
+                        />
                     ))}
                 </div>
             </div>

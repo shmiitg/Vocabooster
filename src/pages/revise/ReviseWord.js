@@ -87,7 +87,7 @@ const ReviseWord = () => {
                 <div className="main-container-list">
                     {reviseWords.map((entry, index) => (
                         <WordAccordion
-                            key={index}
+                            key={entry._id}
                             entry={entry}
                             allWords={wordList}
                             active={activeTabs.includes(index)}
