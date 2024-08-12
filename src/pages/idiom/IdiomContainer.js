@@ -3,6 +3,7 @@ import { Modal } from "react-responsive-modal";
 import "react-responsive-modal/styles.css";
 import EditIdiom from "./EditIdiom";
 import DeleteEntry from "../../components/DeleteEntry";
+import { trimCapitalize } from "../../utils/utils";
 
 export default function IdiomContainer({ entry }) {
     const [open, setOpen] = useState(false);
@@ -20,7 +21,7 @@ export default function IdiomContainer({ entry }) {
     return (
         <div className="word-container">
             <div className="word-container-top">
-                <h3>{entry.idiom}</h3>
+                <h3>{trimCapitalize(entry.idiom)}</h3>
                 <div className="update-icons">
                     <button onClick={() => handleUpdate("edit")}>Edit</button>
                     <button onClick={() => handleUpdate("delete")}>Delete</button>

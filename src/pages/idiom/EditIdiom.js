@@ -1,10 +1,15 @@
 import React, { useState, useContext, useEffect } from "react";
 import { UpdateContext } from "../../context/UpdateContext";
+import { trimCapitalize } from "../../utils/utils";
 
 const EditIdiom = ({ entry, onClose }) => {
     const { setWordUpdate } = useContext(UpdateContext);
     const idiomId = entry._id;
-    const [updatedEntry, setUpdatedEntry] = useState({ ...entry });
+    const [updatedEntry, setUpdatedEntry] = useState({
+        ...entry,
+        meaning: entry.meaning ? entry.meaning : "",
+        example: entry.example ? entry.example : "",
+    });
     const [error, setError] = useState("");
 
     const handleChange = (e) => {
@@ -16,9 +21,11 @@ const EditIdiom = ({ entry, onClose }) => {
     };
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        const { idiom, meaning, example } = updatedEntry;
 
-        if (!updatedEntry.idiom) {
+        const finalIdiom = trimCapitalize(idiom);
+
+        if (finalIdiom === "") {
             setError("Idiom is required");
             return;
         }
@@ -28,7 +35,7 @@ const EditIdiom = ({ entry, onClose }) => {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(updatedEntry),
+            body: JSON.stringify({ idiom: finalIdiom, meaning: meaning, example: example }),
         });
 
         const data = await res.json();
