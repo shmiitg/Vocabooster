@@ -33,33 +33,36 @@ const Register = () => {
     };
 
     return (
-        <div>
-            <h2>Register</h2>
-            <div>
-                <div>
-                    <label>Username:</label>
-                    <input
-                        type="text"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                    />
-                </div>
-                <div>
-                    <label>Email:</label>
-                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                </div>
-                <div>
-                    <label>Password:</label>
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                </div>
-                <button type="submit" onClick={register}>
+        <div className="auth-page">
+            <div className="auth-container">
+                <h2>Register</h2>
+                <input
+                    type="text"
+                    placeholder="Username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    className="auth-input"
+                />
+                <input
+                    type="email"
+                    placeholder="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="auth-input"
+                />
+                <input
+                    type="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="auth-input"
+                />
+                <button type="submit" onClick={register} className="auth-button">
                     Register
                 </button>
-                <Link to="/login">Login</Link>
+                <Link to="/login" className="auth-link">
+                    Login
+                </Link>
             </div>
         </div>
     );

@@ -32,25 +32,29 @@ const Login = () => {
     };
 
     return (
-        <div>
-            <h2>Login</h2>
-            <div>
-                <div>
-                    <label>Email:</label>
-                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                </div>
-                <div>
-                    <label>Password:</label>
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                </div>
-                <button type="submit" onClick={login}>
+        <div className="auth-page">
+            <div className="auth-container">
+                <h2>Login</h2>
+                <input
+                    type="email"
+                    placeholder="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="auth-input"
+                />
+                <input
+                    type="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="auth-input"
+                />
+                <button type="submit" onClick={login} className="auth-button">
                     Login
                 </button>
-                <Link to="/register">Register</Link>
+                <Link to="/register" className="auth-link">
+                    Register
+                </Link>
             </div>
         </div>
     );

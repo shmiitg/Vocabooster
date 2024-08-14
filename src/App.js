@@ -19,8 +19,10 @@ import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 // import css files
 import "./App.css";
+import "./css/Auth.css";
 import "./css/Modal.css";
 import "./css/Word.css";
+import "./css/Revise.css";
 import { AuthContext } from "./context/AuthContext";
 
 const App = () => {

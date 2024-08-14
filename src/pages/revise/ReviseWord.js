@@ -4,7 +4,6 @@ import Loader from "../../components/Loader";
 import { getAllWords } from "../../utils/utils";
 import { sortWords } from "../../utils/sort";
 import WordAccordion from "./WordAccordion";
-import "../../css/Revise.css";
 
 const ReviseWord = () => {
     const [activeTabs, setActiveTabs] = useState([]);
