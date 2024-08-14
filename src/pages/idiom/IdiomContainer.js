@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Modal } from "react-responsive-modal";
 import "react-responsive-modal/styles.css";
 import EditIdiom from "./EditIdiom";
 import DeleteEntry from "../../components/DeleteEntry";
 import { trimCapitalize } from "../../utils/utils";
+import { FaStar, FaRegStar } from "react-icons/fa";
+import { AuthContext } from "../../context/AuthContext";
 
 export default function IdiomContainer({ entry }) {
+    const { user, addFavorite, removeFavorite, favorites } = useContext(AuthContext);
     const [open, setOpen] = useState(false);
     const [updateType, setUpdateType] = useState("edit");
 
@@ -18,11 +21,31 @@ export default function IdiomContainer({ entry }) {
         setOpen(false);
     };
 
+    const favObj = { itemType: "idiom", itemId: String(entry._id) };
+    const isFavorite = favorites.has(favObj);
+
+    const toggleFavorite = () => {
+        if (isFavorite) {
+            removeFavorite("idiom", entry._id);
+        } else {
+            addFavorite("idiom", entry._id);
+        }
+    };
+
     return (
         <div className="word-container">
             <div className="word-container-top">
                 <h3>{trimCapitalize(entry.idiom)}</h3>
                 <div className="update-icons">
+                    {user && (
+                        <button onClick={toggleFavorite}>
+                            {isFavorite ? (
+                                <FaStar className="star-icon" />
+                            ) : (
+                                <FaRegStar className="star-icon" />
+                            )}
+                        </button>
+                    )}
                     <button onClick={() => handleUpdate("edit")}>Edit</button>
                     <button onClick={() => handleUpdate("delete")}>Delete</button>
                 </div>

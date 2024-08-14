@@ -31,6 +31,7 @@ export const navMenu = [
         submenu: [
             { title: "Word", address: "/bookmark" },
             { title: "OWS", address: "/bookmark-ows" },
+            { title: "Idiom", address: "/bookmark-idiom" },
         ],
     },
     {
