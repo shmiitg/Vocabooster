@@ -34,12 +34,13 @@ const App = () => {
             <main>
                 <Routes>
                     <Route path="/" element={<Word />} />
-                    <Route path="/bookmark" element={<Bookmark />} />
+                    <Route path="/bookmark-word" element={<Bookmark />} />
                     <Route path="/bookmark-ows" element={<BookmarkOWS />} />
                     <Route path="/bookmark-idiom" element={<BookmarkIdiom />} />
                     <Route path="/revise-word" element={<ReviseWord />} />
                     <Route path="/revise-ows" element={<ReviseOWS />} />
                     <Route path="/revise-idiom" element={<ReviseIdiom />} />
+                    <Route path="/word" element={<Word />} />
                     <Route path="/ows" element={<OWS />} />
                     <Route path="/idioms" element={<Idiom />} />
                     <Route path="/spellings" element={<Spelling />} />

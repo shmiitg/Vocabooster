@@ -21,7 +21,11 @@ const NavItem = ({ navItem }) => {
                     <button
                         aria-expanded={dropdown ? "true" : "false"}
                         onClick={handleDropdownToggle}
-                        className="link"
+                        className={
+                            navItem.submenu.some((item) => item.address === pathname)
+                                ? "link link-active"
+                                : "link"
+                        }
                     >
                         {navItem.icon}
                         {navItem.title}
