@@ -7,6 +7,7 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
     const navigate = useNavigate();
     const [user, setUser] = useState(null);
+    const [userRole, setUserRole] = useState("user");
     const [favorites, setFavorites] = useState(new UniqueObjectSet());
 
     useEffect(() => {
@@ -26,6 +27,7 @@ export const AuthProvider = ({ children }) => {
             if (res.ok) {
                 const data = await res.json();
                 setUser(data.username);
+                setUserRole(data.role);
                 const favs = data.favorites.map((fav) => ({
                     itemType: fav.itemType,
                     itemId: fav._id,
@@ -121,6 +123,7 @@ export const AuthProvider = ({ children }) => {
         <AuthContext.Provider
             value={{
                 user,
+                userRole,
                 setUser,
                 logout,
                 favorites,
