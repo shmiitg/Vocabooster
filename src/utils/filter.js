@@ -5,6 +5,12 @@ export const filterWords = (words, query) => {
             entry.meanings.some(
                 (meaning) =>
                     meaning.definition?.toLowerCase().includes(query.toLowerCase()) ||
+                    meaning.synonyms.some((synonym) =>
+                        synonym.toLowerCase().includes(query.toLowerCase())
+                    ) ||
+                    meaning.antonyms.some((antonym) =>
+                        antonym.toLowerCase().includes(query.toLowerCase())
+                    ) ||
                     meaning.example?.toLowerCase().includes(query.toLowerCase())
             )
         );
