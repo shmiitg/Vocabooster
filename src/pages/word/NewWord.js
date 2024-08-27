@@ -1,8 +1,10 @@
 import React, { useState, useContext, useEffect } from "react";
 import { UpdateContext } from "../../context/UpdateContext";
+import { AuthContext } from "../../context/AuthContext";
 import { trimCapitalize } from "../../utils/utils";
 
 const NewWord = ({ onClose }) => {
+    const { userRole } = useContext(AuthContext);
     const { setWordUpdate } = useContext(UpdateContext);
     const [newWord, setNewWord] = useState({
         word: "",
@@ -99,19 +101,23 @@ const NewWord = ({ onClose }) => {
             example: meaning.example.trim(),
         }));
 
-        const res = await fetch(`${process.env.REACT_APP_SERVER_URL}/word/save`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ word: finalWord, meanings: finalMeanings }),
-        });
-        const data = await res.json();
-        if (res.status === 200) {
-            onClose();
-            setWordUpdate((prev) => !prev);
+        if (userRole === "admin") {
+            const res = await fetch(`${process.env.REACT_APP_SERVER_URL}/word/save`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ word: finalWord, meanings: finalMeanings }),
+            });
+            const data = await res.json();
+            if (res.status === 200) {
+                onClose();
+                setWordUpdate((prev) => !prev);
+            } else {
+                setError(data.error);
+            }
         } else {
-            setError(data.error);
+            setError("Only admin can add");
         }
     };
 
