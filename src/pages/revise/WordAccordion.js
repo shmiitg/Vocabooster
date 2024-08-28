@@ -66,15 +66,17 @@ const WordAccordion = ({ entry, allWords, active, togglePanel, wordsChange }) =>
                         <h3>{trimCapitalize(entry.word)}</h3>
                         <div className="update-icons">
                             {user && (
-                                <button onClick={toggleFavorite}>
-                                    {isFavorite ? (
-                                        <FaStar className="star-icon" />
-                                    ) : (
-                                        <FaRegStar className="star-icon" />
-                                    )}
-                                </button>
+                                <>
+                                    <button onClick={toggleFavorite}>
+                                        {isFavorite ? (
+                                            <FaStar className="star-icon" />
+                                        ) : (
+                                            <FaRegStar className="star-icon" />
+                                        )}
+                                    </button>
+                                    {active && <button onClick={handleUpdate}>Edit</button>}
+                                </>
                             )}
-                            {active && <button onClick={handleUpdate}>Edit</button>}
                         </div>
                     </div>
                 </div>

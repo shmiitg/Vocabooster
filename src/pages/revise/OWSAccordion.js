@@ -53,15 +53,17 @@ export default function OWSAccordion({ entry, active, togglePanel, owsChange }) 
                             {index === 0 && (
                                 <div className="update-icons">
                                     {user && (
-                                        <button onClick={toggleFavorite}>
-                                            {isFavorite ? (
-                                                <FaStar className="star-icon" />
-                                            ) : (
-                                                <FaRegStar className="star-icon" />
-                                            )}
-                                        </button>
+                                        <>
+                                            <button onClick={toggleFavorite}>
+                                                {isFavorite ? (
+                                                    <FaStar className="star-icon" />
+                                                ) : (
+                                                    <FaRegStar className="star-icon" />
+                                                )}
+                                            </button>
+                                            {active && <button onClick={handleUpdate}>Edit</button>}
+                                        </>
                                     )}
-                                    {active && <button onClick={handleUpdate}>Edit</button>}
                                 </div>
                             )}
                         </div>

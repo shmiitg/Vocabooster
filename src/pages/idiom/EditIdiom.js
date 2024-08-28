@@ -1,8 +1,10 @@
 import React, { useState, useContext, useEffect } from "react";
 import { UpdateContext } from "../../context/UpdateContext";
+import { AuthContext } from "../../context/AuthContext";
 import { trimCapitalize } from "../../utils/utils";
 
-const EditIdiom = ({ entry, onClose }) => {
+export default function EditIdiomDialog({ entry, onClose }) {
+    const { userRole } = useContext(AuthContext);
     const { setWordUpdate } = useContext(UpdateContext);
     const idiomId = entry._id;
     const [updatedEntry, setUpdatedEntry] = useState({
@@ -30,20 +32,25 @@ const EditIdiom = ({ entry, onClose }) => {
             return;
         }
 
-        const res = await fetch(`${process.env.REACT_APP_SERVER_URL}/idiom/${idiomId}`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ idiom: finalIdiom, meaning: meaning, example: example }),
-        });
+        if (userRole === "admin") {
+            const url = `${process.env.REACT_APP_SERVER_URL}/idiom/${idiomId}`;
+            const res = await fetch(url, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ idiom: finalIdiom, meaning: meaning, example: example }),
+            });
 
-        const data = await res.json();
-        if (res.status === 200) {
-            onClose();
-            setWordUpdate((prev) => !prev);
+            const data = await res.json();
+            if (res.status === 200) {
+                onClose();
+                setWordUpdate((prev) => !prev);
+            } else {
+                setError(data.error);
+            }
         } else {
-            setError(data.error);
+            setError("Only admin can update");
         }
     };
 
@@ -107,6 +114,4 @@ const EditIdiom = ({ entry, onClose }) => {
             </div>
         </div>
     );
-};
-
-export default EditIdiom;
+}

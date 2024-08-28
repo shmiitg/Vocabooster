@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
 import { UpdateContext } from "../../context/UpdateContext";
 import { SearchContext } from "../../context/SearchContext";
+import { AuthContext } from "../../context/AuthContext";
 import { Modal } from "react-responsive-modal";
 import Loader from "../../components/Loader";
 import IdiomContainer from "./IdiomContainer";
@@ -12,6 +13,7 @@ import { scrollThreshold } from "../../utils/constant";
 import { useMediaQuery } from "react-responsive";
 
 const Idiom = () => {
+    const { user } = useContext(AuthContext);
     const { wordUpdate } = useContext(UpdateContext);
     const { searchQuery } = useContext(SearchContext);
 
@@ -129,9 +131,11 @@ const Idiom = () => {
                     ))}
                 </div>
             </div>
-            <button className="add-button" onClick={handleOpen}>
-                Add
-            </button>
+            {user && (
+                <button className="add-button" onClick={handleOpen}>
+                    Add
+                </button>
+            )}
             <Modal
                 open={open}
                 onClose={handleClose}
