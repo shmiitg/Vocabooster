@@ -11,7 +11,7 @@ import { filterWords } from "../../utils/filter";
 import { scrollThreshold } from "../../utils/constant";
 import { useMediaQuery } from "react-responsive";
 
-const Bookmark = () => {
+const BookmarkWord = () => {
     const { wordUpdate } = useContext(UpdateContext);
     const { searchQuery } = useContext(SearchContext);
 
@@ -148,4 +148,4 @@ const Bookmark = () => {
     );
 };
 
-export default Bookmark;
+export default BookmarkWord;

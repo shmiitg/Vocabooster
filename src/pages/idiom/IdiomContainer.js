@@ -36,21 +36,19 @@ export default function IdiomContainer({ entry }) {
         <div className="word-container">
             <div className="word-container-top">
                 <h3>{trimCapitalize(entry.idiom)}</h3>
-                <div className="update-icons">
-                    {user && (
-                        <>
-                            <button onClick={toggleFavorite}>
-                                {isFavorite ? (
-                                    <FaStar className="star-icon" />
-                                ) : (
-                                    <FaRegStar className="star-icon" />
-                                )}
-                            </button>
-                            <button onClick={() => handleUpdate("edit")}>Edit</button>
-                            <button onClick={() => handleUpdate("delete")}>Delete</button>
-                        </>
-                    )}
-                </div>
+                {user && (
+                    <div className="update-icons">
+                        <button onClick={toggleFavorite}>
+                            {isFavorite ? (
+                                <FaStar className="star-icon" />
+                            ) : (
+                                <FaRegStar className="star-icon" />
+                            )}
+                        </button>
+                        <button onClick={() => handleUpdate("edit")}>Edit</button>
+                        <button onClick={() => handleUpdate("delete")}>Delete</button>
+                    </div>
+                )}
             </div>
             <div className="word-container-bottom">
                 {entry.meaning && <p>{entry.meaning}</p>}

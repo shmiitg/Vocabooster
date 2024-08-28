@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
 import { UpdateContext } from "../../context/UpdateContext";
 import { SearchContext } from "../../context/SearchContext";
+import { AuthContext } from "../../context/AuthContext";
 import { Modal } from "react-responsive-modal";
 import Loader from "../../components/Loader";
 import Error from "../../components/Error";
@@ -12,6 +13,7 @@ import { scrollThreshold } from "../../utils/constant";
 import { useMediaQuery } from "react-responsive";
 
 const Spelling = () => {
+    const { user } = useContext(AuthContext);
     const { wordUpdate } = useContext(UpdateContext);
     const { searchQuery } = useContext(SearchContext);
 
@@ -135,9 +137,11 @@ const Spelling = () => {
                     ))}
                 </div>
             </div>
-            <button className="add-button" onClick={handleOpen}>
-                Add
-            </button>
+            {user && (
+                <button className="add-button" onClick={handleOpen}>
+                    Add
+                </button>
+            )}
             <Modal
                 open={open}
                 onClose={handleClose}

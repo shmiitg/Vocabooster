@@ -37,23 +37,17 @@ export default function OWSContainer({ ows }) {
                 <div key={index} className="word-container-item">
                     <div className="word-container-top">
                         <h3>{trimCapitalize(entry.word)}</h3>
-                        {index === 0 && (
+                        {index === 0 && user && (
                             <div className="update-icons">
-                                {user && (
-                                    <>
-                                        <button onClick={toggleFavorite}>
-                                            {isFavorite ? (
-                                                <FaStar className="star-icon" />
-                                            ) : (
-                                                <FaRegStar className="star-icon" />
-                                            )}
-                                        </button>
-                                        <button onClick={() => handleUpdate("edit")}>Edit</button>
-                                        <button onClick={() => handleUpdate("delete")}>
-                                            Delete
-                                        </button>
-                                    </>
-                                )}
+                                <button onClick={toggleFavorite}>
+                                    {isFavorite ? (
+                                        <FaStar className="star-icon" />
+                                    ) : (
+                                        <FaRegStar className="star-icon" />
+                                    )}
+                                </button>
+                                <button onClick={() => handleUpdate("edit")}>Edit</button>
+                                <button onClick={() => handleUpdate("delete")}>Delete</button>
                             </div>
                         )}
                     </div>

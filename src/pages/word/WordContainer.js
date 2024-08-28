@@ -49,21 +49,19 @@ const WordContainer = ({ entry, wordList }) => {
         <div className="word-container">
             <div className="word-container-top">
                 <h3>{trimCapitalize(entry.word)}</h3>
-                <div className="update-icons">
-                    {user && (
-                        <>
-                            <button onClick={toggleFavorite}>
-                                {isFavorite ? (
-                                    <FaStar className="star-icon" />
-                                ) : (
-                                    <FaRegStar className="star-icon" />
-                                )}
-                            </button>
-                            <button onClick={() => handleUpdate("edit")}>Edit</button>
-                            <button onClick={() => handleUpdate("delete")}>Delete</button>
-                        </>
-                    )}
-                </div>
+                {user && (
+                    <div className="update-icons">
+                        <button onClick={toggleFavorite}>
+                            {isFavorite ? (
+                                <FaStar className="star-icon" />
+                            ) : (
+                                <FaRegStar className="star-icon" />
+                            )}
+                        </button>
+                        <button onClick={() => handleUpdate("edit")}>Edit</button>
+                        <button onClick={() => handleUpdate("delete")}>Delete</button>
+                    </div>
+                )}
             </div>
             {entry.meanings.map((meaning, index) => (
                 <div key={index} className="word-container-bottom">
