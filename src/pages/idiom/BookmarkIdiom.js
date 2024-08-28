@@ -2,6 +2,8 @@ import React, { useState, useEffect, useContext, useRef } from "react";
 import { UpdateContext } from "../../context/UpdateContext";
 import { SearchContext } from "../../context/SearchContext";
 import Loader from "../../components/Loader";
+import Error from "../../components/Error";
+import Empty from "../../components/Empty";
 import IdiomContainer from "./IdiomContainer";
 import { sortIdioms } from "../../utils/sort";
 import { filterIdioms } from "../../utils/filter";
@@ -41,10 +43,10 @@ const BookmarkIdiom = () => {
                     const favs = data.favorites.filter((fav) => fav.itemType === "idiom");
                     setIdioms(sortIdioms(favs));
                 } else {
-                    setError("Failed to fetch");
+                    setError("Failed to load Idioms");
                 }
             } catch (err) {
-                setError("Failed to fetch");
+                setError("Failed to load Idioms");
             }
         }
         setLoading(false);
@@ -97,7 +99,11 @@ const BookmarkIdiom = () => {
     }
 
     if (error) {
-        return <h1>{error}</h1>;
+        return <Error error={error} />;
+    }
+
+    if (idioms.length === 0) {
+        return <Empty message="No Idioms in Bookmark" />;
     }
 
     return (

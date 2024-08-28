@@ -2,6 +2,8 @@ import React, { useState, useEffect, useContext, useRef } from "react";
 import { UpdateContext } from "../../context/UpdateContext";
 import { SearchContext } from "../../context/SearchContext";
 import Loader from "../../components/Loader";
+import Error from "../../components/Error";
+import Empty from "../../components/Empty";
 import WordContainer from "./WordContainer";
 import { getAllWords } from "../../utils/utils";
 import { sortWords } from "../../utils/sort";
@@ -49,10 +51,10 @@ const Bookmark = () => {
                         setWordList(wordsData.wordList);
                     }
                 } else {
-                    setError("Failed to fetch");
+                    setError("Failed to load Words");
                 }
             } catch (err) {
-                setError("Failed to fetch");
+                setError("Failed to load Words");
             }
         }
         setLoading(false);
@@ -105,7 +107,11 @@ const Bookmark = () => {
     }
 
     if (error) {
-        return <h1>{error}</h1>;
+        return <Error error={error} />;
+    }
+
+    if (words.length === 0) {
+        return <Empty message="No Words in Bookmark" />;
     }
 
     return (

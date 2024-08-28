@@ -2,6 +2,8 @@ import React, { useState, useEffect, useContext } from "react";
 import { UpdateContext } from "../../context/UpdateContext";
 import { SearchContext } from "../../context/SearchContext";
 import Loader from "../../components/Loader";
+import Error from "../../components/Error";
+import Empty from "../../components/Empty";
 import OWSContainer from "./OWSContainer";
 import { filterOws } from "../../utils/filter";
 import { sortOws } from "../../utils/sort";
@@ -29,10 +31,10 @@ const BookmarkOWS = () => {
                     const favs = data.favorites.filter((fav) => fav.itemType === "ows");
                     setOws(sortOws(favs));
                 } else {
-                    setError(true);
+                    setError("Failed to load OWS");
                 }
             } catch (err) {
-                setError(true);
+                setError("Failed to load OWS");
             }
         }
         setLoading(false);
@@ -42,15 +44,19 @@ const BookmarkOWS = () => {
         getFavoriteOws();
     }, [wordUpdate]);
 
+    const filteredOWS = filterOws(ows, "", searchQuery);
+
     if (loading) {
         return <Loader />;
     }
 
     if (error) {
-        return <h1>Error</h1>;
+        return <Error error={error} />;
     }
 
-    const filteredOWS = filterOws(ows, "", searchQuery);
+    if (ows.length === 0) {
+        return <Empty message="No OWS in Bookmark" />;
+    }
 
     return (
         <>

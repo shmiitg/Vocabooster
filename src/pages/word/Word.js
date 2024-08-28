@@ -4,6 +4,7 @@ import { SearchContext } from "../../context/SearchContext";
 import { AuthContext } from "../../context/AuthContext";
 import { Modal } from "react-responsive-modal";
 import Loader from "../../components/Loader";
+import Error from "../../components/Error";
 import WordContainer from "./WordContainer";
 import NewWord from "./NewWord";
 import { getAllWords } from "../../utils/utils";
@@ -102,7 +103,7 @@ const Word = () => {
     }
 
     if (error) {
-        return <h1>Error</h1>;
+        return <Error error={error} />;
     }
 
     return (

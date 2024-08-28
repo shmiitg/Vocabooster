@@ -38,7 +38,7 @@ export const getAllWords = async () => {
         }
         return { words, wordList };
     } catch (err) {
-        return { error: "Failed to load" };
+        return { error: "Failed to load Words" };
     }
 };
 
@@ -53,7 +53,7 @@ export const getAllOws = async () => {
         }
         return { ows };
     } catch (err) {
-        return { error: "Failed to load" };
+        return { error: "Failed to load OWS" };
     }
 };
 
@@ -68,6 +68,6 @@ export const getAllIdioms = async () => {
         }
         return { idioms };
     } catch (err) {
-        return { error: "Failed to load" };
+        return { error: "Failed to load Idioms" };
     }
 };

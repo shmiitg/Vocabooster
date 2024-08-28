@@ -3,6 +3,7 @@ import { UpdateContext } from "../../context/UpdateContext";
 import { SearchContext } from "../../context/SearchContext";
 import { Modal } from "react-responsive-modal";
 import Loader from "../../components/Loader";
+import Error from "../../components/Error";
 import SpellingContainer from "./SpellingContainer";
 import NewSpelling from "./NewSpelling";
 import { sortSpellings } from "../../utils/sort";
@@ -37,10 +38,10 @@ const Spelling = () => {
             if (res.status === 200) {
                 setSpellings(sortSpellings(data.spellings));
             } else {
-                setError(true);
+                setError("Failed to load Spellings");
             }
         } catch (err) {
-            setError(true);
+            setError("Failed to load Spellings");
         }
         setLoading(false);
     };
@@ -101,7 +102,7 @@ const Spelling = () => {
     }
 
     if (error) {
-        return <h1>Error</h1>;
+        return <Error error={error} />;
     }
 
     return (
