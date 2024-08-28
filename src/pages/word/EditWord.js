@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { UpdateContext } from "../../context/UpdateContext";
-import { trimCapitalize } from "../../utils/utils";
 import { AuthContext } from "../../context/AuthContext";
+import { trimCapitalize } from "../../utils/utils";
 
 export default function EditWordDialog({ entry, onClose }) {
     const { userRole } = useContext(AuthContext);

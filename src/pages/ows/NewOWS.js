@@ -1,8 +1,10 @@
 import React, { useState, useContext, useEffect } from "react";
 import { UpdateContext } from "../../context/UpdateContext";
+import { AuthContext } from "../../context/AuthContext";
 import { trimCapitalize } from "../../utils/utils";
 
 export default function NewOWS({ onClose }) {
+    const { userRole } = useContext(AuthContext);
     const { setWordUpdate } = useContext(UpdateContext);
 
     const [newWord, setNewWord] = useState({
@@ -87,22 +89,25 @@ export default function NewOWS({ onClose }) {
 
         finalEntries.sort((a, b) => a.word.localeCompare(b.word));
 
-        // Perform the API call only if validation passes
-        const url = `${process.env.REACT_APP_SERVER_URL}/ows/save`;
-        const res = await fetch(url, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ ows: finalEntries }),
-        });
-        const data = await res.json();
-        if (res.status === 201) {
-            // assuming 201 status code for created
-            onClose();
-            setWordUpdate((prev) => !prev);
+        if (userRole === "admin") {
+            const url = `${process.env.REACT_APP_SERVER_URL}/ows/save`;
+            const res = await fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ ows: finalEntries }),
+            });
+            const data = await res.json();
+            if (res.status === 201) {
+                // assuming 201 status code for created
+                onClose();
+                setWordUpdate((prev) => !prev);
+            } else {
+                setError(data.error);
+            }
         } else {
-            setError(data.error);
+            setError("Only admin can add");
         }
     };
 

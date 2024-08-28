@@ -1,8 +1,10 @@
 import React, { useState, useContext, useEffect } from "react";
 import { UpdateContext } from "../../context/UpdateContext";
+import { AuthContext } from "../../context/AuthContext";
 import { trimCapitalize } from "../../utils/utils";
 
 export default function EditOws({ ows, onClose }) {
+    const { userRole } = useContext(AuthContext);
     const { setWordUpdate } = useContext(UpdateContext);
     const owsId = ows._id;
 
@@ -106,20 +108,24 @@ export default function EditOws({ ows, onClose }) {
 
         finalEntries.sort((a, b) => a.word.localeCompare(b.word));
 
-        const url = `${process.env.REACT_APP_SERVER_URL}/ows/${owsId}`;
-        const res = await fetch(url, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ ows: finalEntries }),
-        });
-        const data = await res.json();
-        if (res.status === 200) {
-            onClose();
-            setWordUpdate((prev) => !prev);
+        if (userRole === "admin") {
+            const url = `${process.env.REACT_APP_SERVER_URL}/ows/${owsId}`;
+            const res = await fetch(url, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ ows: finalEntries }),
+            });
+            const data = await res.json();
+            if (res.status === 200) {
+                onClose();
+                setWordUpdate((prev) => !prev);
+            } else {
+                setError(data.error);
+            }
         } else {
-            setError(data.error);
+            setError("Only admin can update");
         }
     };
 

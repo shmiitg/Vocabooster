@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { UpdateContext } from "../../context/UpdateContext";
 import { SearchContext } from "../../context/SearchContext";
+import { AuthContext } from "../../context/AuthContext";
 import { Modal } from "react-responsive-modal";
 import Loader from "../../components/Loader";
 import OWSContainer from "./OWSContainer";
@@ -9,6 +10,7 @@ import { filterOws } from "../../utils/filter";
 import { sortOws } from "../../utils/sort";
 
 const OWS = () => {
+    const { user } = useContext(AuthContext);
     const { wordUpdate } = useContext(UpdateContext);
     const { searchQuery } = useContext(SearchContext);
 
@@ -65,9 +67,11 @@ const OWS = () => {
                     ))}
                 </div>
             </div>
-            <button className="add-button" onClick={handleOpen}>
-                Add
-            </button>
+            {user && (
+                <button className="add-button" onClick={handleOpen}>
+                    Add
+                </button>
+            )}
             <Modal
                 open={open}
                 onClose={handleClose}
