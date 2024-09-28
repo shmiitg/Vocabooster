@@ -91,11 +91,11 @@ const NewWord = ({ onClose }) => {
         const finalMeanings = updatedMeanings.map((meaning) => ({
             definition: meaning.definition.trim(),
             synonyms:
-                meaning.synonyms.length > 0
+                meaning.synonyms.trim().length > 0
                     ? meaning.synonyms.split(",").map((item) => item.trim().toLowerCase())
                     : [],
             antonyms:
-                meaning.antonyms.length > 0
+                meaning.antonyms.trim().length > 0
                     ? meaning.antonyms.split(",").map((item) => item.trim().toLowerCase())
                     : [],
             example: meaning.example.trim(),

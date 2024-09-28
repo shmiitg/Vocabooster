@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import Hamburger from "hamburger-react";
 import { AuthContext } from "../../context/AuthContext";
@@ -14,10 +14,24 @@ const Navbar = () => {
     const { searchQuery, setSearchQuery } = useContext(SearchContext);
 
     const [isOpen, setOpen] = useState(false);
+    const searchInputRef = useRef(null);
 
     const handleSearchChange = (e) => {
         setSearchQuery(e.target.value);
     };
+
+    useEffect(() => {
+        const handleKeyPress = (e) => {
+            if (e.key === "/") {
+                e.preventDefault();
+                searchInputRef.current.focus();
+            }
+        };
+        window.addEventListener("keydown", handleKeyPress);
+        return () => {
+            window.removeEventListener("keydown", handleKeyPress);
+        };
+    }, []);
 
     return (
         <header>
@@ -36,6 +50,7 @@ const Navbar = () => {
                             placeholder="Search..."
                             value={searchQuery}
                             onChange={handleSearchChange}
+                            ref={searchInputRef} // Attach ref to the search input
                         />
                     </div>
                 </div>
