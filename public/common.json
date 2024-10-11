@@ -55,15 +55,15 @@
             { "word": "Autocracy", "description": "one person" },
             { "word": "Bureaucracy", "description": "top officials" },
             { "word": "Diabolocracy", "description": "devil" },
-            { "word": "Gerontocracy", "description": "old people" },
-            { "word": "Idiocracy", "description": "foolish people" },
+            { "word": "Gerontocracy", "description": "old" },
+            { "word": "Idiocracy", "description": "foolish" },
             { "word": "Kakistocracy", "description": "incompetent" },
             { "word": "Kleptocracy", "description": "thieves" },
-            { "word": "Mediocracy", "description": "mediocre people" },
-            { "word": "Neocracy", "description": "inexperienced people" },
-            { "word": "Oligarchy", "description": "small group of people" },
+            { "word": "Mediocracy", "description": "mediocre" },
+            { "word": "Neocracy", "description": "inexperienced" },
+            { "word": "Oligarchy", "description": "small group" },
             { "word": "Panarchy", "description": "freely choose govt" },
-            { "word": "Plutocracy", "description": "wealthy people" },
+            { "word": "Plutocracy", "description": "rich" },
             { "word": "Theocracy", "description": "religious leaders" },
             { "word": "Cryptocracy", "description": "secret govt" }
         ]
@@ -83,11 +83,11 @@
             { "word": "Genealogy", "description": "families" },
             { "word": "Geology", "description": "earth" },
             { "word": "Geomorphology", "description": "lithosphere" },
-            { "word": "Gerontology", "description": "old people and ageing" },
+            { "word": "Gerontology", "description": "old people" },
             { "word": "Hematology", "description": "blood" },
             { "word": "Histology", "description": "tissues and organs" },
             { "word": "Limnology", "description": "lakes" },
-            { "word": "Lithology", "description": "physical characteristics of rocks" },
+            { "word": "Lithology", "description": "rocks" },
             { "word": "Meteorology", "description": "atmosphere" },
             { "word": "Morphology", "description": "structures" },
             { "word": "Mycology", "description": "fungi" },
@@ -99,7 +99,8 @@
             { "word": "Petrology", "description": "rocks" },
             { "word": "Phycology", "description": "algae" },
             { "word": "Selenology", "description": "moon" },
-            { "word": "Theology", "description": "god" }
+            { "word": "Theology", "description": "god" },
+            { "word": "Ichthyologist", "description": "fish" }
         ]
     },
     {
@@ -139,7 +140,8 @@
         "content": [
             { "description": "Time and Tide wait for none" },
             { "description": "God made us in his own image" },
-            { "description": "Waxing and waning moon" }
+            { "description": "Waxing and waning moon" },
+            { "description": "At the fringes" }
         ]
     }
 ]
