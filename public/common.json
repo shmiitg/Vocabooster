@@ -9,7 +9,6 @@
             { "word": "Catrophobia", "description": "doctors" },
             { "word": "Chrometophobia", "description": "money" },
             { "word": "Chronophobia", "description": "time" },
-            { "word": "Cynophobia", "description": "dogs" },
             { "word": "Demophobia", "description": "public speaking" },
             { "word": "Altophobia", "description": "heights" },
             { "word": "Aerophobia", "description": "flying" },
@@ -21,7 +20,8 @@
             { "word": "Xerophobia", "description": "dryness" },
             { "word": "Arachnophobia", "description": "spiders" },
             { "word": "Aquaphobia", "description": "water" },
-            { "word": "Nyctophobia", "description": "dark" }
+            { "word": "Nyctophobia", "description": "dark" },
+            { "word": "Arsonphobia", "description": "fire" }
         ]
     },
     {
@@ -30,7 +30,8 @@
             { "word": "Ergophile", "description": "work" },
             { "word": "Oenophile", "description": "wine" },
             { "word": "Dendrophile", "description": "trees" },
-            { "word": "Pluviophile", "description": "rain" }
+            { "word": "Pluviophile", "description": "rain" },
+            { "word": "Canophile", "description": "dogs" }
         ]
     },
     {
@@ -45,7 +46,8 @@
             { "word": "Uxoricide", "description": "wife" },
             { "word": "Fratricide", "description": "brother" },
             { "word": "Sororicide", "description": "sister" },
-            { "word": "Deicide", "description": "god" }
+            { "word": "Deicide", "description": "god" },
+            { "word": "Avicide", "description": "bird" }
         ]
     },
     {
@@ -123,7 +125,8 @@
             { "word": "Grunt", "description": "camel" },
             { "word": "Hoot", "description": "owl" },
             { "word": "Howl", "description": "wolf" },
-            { "word": "Snort", "description": "pig" }
+            { "word": "Snort", "description": "pig" },
+            { "word": "Bleat", "description": "goat" }
         ]
     },
     {
