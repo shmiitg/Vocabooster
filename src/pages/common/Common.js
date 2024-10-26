@@ -51,14 +51,12 @@ const Common = () => {
             <div className="clusters-container">
                 <div className="accordion" role="tablist">
                     {commonTerms.map((terms, index) => (
-                        <>
-                            <Accordion
-                                key={index}
-                                active={activeTabs.includes(index)}
-                                {...terms}
-                                togglePanel={() => togglePanel(index)}
-                            />
-                        </>
+                        <Accordion
+                            key={index}
+                            active={activeTabs.includes(index)}
+                            {...terms}
+                            togglePanel={() => togglePanel(index)}
+                        />
                     ))}
                 </div>
             </div>

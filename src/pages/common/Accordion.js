@@ -23,11 +23,11 @@ const Accordion = ({ label, content, active, togglePanel }) => {
                 {label}
             </button>
             <div className="panel__inner" ref={innerRef} style={innerStyle} aria-hidden={!active}>
-                <p className="panel__content">
+                <div className="panel__content">
                     <div className="panel__section">
                         {content.map((entry, index) => (
                             <>
-                                {index % 2 === 0 && (
+                                {index <= content.length / 2 && (
                                     <div className="panel__word" key={index}>
                                         {entry.word ? (
                                             <div>
@@ -44,7 +44,7 @@ const Accordion = ({ label, content, active, togglePanel }) => {
                     <div className="panel__section">
                         {content.map((entry, index) => (
                             <>
-                                {index % 2 === 1 && (
+                                {index > content.length / 2 && (
                                     <div className="panel__word" key={index}>
                                         {entry.word ? (
                                             <div>
@@ -58,7 +58,7 @@ const Accordion = ({ label, content, active, togglePanel }) => {
                             </>
                         ))}
                     </div>
-                </p>
+                </div>
             </div>
         </div>
     );

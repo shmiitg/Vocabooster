@@ -47,7 +47,8 @@
             { "word": "Fratricide", "description": "brother" },
             { "word": "Sororicide", "description": "sister" },
             { "word": "Deicide", "description": "god" },
-            { "word": "Avicide", "description": "bird" }
+            { "word": "Avicide", "description": "bird" },
+            { "word": "Filicide", "description": "child" }
         ]
     },
     {
@@ -61,7 +62,6 @@
             { "word": "Idiocracy", "description": "foolish" },
             { "word": "Kakistocracy", "description": "incompetent" },
             { "word": "Kleptocracy", "description": "thieves" },
-            { "word": "Mediocracy", "description": "mediocre" },
             { "word": "Neocracy", "description": "inexperienced" },
             { "word": "Oligarchy", "description": "small group" },
             { "word": "Panarchy", "description": "freely choose govt" },
@@ -113,7 +113,6 @@
             { "word": "Ophthalmologist", "description": "eye" },
             { "word": "Pathologist", "description": "diseases" },
             { "word": "Pulmonologist", "description": "lungs" },
-            { "word": "Gastroenterologist", "description": "digestive system" },
             { "word": "Neurologist", "description": "nervous system" },
             { "word": "Pediatrician", "description": "child" }
         ]
