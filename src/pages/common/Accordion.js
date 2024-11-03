@@ -27,7 +27,7 @@ const Accordion = ({ label, content, active, togglePanel }) => {
                     <div className="panel__section">
                         {content.map((entry, index) => (
                             <>
-                                {index <= content.length / 2 && (
+                                {index < content.length / 2 && (
                                     <div className="panel__word" key={index}>
                                         {entry.word ? (
                                             <div>
@@ -44,7 +44,7 @@ const Accordion = ({ label, content, active, togglePanel }) => {
                     <div className="panel__section">
                         {content.map((entry, index) => (
                             <>
-                                {index > content.length / 2 && (
+                                {index >= content.length / 2 && (
                                     <div className="panel__word" key={index}>
                                         {entry.word ? (
                                             <div>
