@@ -23,7 +23,7 @@
             { "word": "Nyctophobia", "description": "dark" },
             { "word": "Arsonphobia", "description": "fire" },
             { "word": "Cynophobia", "description": "dogs" },
-            { "word": "Ophidiophobia", "description": "dogs" }
+            { "word": "Ophidiophobia", "description": "snakes" }
         ]
     },
     {
@@ -65,9 +65,7 @@
             { "word": "Neocracy", "description": "inexperienced" },
             { "word": "Oligarchy", "description": "small group" },
             { "word": "Panarchy", "description": "freely choose govt" },
-            { "word": "Plutocracy", "description": "rich" },
-            { "word": "Theocracy", "description": "religious leaders" },
-            { "word": "Cryptocracy", "description": "secret govt" }
+            { "word": "Plutocracy", "description": "rich" }
         ]
     },
     {
