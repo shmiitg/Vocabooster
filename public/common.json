@@ -21,7 +21,9 @@
             { "word": "Arachnophobia", "description": "spiders" },
             { "word": "Aquaphobia", "description": "water" },
             { "word": "Nyctophobia", "description": "dark" },
-            { "word": "Arsonphobia", "description": "fire" }
+            { "word": "Arsonphobia", "description": "fire" },
+            { "word": "Cynophobia", "description": "dogs" },
+            { "word": "Ophidiophobia", "description": "dogs" }
         ]
     },
     {
@@ -30,8 +32,7 @@
             { "word": "Ergophile", "description": "work" },
             { "word": "Oenophile", "description": "wine" },
             { "word": "Dendrophile", "description": "trees" },
-            { "word": "Pluviophile", "description": "rain" },
-            { "word": "Canophile", "description": "dogs" }
+            { "word": "Pluviophile", "description": "rain" }
         ]
     },
     {
@@ -59,7 +60,6 @@
             { "word": "Bureaucracy", "description": "top officials" },
             { "word": "Diabolocracy", "description": "devil" },
             { "word": "Gerontocracy", "description": "old" },
-            { "word": "Idiocracy", "description": "foolish" },
             { "word": "Kakistocracy", "description": "incompetent" },
             { "word": "Kleptocracy", "description": "thieves" },
             { "word": "Neocracy", "description": "inexperienced" },
@@ -79,7 +79,6 @@
             { "word": "Orology", "description": "mountains" },
             { "word": "Epigraphy", "description": "inscriptions" },
             { "word": "Climatology", "description": "atmosphere" },
-            { "word": "Conchology", "description": "mollusc shells" },
             { "word": "Cosmology", "description": "universe" },
             { "word": "Cytology", "description": "cell" },
             { "word": "Genealogy", "description": "families" },
@@ -109,11 +108,9 @@
         "label": "Specialist",
         "content": [
             { "word": "Gynaecologist", "description": "female" },
-            { "word": "Nephrologist", "description": "kidney" },
             { "word": "Ophthalmologist", "description": "eye" },
             { "word": "Pathologist", "description": "diseases" },
             { "word": "Pulmonologist", "description": "lungs" },
-            { "word": "Neurologist", "description": "nervous system" },
             { "word": "Pediatrician", "description": "child" }
         ]
     },
