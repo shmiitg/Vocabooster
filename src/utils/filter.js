@@ -25,6 +25,19 @@ export const filterOws = (ows, alphabet, query) => {
     );
 };
 
+export const filterPhrasal = (phrasal, query) => {
+    return phrasal.filter((entry) => {
+        return (
+            entry.phrasal.toLowerCase().includes(query.toLowerCase()) ||
+            entry.meanings.some(
+                (meaning) =>
+                    meaning.definition?.toLowerCase().includes(query.toLowerCase()) ||
+                    meaning.example?.toLowerCase().includes(query.toLowerCase())
+            )
+        );
+    });
+};
+
 export const filterIdioms = (idioms, query) => {
     return idioms.filter((entry) => entry.idiom.toLowerCase().includes(query.toLowerCase()));
 };

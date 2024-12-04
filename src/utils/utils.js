@@ -57,6 +57,21 @@ export const getAllOws = async () => {
     }
 };
 
+export const getAllPhrasal = async () => {
+    try {
+        let phrasal = [];
+        const url = `${process.env.REACT_APP_SERVER_URL}/phrasal`;
+        const res = await fetch(url);
+        const data = await res.json();
+        if (res.status === 200) {
+            phrasal = data.phrasal;
+        }
+        return { phrasal };
+    } catch (err) {
+        return { error: "Failed to load Words" };
+    }
+};
+
 export const getAllIdioms = async () => {
     try {
         let idioms = [];

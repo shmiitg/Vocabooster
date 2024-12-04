@@ -27,6 +27,21 @@ export const sortOws = (ows) => {
     });
 };
 
+export const sortPhrasal = (phrasal) => {
+    return phrasal.sort((a, b) => {
+        const phrasalA = a.phrasal.toLowerCase();
+        const phrasalB = b.phrasal.toLowerCase();
+
+        if (phrasalA < phrasalB) {
+            return -1;
+        }
+        if (phrasalA > phrasalB) {
+            return 1;
+        }
+        return 0;
+    });
+};
+
 export const sortIdioms = (idioms) => {
     return idioms.sort((a, b) => {
         const idiomA = a.idiom.toLowerCase();

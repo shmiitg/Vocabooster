@@ -9,6 +9,7 @@ export const navMenu = [
         submenu: [
             { title: "Word", address: "/revise-word" },
             { title: "OWS", address: "/revise-ows" },
+            { title: "Phrasal", address: "/revise-phrasal" },
             { title: "Idiom", address: "/revise-idiom" },
         ],
     },
@@ -19,6 +20,7 @@ export const navMenu = [
         submenu: [
             { title: "Word", address: "/word" },
             { title: "OWS", address: "/ows" },
+            { title: "Phrasal", address: "/phrasal" },
             { title: "Idiom", address: "/idioms" },
             { title: "Spelling", address: "/spellings" },
             { title: "Common", address: "/common" },

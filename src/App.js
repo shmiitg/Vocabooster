@@ -12,6 +12,7 @@ import ReviseWord from "./pages/revise/ReviseWord";
 import ReviseOWS from "./pages/revise/ReviseOWS";
 import ReviseIdiom from "./pages/revise/ReviseIdiom";
 import OWS from "./pages/ows/OWS";
+import Phrasal from "./pages/phrasal/Phrasal";
 import Idiom from "./pages/idiom/Idiom";
 import Spelling from "./pages/spelling/Spelling";
 import Common from "./pages/common/Common";
@@ -42,6 +43,7 @@ const App = () => {
                     <Route path="/revise-idiom" element={<ReviseIdiom />} />
                     <Route path="/word" element={<Word />} />
                     <Route path="/ows" element={<OWS />} />
+                    <Route path="/phrasal" element={<Phrasal />} />
                     <Route path="/idioms" element={<Idiom />} />
                     <Route path="/spellings" element={<Spelling />} />
                     <Route path="/common" element={<Common />} />
