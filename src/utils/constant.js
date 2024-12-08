@@ -33,6 +33,7 @@ export const navMenu = [
         submenu: [
             { title: "Word", address: "/bookmark-word" },
             { title: "OWS", address: "/bookmark-ows" },
+            { title: "Phrasal", address: "/bookmark-phrasal" },
             { title: "Idiom", address: "/bookmark-idiom" },
         ],
     },

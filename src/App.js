@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 // import pages
 import BookmarkWord from "./pages/word/BookmarkWord";
 import BookmarkOWS from "./pages/ows/BookmarkOWS";
+import BookmarkPhrasal from "./pages/phrasal/BookmarkPhrasal";
 import BookmarkIdiom from "./pages/idiom/BookmarkIdiom";
 import Word from "./pages/word/Word";
 import ReviseWord from "./pages/revise/ReviseWord";
@@ -37,6 +38,7 @@ const App = () => {
                     <Route path="/" element={<Word />} />
                     <Route path="/bookmark-word" element={<BookmarkWord />} />
                     <Route path="/bookmark-ows" element={<BookmarkOWS />} />
+                    <Route path="/bookmark-phrasal" element={<BookmarkPhrasal />} />
                     <Route path="/bookmark-idiom" element={<BookmarkIdiom />} />
                     <Route path="/revise-word" element={<ReviseWord />} />
                     <Route path="/revise-ows" element={<ReviseOWS />} />

@@ -13,6 +13,7 @@ const BookmarkOWS = () => {
     const { searchQuery } = useContext(SearchContext);
 
     const [ows, setOws] = useState([]);
+
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
 
