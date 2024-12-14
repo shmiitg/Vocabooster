@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import MobileNavItem from "./MobileNavItem";
 import { navMenu } from "../../utils/constant";
 import { FaSignOutAlt } from "react-icons/fa";
@@ -6,9 +6,11 @@ import { AuthContext } from "../../context/AuthContext";
 
 const MobileNav = ({ isOpen, setOpen }) => {
     const { user, logout } = useContext(AuthContext);
+    const [currentOpenDropdown, setOpenDropdown] = useState(null); // Track open dropdown
 
     const handleMenuToggle = () => {
         setOpen((prev) => !prev);
+        setOpenDropdown(null); // Close any open dropdown when the menu is toggled
     };
 
     return (
@@ -26,6 +28,10 @@ const MobileNav = ({ isOpen, setOpen }) => {
                             <MobileNavItem
                                 key={index}
                                 navItem={navItem}
+                                isOpenDropdown={currentOpenDropdown === index}
+                                setOpenDropdown={() =>
+                                    setOpenDropdown(currentOpenDropdown === index ? null : index)
+                                }
                                 handleMenuToggle={handleMenuToggle}
                             />
                         );

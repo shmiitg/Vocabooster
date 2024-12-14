@@ -1,32 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
-const MobileNavItem = ({ navItem, handleMenuToggle }) => {
+const MobileNavItem = ({ navItem, isOpenDropdown, setOpenDropdown, handleMenuToggle }) => {
     const location = useLocation();
     const pathname = location.pathname;
-
-    const [dropdown, setDropdown] = useState(false);
-
-    const toggleDropdown = () => setDropdown((prev) => !prev);
-
-    const handleMenuToggleMobile = () => {
-        handleMenuToggle();
-        toggleDropdown();
-    };
 
     return (
         <div>
             {navItem.submenu ? (
                 <>
-                    <div className="hamburger-link" onClick={toggleDropdown}>
+                    <div className="hamburger-link" onClick={setOpenDropdown}>
                         <span>
                             {navItem.icon}
                             {navItem.title}
-                            {dropdown ? <FaChevronUp /> : <FaChevronDown />}
+                            {isOpenDropdown ? <FaChevronUp /> : <FaChevronDown />}
                         </span>
                     </div>
-                    {dropdown && (
+                    {isOpenDropdown && (
                         <div className="submenu">
                             {navItem.submenu.map((item, index) => (
                                 <div
@@ -36,7 +27,7 @@ const MobileNavItem = ({ navItem, handleMenuToggle }) => {
                                             ? "hamburger-link-active"
                                             : "hamburger-link"
                                     }
-                                    onClick={handleMenuToggleMobile}
+                                    onClick={handleMenuToggle}
                                 >
                                     <Link to={item.address}>{item.title}</Link>
                                 </div>
