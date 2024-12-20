@@ -6,20 +6,18 @@ import { SearchProvider } from "./context/SearchContext";
 import { AuthProvider } from "./context/AuthContext";
 import UpdateProvider from "./context/UpdateContext";
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const Root = () => {
+    useEffect(() => {
+        // Add Google AdSense script dynamically to the head of the document
+        const script = document.createElement("script");
+        script.src =
+            "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1588856948014272";
+        script.async = true;
+        script.crossOrigin = "anonymous";
+        document.head.appendChild(script);
+    }, []);
 
-useEffect(() => {
-    // Add AdSense script dynamically to the head of the document
-    const script = document.createElement("script");
-    script.src =
-        "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1588856948014272";
-    script.async = true;
-    script.crossOrigin = "anonymous";
-    document.head.appendChild(script);
-}, []);
-
-root.render(
-    <React.StrictMode>
+    return (
         <Router>
             <SearchProvider>
                 <UpdateProvider>
@@ -29,5 +27,12 @@ root.render(
                 </UpdateProvider>
             </SearchProvider>
         </Router>
+    );
+};
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+    <React.StrictMode>
+        <Root />
     </React.StrictMode>
 );
