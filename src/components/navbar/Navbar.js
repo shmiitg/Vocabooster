@@ -38,7 +38,7 @@ const Navbar = () => {
             <div className={`App-header ${isOpen ? "open" : ""}`}>
                 <div className="left-header">
                     <h1 className="logo">
-                        <Link to="/">Vocabrain</Link>
+                        <Link to="/">Vocabotopia</Link>
                     </h1>
                 </div>
                 <div className="mid-header">
